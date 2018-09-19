@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dictionnaire SYSTEM "dictionnaire.dtd" >
+<dictionnaire>
+  <entree id="dico1">
+    <orthographe>
+      <orthographe-usuelle>orthographe-usuelle</orthographe-usuelle>
+      <orthographe-derivees>orthographe-derivees</orthographe-derivees>
+    </orthographe>
+    <nature>
+      <nom-propre/>
+    </nature>
+    <prononciation>prononciation</prononciation>
+    <renvoie reference="dico2"/>
+    <ecriture-expression>ecriture-expression</ecriture-expression>
+    <domaine>domaine</domaine>
+    <sens-expression>sens-expression</sens-expression>
+    <exemple-utilisation>exemple-utilisation</exemple-utilisation>
+    <traduction>
+      <langue>langue</langue>
+      <ecriture-traduction>ecriture-traduction</ecriture-traduction>
+      <prononciation>prononciation</prononciation>
+      <annotation>annotation</annotation>
+    </traduction>
+    <etymologie>etymologie</etymologie>
+  </entree>
+  
+  <entree id="dico2">
+    <orthographe>
+      <orthographe-usuelle>orthographe-usuelle</orthographe-usuelle>
+      <orthographe-derivees>orthographe-derivees</orthographe-derivees>
+    </orthographe>
+    <nature>
+    	<nom-commun>
+    		<genre-usuel genre="neutre"/>
+    		<nombre-usuel valeur="singulier"/>
+    	</nom-commun>
+    </nature>
+    <prononciation>prononciation</prononciation>
+    <renvoie reference="dico1"/>
+    <ecriture-expression>ecriture-expression</ecriture-expression>
+    <domaine>domaine</domaine>
+    <sens-expression>sens-expression</sens-expression>
+    <exemple-utilisation>exemple-utilisation</exemple-utilisation>
+    <traduction>
+      <langue>langue</langue>
+      <ecriture-traduction>ecriture-traduction</ecriture-traduction>
+      <prononciation>prononciation</prononciation>
+      <annotation>annotation</annotation>
+    </traduction>
+    <etymologie>etymologie</etymologie>
+  </entree>
+</dictionnaire>

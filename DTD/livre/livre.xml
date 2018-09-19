@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE livre SYSTEM "livre.dtd" >
+<livre>
+  <titre>titre</titre>
+  <auteur>
+    <civilite type="M."/>
+    <prenom-usuel>prenom-usuel</prenom-usuel>
+    <prenom-complementaire>prenom-complementaire</prenom-complementaire>
+    <nom>nom</nom>
+  </auteur>
+  <editeur>editeur</editeur>
+  <annee>annee</annee>
+  <numero-ISBN valeur="FFFFF"/>
+  <lecon id="lecon1">
+    <numero-lecon>numero-lecon</numero-lecon>
+    <titre-lecon>titre-lecon</titre-lecon>
+    <introduction>
+      <paragraphes/>
+    </introduction>
+    <chapitres>
+      <titre>titre</titre>
+      <introduction>
+        <paragraphes>
+        	<notes type="matériel" id="note1">
+        		Dans la vallée han han
+        	</notes>
+        	<renvois reference="lecon2"/>
+        	Je renvoie vers la lecon 2
+        </paragraphes>
+      </introduction>
+      <sections>
+        <titre-lecon>titre-lecon</titre-lecon>
+        <paragraphes/>
+      </sections>
+    </chapitres>
+    <exercices>
+      <numero-exercice>numero-exercice</numero-exercice>
+      <QCM>
+        <enonce-QCM>enonce-QCM</enonce-QCM>
+        <reponse-QCM id="idvalue1">reponse-QCM</reponse-QCM>
+        <reponse-QCM id="idvalue2">reponse-QCM</reponse-QCM>
+        <reponse-QCM id="idvalue3">reponse-QCM</reponse-QCM>
+        <reponse-QCM id="idvalue4">reponse-QCM</reponse-QCM>
+        
+      </QCM>
+      <corrige reference-reponse="idvalue1 idvalue2">corrige</corrige>
+    </exercices>
+  </lecon>
+  
+  <lecon id="lecon2">
+    <numero-lecon>numero-lecon</numero-lecon>
+    <titre-lecon>titre-lecon</titre-lecon>
+    <introduction>
+      <paragraphes/>
+    </introduction>
+    <chapitres>
+      <titre>titre</titre>
+      <introduction>
+        <paragraphes>
+        	<!-- AUCUNE ERREUR ALORS QUE L'ID EST BIDON ??? -->
+        	<renvois reference="sdjsdjfjsdfsdjfjsd"/>
+        	Je renvoie vers la lecon 1
+        </paragraphes>
+      </introduction>
+      <sections>
+        <titre-lecon>titre-lecon</titre-lecon>
+        <paragraphes/>
+      </sections>
+    </chapitres>
+    <exercices>
+      <numero-exercice>numero-exercice</numero-exercice>
+      <QCM>
+        <enonce-QCM>enonce-QCM</enonce-QCM>
+        <reponse-QCM id="idvalue5">reponse-QCM</reponse-QCM>
+        <reponse-QCM id="idvalue6">reponse-QCM</reponse-QCM>
+        <reponse-QCM id="idvalue7">reponse-QCM</reponse-QCM>
+        <reponse-QCM id="idvalue8">reponse-QCM</reponse-QCM>
+        <reponse-QCM id="idvalue9">reponse-QCM</reponse-QCM>
+      </QCM>
+      <corrige reference-reponse="idvalue8 idvalue9">corrige</corrige>
+    </exercices>
+  </lecon>
+</livre>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Déclaration de l'entité paramètre -->
+<!ENTITY % commun SYSTEM "../commun/commun.dtd">
+<!-- Import des définitions de l'entité paramètre -->
+%commun;
+
+<!-- Redéfinition de l'entité personne car le prénom doit être unique -->
+<!ELEMENT prenom-usuel-carnet EMPTY>
+<!ATTLIST prenom-usuel-carnet prenom ID #REQUIRED>
+<!ENTITY % personne-carnet "civilite, prenom-usuel-carnet, nom">
+
+<!-- Déclaration de l'élément carnet -->
+<!ELEMENT carnet (liste-contact, liste-entreprise, liste-rdv)>
+
+<!-- Déclaration de la liste de contact -->
+<!ELEMENT liste-contact (contact*)>
+<!ELEMENT contact (%coordReduite;)>
+<!ATTLIST contact
+	siteEntreprise IDREF #REQUIRED
+	id ID #REQUIRED>
+
+<!-- Déclaration de la liste d'entreprise -->
+<!ELEMENT liste-entreprise (entreprise*)>
+<!ELEMENT entreprise (nom-entreprise, liste-site)>
+<!ATTLIST entreprise id ID #REQUIRED>
+<!ELEMENT nom-entreprise (#PCDATA)>
+<!ELEMENT liste-site (site+)>
+<!ELEMENT site (nom-site, %adressePostale;)>
+<!ELEMENT nom-site (#PCDATA)>
+
+<!-- Déclaration de la liste de rendez-vous -->
+<!ELEMENT liste-rdv (rdv*)>
+<!ELEMENT rdv (personne*, date, heure-debut, duree, %adressePostale;)>
+
+<!-- Le rendez-vous doit faire référence à une personne qui existe dans la liste de personnes, donc ref à l'ID du contact -->
+<!ATTLIST rdv prenom-personne IDREF #REQUIRED>
+<!ELEMENT personne (%personne-carnet;)>
+
+<!ELEMENT date (#PCDATA)>
+<!ELEMENT heure-debut (#PCDATA)>
+<!ELEMENT duree (#PCDATA)>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- ENTITY PARAMETRE PERSONNE -->
+<!ENTITY % personne "civilite, prenom-usuel, prenom-complementaire*, nom">
+<!-- ENTITY PARAMETRE COORDREDUITE -->
+<!ENTITY % coordReduite "coordonnees">
+<!-- ENTITY ADRESSE POSTALE -->
+<!ENTITY % adressePostale "adresse-postale">
+
+<!-- DESCRIPTION D'UNE PERSONNE-->
+<!ELEMENT civilite EMPTY>
+<!ATTLIST civilite type (M.|Mme|Mlle) #REQUIRED>
+<!ELEMENT prenom-usuel (#PCDATA)>
+<!ELEMENT prenom-complementaire (#PCDATA)>
+<!ELEMENT nom (#PCDATA)>
+
+<!-- COORDONNEES D'UNE PERSONNE REDUITE OU COMPLETE -->
+<!ELEMENT coordonnees (complete | reduite)*>
+
+<!ELEMENT reduite (identite, num-tel, num-fax?, email?)>
+<!ELEMENT complete (identite, adresse-postale, num-tel+, num-fax*, email*)>
+
+<!ELEMENT adresse-postale (precision-personnelle?, complement-geo?, voie, service-postale?, localite, pays?)>
+<!ELEMENT precision-personnelle (#PCDATA)>
+<!ELEMENT complement-geo (#PCDATA)>
+
+<!-- ELEMENT VOIE -->
+<!ELEMENT voie (numero-voie?, type-voie?, nom-voie)>
+<!ELEMENT numero-voie (#PCDATA)>
+<!ELEMENT type-voie (#PCDATA)>
+<!ELEMENT nom-voie (#PCDATA)>
+
+<!ELEMENT service-postale (#PCDATA)>
+
+<!-- ELEMENT localite -->
+<!ELEMENT localite (code-postal, nom-commune, CEDEX?)>
+<!ELEMENT code-postal (#PCDATA)>
+<!ELEMENT nom-commune (#PCDATA)>
+<!ELEMENT CEDEX (#PCDATA)>
+<!ATTLIST CEDEX value CDATA #REQUIRED>
+
+<!ELEMENT pays (#PCDATA)>
+
+<!ELEMENT num-tel (#PCDATA)>
+<!ELEMENT num-fax (#PCDATA)>
+
+<!ELEMENT email (#PCDATA)>
+
+<!-- IDENTITE -->
+<!ELEMENT identite (denomination | raison-sociale | appelation)>
+
+<!-- DENOMINATION D'UNE PERSONNE -->
+<!ELEMENT denomination (%personne;)>
+<!ELEMENT raison-sociale (#PCDATA)>
+<!ELEMENT appelation (#PCDATA)>

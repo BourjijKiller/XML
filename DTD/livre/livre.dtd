@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Déclaration de l'entité paramètre guide -->
+<!ENTITY % guide SYSTEM "../guide/guide.dtd">
+<!-- Import des définitions de l'entité paramètre guide -->
+%guide;
+
+<!-- Utilisation de l'introduction définie dans guide -->
+<!ENTITY % introduction-livre "introduction">
+
+<!-- Utilisation du paragraphe définie dans guide -->
+<!ENTITY % paragraphe-livre "paragraphes">
+
+<!-- Redéfinition de l'entité paramètre guide car on remplace vallons par un nouvel élément -->
+<!ELEMENT numero-ISBN EMPTY>
+<!ATTLIST numero-ISBN valeur CDATA #REQUIRED>
+
+<!-- Déclaration d'une leçon -->
+<!ELEMENT lecon (numero-lecon, titre-lecon, %introduction-livre;, chapitres+, exercices+)>
+<!ELEMENT numero-lecon (#PCDATA)>
+<!ELEMENT titre-lecon (#PCDATA)>
+<!-- Une leçon est unique -->
+<!ATTLIST lecon id ID #REQUIRED>
+
+<!-- Déclaration d'un chapitre -->
+<!ELEMENT chapitres (titre, %introduction-livre;, sections+)>
+<!ELEMENT sections (titre-lecon, %paragraphe-livre;)>
+
+<!-- Déclaration d'un exercice -->
+<!ELEMENT exercices (numero-exercice, QCM, corrige)>
+<!ELEMENT numero-exercice (#PCDATA)>
+<!ELEMENT QCM (enonce-QCM, (reponse-QCM,(reponse-QCM+)))>
+<!ELEMENT enonce-QCM (#PCDATA)>
+<!ELEMENT reponse-QCM (#PCDATA)>
+<!ATTLIST reponse-QCM id ID #REQUIRED>
+<!ELEMENT corrige (#PCDATA)>
+<!ATTLIST corrige reference-reponse IDREFS #REQUIRED>
+  
+<!ENTITY % information-livre "titre, auteur+, editeur, annee, numero-ISBN, lecon+"> 
+
+<!-- Déclaration de l'élément livre -->
+<!ELEMENT livre (%information-livre;)>

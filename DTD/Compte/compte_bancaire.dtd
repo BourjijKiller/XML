@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Déclaration de l'entité paramètre -->
+<!ENTITY % commun SYSTEM "../commun/commun.dtd">
+<!-- Import des définitions de l'entité paramètre -->
+%commun;
+
+<!-- ENTITY releve-commun -->
+<!ENTITY % releve-commun "titulaire, devise, numero-compte, intitule-compte, solde-compte-actuel, date, heure">
+
+<!ENTITY % releve-intermediaire "%releve-commun;, solde-initial, operations*">
+
+<!-- Déclaration de l'élément titulaire qui est composé de coordonnées complètes depuis commun -->
+<!ELEMENT titulaire (complete)>
+<!ELEMENT devise EMPTY>
+<!ATTLIST devise monnaie CDATA #REQUIRED>
+<!ELEMENT numero-compte (#PCDATA)>
+<!ELEMENT intitule-compte (#PCDATA)>
+<!ELEMENT solde-compte-actuel (#PCDATA)>
+<!ELEMENT date (#PCDATA)>
+<!ELEMENT heure (#PCDATA)>
+
+<!-- Déclaration d'un relevé de compte -->
+<!ELEMENT releve-compte (releve-simple* | releve-intermediaire* | releve-complet*)>
+
+<!-- Déclaration de l'élément relevé simple -->
+<!ELEMENT releve-simple (%releve-commun;)>
+
+<!-- Déclaration de l'élément relevé intermédiaire -->
+<!ELEMENT releve-intermediaire (%releve-intermediaire;)>
+<!ELEMENT operations (date-demande, date-valeur, libelle, montant)>
+<!ELEMENT date-demande (#PCDATA)>
+<!ELEMENT date-valeur (#PCDATA)>
+<!ELEMENT libelle (#PCDATA)>
+<!ELEMENT montant (#PCDATA)>
+<!ATTLIST montant action (débit | crédit) #REQUIRED>
+
+<!-- Déclaration de l'élément relevé complet -->
+<!ELEMENT releve-complet (%releve-commun;, %releve-intermediaire;, titulaire-procuration*, contenu-portefeuille-boursier*)>
+<!ELEMENT titulaire-procuration (titulaire)>
+<!ELEMENT contenu-portefeuille-boursier (actions*)>
+
+<!-- Déclaration des actions -->
+<!ELEMENT actions (intitule-action, nombre-actions-possedees, cout-achat-unitaire, montant-actuel-global-action, date-heure-montant-calcule)>
+<!ELEMENT intitule-action (#PCDATA)>
+<!ELEMENT nombre-actions-possedees (#PCDATA)>
+<!ELEMENT cout-achat-unitaire (#PCDATA)>
+<!ELEMENT montant-actuel-global-action (#PCDATA)> 
+<!ELEMENT date-heure-montant-calcule (#PCDATA)>
+
+
+<!ELEMENT solde-initial (#PCDATA)>
+
+
+<!ATTLIST operationsé id ID #REQUIRED>
+<!ATTLIST actions id ID #REQUIRED>
