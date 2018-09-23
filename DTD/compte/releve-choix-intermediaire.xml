@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE releve-intermediaire SYSTEM "releve-choix.dtd" >
+<releve-intermediaire>
+  <titulaire>
+    <complete>
+      <identite>
+        <denomination>
+          <civilite type="M."/>
+          <prenom-usuel>prenom-usuel</prenom-usuel>
+          <nom>nom</nom>
+        </denomination>
+      </identite>
+      <adresse-postale>
+        <voie>
+          <nom-voie>nom-voie</nom-voie>
+        </voie>
+        <localite>
+          <code-postal>code-postal</code-postal>
+          <nom-commune>nom-commune</nom-commune>
+        </localite>
+      </adresse-postale>
+      <num-tel>num-tel</num-tel>
+    </complete>
+  </titulaire>
+  <devise monnaie=""/>
+  <numero-compte>numero-compte</numero-compte>
+  <intitule-compte>intitule-compte</intitule-compte>
+  <solde-compte-actuel>solde-compte-actuel</solde-compte-actuel>
+  <date>date</date>
+  <heure>heure</heure>
+  <solde-initial>solde-initial</solde-initial>
+  <operations id="idvalue0">
+    <date-demande>date-demande</date-demande>
+    <date-valeur>date-valeur</date-valeur>
+    <libelle>libelle</libelle>
+    <montant action="débit">montant</montant>
+  </operations>
+</releve-intermediaire>

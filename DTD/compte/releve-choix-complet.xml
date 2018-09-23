@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE releve-complet SYSTEM "releve-choix.dtd" >
+<releve-complet>
+  <titulaire>
+    <complete>
+      <identite>
+        <denomination>
+          <civilite type="M."/>
+          <prenom-usuel>prenom-usuel</prenom-usuel>
+          <nom>nom</nom>
+        </denomination>
+      </identite>
+      <adresse-postale>
+        <voie>
+          <nom-voie>nom-voie</nom-voie>
+        </voie>
+        <localite>
+          <code-postal>code-postal</code-postal>
+          <nom-commune>nom-commune</nom-commune>
+        </localite>
+      </adresse-postale>
+      <num-tel>num-tel</num-tel>
+    </complete>
+  </titulaire>
+  <devise monnaie=""/>
+  <numero-compte>numero-compte</numero-compte>
+  <intitule-compte>intitule-compte</intitule-compte>
+  <solde-compte-actuel>solde-compte-actuel</solde-compte-actuel>
+  <date>date</date>
+  <heure>heure</heure>
+  <titulaire>
+    <complete>
+      <identite>
+        <denomination>
+          <civilite type="M."/>
+          <prenom-usuel>prenom-usuel</prenom-usuel>
+          <nom>nom</nom>
+        </denomination>
+      </identite>
+      <adresse-postale>
+        <voie>
+          <nom-voie>nom-voie</nom-voie>
+        </voie>
+        <localite>
+          <code-postal>code-postal</code-postal>
+          <nom-commune>nom-commune</nom-commune>
+        </localite>
+      </adresse-postale>
+      <num-tel>num-tel</num-tel>
+    </complete>
+  </titulaire>
+  <devise monnaie=""/>
+  <numero-compte>numero-compte</numero-compte>
+  <intitule-compte>intitule-compte</intitule-compte>
+  <solde-compte-actuel>solde-compte-actuel</solde-compte-actuel>
+  <date>date</date>
+  <heure>heure</heure>
+  <solde-initial>solde-initial</solde-initial>
+  <operations id="idvalue0">
+    <date-demande>date-demande</date-demande>
+    <date-valeur>date-valeur</date-valeur>
+    <libelle>libelle</libelle>
+    <montant action="débit">montant</montant>
+  </operations>
+  <titulaire-procuration>
+    <titulaire>
+      <complete>
+        <identite>
+          <denomination>
+            <civilite type="M."/>
+            <prenom-usuel>prenom-usuel</prenom-usuel>
+            <nom>nom</nom>
+          </denomination>
+        </identite>
+        <adresse-postale>
+          <voie>
+            <nom-voie>nom-voie</nom-voie>
+          </voie>
+          <localite>
+            <code-postal>code-postal</code-postal>
+            <nom-commune>nom-commune</nom-commune>
+          </localite>
+        </adresse-postale>
+        <num-tel>num-tel</num-tel>
+      </complete>
+    </titulaire>
+  </titulaire-procuration>
+  <contenu-portefeuille-boursier>
+    <actions id="idvalue1">
+      <intitule-action>intitule-action</intitule-action>
+      <nombre-actions-possedees>nombre-actions-possedees</nombre-actions-possedees>
+      <cout-achat-unitaire>cout-achat-unitaire</cout-achat-unitaire>
+      <montant-actuel-global-action>montant-actuel-global-action</montant-actuel-global-action>
+      <date-heure-montant-calcule>date-heure-montant-calcule</date-heure-montant-calcule>
+    </actions>
+  </contenu-portefeuille-boursier>
+</releve-complet>

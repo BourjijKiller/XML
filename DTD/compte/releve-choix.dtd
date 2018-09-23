@@ -5,8 +5,10 @@
 %commun;
 
 <!-- ENTITY releve-commun -->
+<!-- Entité dont les éléments sont communs entre les 3 comptes -->
 <!ENTITY % releve-commun "titulaire, devise, numero-compte, intitule-compte, solde-compte-actuel, date, heure">
 
+<!-- ENTITY releve-intermediaire -->
 <!ENTITY % releve-intermediaire "%releve-commun;, solde-initial, operations*">
 
 <!-- Déclaration de l'élément titulaire qui est composé de coordonnées complètes depuis commun -->
@@ -51,5 +53,5 @@
 <!ELEMENT solde-initial (#PCDATA)>
 
 
-<!ATTLIST operationsé id ID #REQUIRED>
+<!ATTLIST operations id ID #REQUIRED>
 <!ATTLIST actions id ID #REQUIRED>
