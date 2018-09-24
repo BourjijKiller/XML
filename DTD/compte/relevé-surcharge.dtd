@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- REMARQUE : puisque l'on va se servir d'au moins une définition commune (écrite dans la DTD "commun.dtd"), ici en l'occurrence pour définir un contact ou un site, on doit "importer/appeler" cette DTD "commun.dtd". Pour cela, on définit ici une entité paramètre nommée "commun" dont la valeur est l'ensemble du contenu de "commun.dtd" (sauf son prologue). Donc, la valeur de cette entité paramètre "commun" contient toutes les définitions figurant dans la DTD "commun.dtd". -->
+<!ENTITY % commun SYSTEM "../commun/commun.dtd">
+
+<!-- REMARQUE : on a donné comme valeur à l'entité paramètre "commun" l'ensemble des définitions figurant dans la DTD "commun.dtd". Mais, on ne peut pas encore utiliser ces définitions ! Elles ne figurent en effet PAS dans la DTD courante. Pour cela, il faut qu'on utilise localement cette entité paramètre "commun" (on peut faire une analogie avec déclaration et initialisation de variables). La valeur de cette entité paramètre est un ensemble valide de définitions. Elle doit donc être utilisée en tant qu'instruction à part entière. -->
+%commun;
+
+<!-- REMARQUE : définition des entités paramètres vont servir à surcharger dans les documents XML la DTD afin de "jouer" avec les sections conditionnelles qu'elles "identifient". -->
+<!ENTITY % simple "INCLUDE">
+<!ENTITY % intermediaire "IGNORE">
+<!ENTITY % complet "IGNORE">
+
+<!-- Définition du relevé. -->
+<!ELEMENT relevé (titulaire, détails)>
+
+<!-- L’unité monétaire dans laquelle les montants figurant dans un relevé sont exprimés est une chaîne de caractères pouvant prendre une valeur parmi les suivantes : « euro », « dollar us », « dollar canadien », « livre », … -->
+<!-- REMARQUE : l'unité monétaire est une chaîne dont la valeur est choisie parmi une liste de valeurs autorisées. On ne peut faire ceci qu'avec un attribut dans une DTD. -->
+<!ATTLIST relevé
+	devise (EURO | DOLLAR_US | LIVRE) "EURO">
+
+<!-- Le titulaire d’un compte a une identité et des coordonnées complètes (cf. données communes définies dans le préambule du TP) -->
+<!-- REMARQUE : on fait ici "appel" à la définitions de "coordonnées complètes" faite dans la DTD "commun.dtd". -->
+<!ELEMENT titulaire (com:coordonnéesComplètes)>
+
+<!-- Définition des détails du relevé. -->
+<!-- C'est là qu'on intervient sur les sections conditionnelles. -->
+<![ %simple; [<!ELEMENT détails (simple+)>]]>
+<![ %intermediaire; [<!ELEMENT détails (intermédiaire+)>]]>
+<![ %complet; [<!ELEMENT détails (complet+)>]]>
+
+<!-- REMARQUE : définition de la forme simple (plusieurs comptes peuvent figurer sur le relevé : tous ceux du titulaire du relevé). -->
+<!ELEMENT simple (compteSimple+)>
+
+<!-- Dans sa forme la plus simple, pour chaque compte possédé par le client, le relevé fera apparaître les renseignements suivants : le numéro du compte, l’intitulé du compte, le solde du compte ainsi que la date et l’heure auxquelles ce solde a été calculé. -->
+<!ELEMENT compteSimple (numéroCompte, intitulé, soldeActuel, dateSoldeActuel, heureSoldeActuel)>
+
+<!-- Le numéro du compte est un entier strictement positif sur 11 chiffres. -->
+<!-- REMARQUE : ce type de contrainte ne peut être exprimé dans une DTD, puisqu'on ne peut y contraindre ni la longueur d'une chaîne ni le type des caractères qui y sont contenus. On est obligé de s'en tenir au type #PCDATA. -->
+<!ELEMENT numéroCompte (#PCDATA)>
+
+<!-- L’intitulé du compte est une chaîne de 50 caractères au maximum. -->
+<!-- REMARQUE : on ne peut, avec le langage DTD, poser de contrainte sur la longueur d'une chaîne de caractères. On fait donc sans... -->
+<!ELEMENT intitulé (#PCDATA)>
+
+<!-- Le solde d’un compte est un nombre flottant (positif, nul ou négatif) ayant 2 chiffres significatifs après la virgule. -->
+<!-- REMARQUE : ce type de contrainte ne peut être exprimé dans une DTD, puisqu'on ne peut y contraindre ni la longueur d'une chaîne ni le type des caractères qui y sont contenus. On est obligé de s'en tenir au type #PCDATA. -->
+<!ELEMENT soldeActuel (#PCDATA)>
+
+<!-- La date et l’heure sont exprimées au moyen des types de données appropriés. -->
+<!-- REMARQUE : il n'existe pas de types correspondants dans le langage des DTD, on s'en tiendra donc à #PCDATA. -->
+<!ELEMENT dateSoldeActuel (#PCDATA)>
+<!ELEMENT heureSoldeActuel (#PCDATA)>
+
+<!-- REMARQUE : définition de la forme intermédiaire (plusieurs comptes peuvent figurer sur le relevé : tous ceux du titulaire du relevé). -->
+<!ELEMENT intermédiaire (compteIntermédiaire+)>
+
+<!-- Dans sa forme intermédiaire, pour chaque compte possédé par le client, le relevé fera apparaître les renseignements suivants : le numéro du compte, l’intitulé du compte, le solde initial de calcul de ce compte, la date et l’heure auxquelles ce solde a été calculé, la liste de toutes les opérations effectuées depuis le moment où le solde initial de calcul a été fixé (éventuellement aucune), le solde actuel et la date et l’heure auxquelles ce solde a été calculé. -->
+<!-- REMARQUE : tout ce qui apparait dans un compte intermédiaire apparait également dans un compte complet, dans le même ordre. Pour garantir cela, on définit une entité paramètre 'donnéesInterCompl' que l'on va réutiliser dans les définitions des comptes intermédiaires et des comptes complets. -->
+<!ENTITY % donnéesInterCompl "numéroCompte, intitulé, soldeInitial, dateSoldeInitial, heureSoldeInitial, opération*, soldeActuel, dateSoldeActuel, heureSoldeActuel">
+
+<!ELEMENT compteIntermédiaire (%donnéesInterCompl;)>
+
+<!-- Le solde d’un compte est un nombre flottant (positif, nul ou négatif) ayant 2 chiffres significatifs après la virgule. -->
+<!-- REMARQUE : ce type de contrainte ne peut être exprimé dans une DTD, puisqu'on ne peut y contraindre ni la longueur d'une chaîne ni le type des caractères qui y sont contenus. On est obligé de s'en tenir au type #PCDATA. -->
+<!ELEMENT soldeInitial (#PCDATA)>
+
+<!-- La date et l’heure sont exprimées au moyen des types de données appropriés. -->
+<!-- REMARQUE : il n'existe pas de types correspondants dans le langage des DTD, on s'en tiendra donc à #PCDATA. -->
+<!ELEMENT dateSoldeInitial (#PCDATA)>
+<!ELEMENT heureSoldeInitial (#PCDATA)>
+
+<!-- Une opération est décrite au moyen de la date à laquelle elle a été demandée, de la date de valeur, d’un libellé et d’un montant en crédit ou en débit (pas de nombres négatifs : prévoir deux éléments distincts ou un attribut). -->
+<!ELEMENT opération (dateDemande, dateValeur, libellé, montant)>
+
+<!-- Les dates sont exprimées au moyen du type de données approprié. -->
+<!-- REMARQUE : il n'existe pas de types correspondants dans le langage des DTD, on s'en tiendra donc à #PCDATA. -->
+<!ELEMENT dateDemande (#PCDATA)>
+<!ELEMENT dateValeur (#PCDATA)>
+
+<!-- Le libellé d’une opération est une chaîne de 50 caractères au maximum. -->
+<!-- REMARQUE : on ne peut, avec le langage DTD, poser de contrainte sur la longueur d'une chaîne de caractères. On fait donc sans... -->
+<!ELEMENT libellé (#PCDATA)>
+
+<!-- Le montant d’une opération est un nombre flottant strictement positif ayant 2 chiffres significatifs après la virgule. -->
+<!-- REMARQUE : ce type de contrainte ne peut être exprimé dans une DTD, puisqu'on ne peut y contraindre ni la longueur d'une chaîne ni le type des caractères qui y sont contenus. On est obligé de s'en tenir au type #PCDATA. -->
+<!ELEMENT montant (#PCDATA)>
+
+<!-- REMARQUE : l'attribut 'type' associé ici à l'élément 'montant' permet d'indiquer s'il s'agit d'un débit ou d'un crédit. Cet attribut doit prendre sa valeur parmi une liste de 2 valeurs autorisées : 'debit' ou 'credit'. -->
+<!ATTLIST montant
+	type (débit | crédit) #REQUIRED>
+	
+<!-- REMARQUE : définition de la forme complète (plusieurs comptes peuvent figurer sur le relevé : tous ceux du titulaire du relevé). -->
+<!ELEMENT complet (compteComplet+)>
+
+<!-- Dans sa forme la plus complète, pour chaque compte possédé par le client, le relevé fera apparaître les mêmes renseignements qu’un relevé intermédiaire ainsi que les titulaires d’une procuration sur ce compte (s’il y en a) et le contenu du portefeuille boursier associé à ce compte. -->
+<!ELEMENT compteComplet (%donnéesInterCompl;, procuration*, portefeuille?)>
+
+<!-- Un titulaire d’une procuration est décrit par des coordonnées complètes (cf. données communes définies dans le préambule) -->
+<!ELEMENT procuration (com:coordonnéesComplètes)>
+
+<!-- Un portefeuille boursier contient une liste d’actions (éventuellement vide) ainsi que son montant global et la date et l’heure auxquelles ce montant a été calculé. -->
+<!ELEMENT portefeuille (action*, montantPortefeuille, dateMontant, heureMontant)>
+
+<!-- Une liste d’actions contient, pour chaque action, l’intitulé de l’action, le nombre d’actions possédées portant cet intitulé, le coût d’achat unitaire, le coût d’achat global et la date d’achat de ces actions, le montant actuel unitaire et le montant actuel global de toutes les actions portant cet intitulé et la date et l’heure auxquelles les montants actuels ont été calculés. -->
+<!ELEMENT action (intitulé, quantité, coutAchatUnitaire, coutAchatGlobal, dateAchat, montantActuelUnitaire, montantActuelGlobal, dateMontantsActuels, heureMontantsActuels)>
+
+<!-- Un nombre d’actions est un entier strictement positif. -->
+<!-- REMARQUE : ce type de contrainte ne peut être exprimé dans une DTD, puisqu'on ne peut y contraindre ni la longueur d'une chaîne ni le type des caractères qui y sont contenus. On est obligé de s'en tenir au type #PCDATA. -->
+<!ELEMENT quantité (#PCDATA)>
+
+<!-- Les coûts sont exprimés au moyen de nombres flottants strictement positifs. -->
+<!-- REMARQUE : ce type de contrainte ne peut être exprimé dans une DTD, puisqu'on ne peut y contraindre ni la longueur d'une chaîne ni le type des caractères qui y sont contenus. On est obligé de s'en tenir au type #PCDATA. -->
+<!ELEMENT coutAchatUnitaire (#PCDATA)>
+<!ELEMENT coutAchatGlobal (#PCDATA)>
+
+<!-- Les dates sont exprimées au moyen du type de données approprié. -->
+<!-- REMARQUE : il n'existe pas de types correspondants dans le langage des DTD, on s'en tiendra donc à #PCDATA. -->
+<!ELEMENT dateAchat (#PCDATA)>
+
+<!-- Les montants sont exprimés au moyen de nombres flottants strictement positifs. -->
+<!-- REMARQUE : ce type de contrainte ne peut être exprimé dans une DTD, puisqu'on ne peut y contraindre ni la longueur d'une chaîne ni le type des caractères qui y sont contenus. On est obligé de s'en tenir au type #PCDATA. -->
+<!ELEMENT montantActuelUnitaire (#PCDATA)>
+<!ELEMENT montantActuelGlobal (#PCDATA)>
+
+<!-- La date et l’heure sont exprimées au moyen des types de données appropriés. -->
+<!-- REMARQUE : il n'existe pas de types correspondants dans le langage des DTD, on s'en tiendra donc à #PCDATA. -->
+<!ELEMENT dateMontantsActuels (#PCDATA)>
+<!ELEMENT heureMontantsActuels (#PCDATA)>
+
+<!-- Les montants sont exprimés au moyen de nombres flottants strictement positifs. -->
+<!-- REMARQUE : ce type de contrainte ne peut être exprimé dans une DTD, puisqu'on ne peut y contraindre ni la longueur d'une chaîne ni le type des caractères qui y sont contenus. On est obligé de s'en tenir au type #PCDATA. -->
+<!ELEMENT montantPortefeuille (#PCDATA)>
+
+<!-- La date et l’heure sont exprimées au moyen des types de données appropriés. -->
+<!-- REMARQUE : il n'existe pas de types correspondants dans le langage des DTD, on s'en tiendra donc à #PCDATA. -->
+<!ELEMENT dateMontant (#PCDATA)>
+<!ELEMENT heureMontant (#PCDATA)>
+
+<!-- Il faut s'assurer qu’une opération est unique au sein d’un relevé intermédiaire ou complet. -->
+<!-- REMARQUE : pour cela, on pose un attribut de type ID sur les opérations. -->
+<!ATTLIST opération
+	id ID #REQUIRED>
+
+<!-- REMARQUE : il faut s'assurer qu’une action est unique au sein d’un portefeuille d’actions d’un relevé complet. -->
+<!-- REMARQUE : pour cela, on pose un attribut de type ID sur les actions. -->
+<!ATTLIST action
+	id ID #REQUIRED>
