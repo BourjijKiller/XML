@@ -94,57 +94,62 @@
 <!ENTITY % personne "(com:civilité, com:prénomUsuel, com:prénomComplémentaire*, com:nom)">
 
 <!-- Déclaration de l'espace de nommage pour tous les éléments susceptibles d'être des éléments racine -->
-<!ENTITY % NAMESPACE 'xlmns:com CDATA #FIXED "http://www.univ-amu.fr/XML/commun"'>
+<!ENTITY % NAMESPACE_COMMUN 'xlmns:com CDATA #FIXED "http://www.univ-amu.fr/XML/commun"'>
 <!-- Inclusion de l'espace de nom dans les attributs de chaque éléments -->
+<!-- éléments entourés d'une balise parente, donc pas besoin de mettre le namespace. Le préfixe suffit -->
 <!ATTLIST com:civilité
-	%NAMESPACE;>
+	%NAMESPACE_COMMUN;>
 <!ATTLIST com:prénomUsuel
-	%NAMESPACE;>
+	%NAMESPACE_COMMUN;>
 <!ATTLIST com:prénomComplémentaire 
-	%NAMESPACE;>
+	%NAMESPACE_COMMUN;>
 <!ATTLIST com:nom 
-	%NAMESPACE;>
+	%NAMESPACE_COMMUN;>
 <!ATTLIST com:adressePostale
-	%NAMESPACE;>
+	%NAMESPACE_COMMUN;>
+
+<!-- éléments entourés d'une balise parente, donc pas besoin de mettre le namespace. Le préfixe suffit -->
 <!ATTLIST com:précision
-	%NAMESPACE;>
+	%NAMESPACE_COMMUN;>
 <!ATTLIST com:complément
-	%NAMESPACE;>
+	%NAMESPACE_COMMUN;>
 <!ATTLIST com:voie 
-	%NAMESPACE;>
+	%NAMESPACE_COMMUN;>
 <!ATTLIST com:servicePostal
-	%NAMESPACE;>
+	%NAMESPACE_COMMUN;>
 <!ATTLIST com:localité
-	%NAMESPACE;>
+	%NAMESPACE_COMMUN;>
 <!ATTLIST com:pays
-	%NAMESPACE;>
+	%NAMESPACE_COMMUN;>
 <!ATTLIST com:numéroVoie
-	%NAMESPACE;>
+	%NAMESPACE_COMMUN;>
 <!ATTLIST com:typeVoie
-	%NAMESPACE;>
+	%NAMESPACE_COMMUN;>
 <!ATTLIST com:codePostal
-	%NAMESPACE;>
+	%NAMESPACE_COMMUN;>
 <!ATTLIST com:commune
-	%NAMESPACE;>
+	%NAMESPACE_COMMUN;>
 <!ATTLIST com:CEDEX
-	%NAMESPACE;>
+	%NAMESPACE_COMMUN;>
 <!ATTLIST com:numTéléphone
-	%NAMESPACE;>
+	%NAMESPACE_COMMUN;>
 <!ATTLIST com:numFax
-	%NAMESPACE;>
+	%NAMESPACE_COMMUN;>
 <!ATTLIST com:adresseMél
-	%NAMESPACE;>
+	%NAMESPACE_COMMUN;>
 <!ATTLIST com:identité
-	%NAMESPACE;>
+	%NAMESPACE_COMMUN;>
+	
+<!-- éléments entourés d'une balise parente, donc pas besoin de mettre le namespace. Le préfixe suffit -->
 <!ATTLIST com:dénominationPersonne
-	%NAMESPACE;>
+	%NAMESPACE_COMMUN;>
 <!ATTLIST com:raisonSociale
-	%NAMESPACE;>
+	%NAMESPACE_COMMUN;>
 <!ATTLIST com:appellationOrganisation
-	%NAMESPACE;>
+	%NAMESPACE_COMMUN;>
 <!ATTLIST com:coordonnées
-	%NAMESPACE;>
+	%NAMESPACE_COMMUN;>
 <!ATTLIST com:coordonnéesRéduites
-	%NAMESPACE;>
+	%NAMESPACE_COMMUN;>
 <!ATTLIST com:coordonnéesComplètes
-	%NAMESPACE;>
+	%NAMESPACE_COMMUN;>

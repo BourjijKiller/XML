@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE guide SYSTEM "./guide.dtd">
+<gui:guide xmlns:gui="http://www.univ-amu.fr/XML/guide">
+	<gui:titre>Itinéraire skieurs de la Vallée de la Clarée</gui:titre>
+	<gui:auteur>
+		<gui:com:civilité valeur="M."/>
+		<gui:com:prénomUsuel>Jean-Gabriel</gui:prénomUsuel>
+		<gui:com:nom>Ravary</gui:nom>
+	</gui:auteur>
+	<gui:éditeur>Le Polygraphe</gui:éditeur>
+	<gui:année>1991</gui:année>
+	<gui:vallon>
+		<gui:nomVallonItinéraire>Vallon des Muandes</gui:nomVallonItinéraire>
+		<gui:introduction>
+			<gui:paragraphe>Vallon situé à l'EST du refuge des Drayères.</gui:paragraphe>
+			<gui:paragraphe>Le vallon le plus utilisé pour la traversé de la Vallée Etroite. Ce vallon est également accessible du refuge Laval</gui:paragraphe>
+		</gui:introduction>
+		<gui:itinéraire id="I1">
+			<gui:nomVallonItinéraire>Col de Névache</gui:nomVallonItinéraire>
+			<gui:altitude>2794</gui:altitude>
+			<gui:cotation>**</gui:cotation>
+			<gui:numéro>1</gui:numéro>
+			<gui:paragraphe>S'élever au-dessus du refuge des Drayères en direction Est. Suivre la rive droite du torrent de Brune puis s'engager sur le flanc droit du ravin des Muandes que l'on quitte vers 2500 m pour rejoindre le col situé au Nord. Descente possible sur Valmeinier. <gui:note type="prudence" id="N11">Départ assez raide</gui:note></gui:paragraphe>
+		</gui:itinéraire>
+		<gui:itinéraire id="I2">
+			<gui:nomVallonItinéraire>Pointe de Névache</gui:nomVallonItinéraire>
+			<gui:altitude>2892</gui:altitude>
+			<gui:cotation>***</gui:cotation>
+			<gui:numéro>2</gui:numéro>
+			<gui:paragraphe>Du Col de Névache (itinéraire n°1) <gui:renvoi vers="I1"/>, suivre la ligne de crête qui mène à la Pointe de Névache. <gui:note type="prudence" id="N12">Attention : corniches possibles.</gui:note> <gui:note type="matériel" id="N13">Crampons utiles au printemps.</gui:note></gui:paragraphe>
+		</gui:itinéraire>
+	</gui:vallon>
+	<gui:vallon>
+		<gui:nomVallonItinéraire>Vallons de Thyon - Les Collons</gui:nomVallonItinéraire>
+		<gui:introduction>
+			<gui:paragraphe>Cet ensemble de 4 vallons est situé dans les Alpes Suisses.</gui:paragraphe>
+		</gui:introduction>
+		<gui:itinéraire id="I3">
+			<gui:nomVallonItinéraire>Raquettes au clair de lune</gui:nomVallonItinéraire>
+			<gui:altitude>2357</gui:altitude>
+			<gui:cotation>*</gui:cotation>
+			<gui:numéro>3</gui:numéro>
+			<gui:paragraphe>Notre équipe de guides vous propose des randonnées en raquettes au clair de lune durant toute la période hivernale ainsi que pendant la période estivale. <gui:note id="N20" type="matériel">Vous devez venir avec vos propres raquettes ou en avoir loué avant le départ de la randonnée.</gui:note></gui:paragraphe>
+		</gui:itinéraire>
+	</gui:vallon>
+</gui:guide>

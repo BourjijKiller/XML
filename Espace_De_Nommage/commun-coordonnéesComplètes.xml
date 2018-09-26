@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE com:coordonnéesComplètes SYSTEM "./commun.dtd">
-<com:coordonnéesComplètes>
+<com:coordonnéesComplètes xlmns:com="http://www.univ-amu.fr/XML/commun">
 	<com:identité>
 		<com:dénominationPersonne>
 			<com:civilité valeur="M."/>
