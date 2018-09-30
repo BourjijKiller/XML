@@ -71,9 +71,9 @@ Avec ces changements, le fichier XML basé sur cette DTD ne produira plus de con
 ```xml
 <?xml version="1.0" encoding="UTF-8" ?>
 <!-- Chargement du modèle de document associé -->
-<!DOCTYPE lieu SYSTEM "./transport.dtd">
+<!DOCTYPE ville1:lieu SYSTEM "./transport.dtd">
 <!-- Pour la première définition de l'élément lieu, on associe l'espace de nommage ville1 qui contiendra une URI -->
-<!-- Il n'est pas nécessaire de remettre à chaque fois l'URI, une fois suffit afin d'accrocher cette dernière à au préfixe ville1 -->
+<!-- Il n'est pas nécessaire de remettre à chaque fois l'URI, une fois suffit afin d'associer cette dernière au préfixe ville1 -->
 <ville1:lieu xmlns:ville1="http://www.transport.fr/lieu/Montpellier">
     <ville1:réseauTransport>
         <ville1:bus>TAMBUS</ville1:bus>
@@ -81,13 +81,18 @@ Avec ces changements, le fichier XML basé sur cette DTD ne produira plus de con
         <ville1:vélolib>TAMVELO</ville1:vélolib>
     </ville1:réseauTransport>
 </ville1:lieu>
+<!-- On déclare un deuxième préfixe qui contiendra une autre URI afin de différencier les deux définitions de l'élément réseauTransport -->
 <ville2:lieu xmlns:ville2="http://www.transport.fr/lieu/Aix-en-Provence">
-    <ville2:bus>Aix-en-Bus</ville2:bus>
-    <ville2:BHNS>AixPress</ville2:BHNS>
+    <ville2:réseauTransport>
+        <ville2:bus>Aix-en-Bus</ville2:bus>
+        <ville2:BHNS>AixPress</ville2:BHNS>
+    </ville2:réseauTransport>
 </ville2:lieu>
 ```
 * Tout les éléments préfixés par **_ville1_** seront identifiés par l'espace de nom http://www.transport.fr/lieu/Montpellier
 * Tout les éléments préfixés par **_ville2_** seront identifiés par l'espace de nom http://www.transport.fr/lieu/Aix-en-Provence
+
+_Avec cette méthode, il n'y aura plus de conflits entre l'élément réseauTransport de la première DTD et de la deuxième DTD. Ils sont bien différenciés avec les espaces de nommage._
 
 ------------------------------------------------
 ## UTILISATION
