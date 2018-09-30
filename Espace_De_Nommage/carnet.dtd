@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- REMARQUE : puisque l'on va se servir d'au moins une définition commune (écrite dans la DTD "commun.dtd"), ici en l'occurrence pour définir un contact ou un site, on doit "importer/appeler" cette DTD "commun.dtd". Pour cela, on définit ici une entité paramètre nommée "commun" dont la valeur est l'ensemble du contenu de "commun.dtd" (sauf son prologue). Donc, la valeur de cette entité paramètre "commun" contient toutes les définitions figurant dans la DTD "commun.dtd". -->
+<!ENTITY % commun SYSTEM "./commun.dtd">
+
+<!-- REMARQUE : on a donné comme valeur à l'entité paramètre "commun" l'ensemble des définitions figurant dans la DTD "commun.dtd". Mais, on ne peut pas encore utiliser ces définitions ! Elles ne figurent en effet PAS dans la DTD courante. Pour cela, il faut qu'on utilise localement cette entité paramètre "commun" (on peut faire une analogie avec déclaration et initialisation de variables). La valeur de cette entité paramètre est un ensemble valide de définitions. Elle doit donc être utilisée en tant qu'instruction à part entière. -->
+%commun;
+
+<!-- Un carnet possède une liste de contacts, une liste d’entreprises et une liste de rendez-vous. -->
+<!ELEMENT cnt:carnet (cnt:contacts, cnt:entreprises, cnt:rendez-vous)>
+
+<!-- Une liste de contacts est constituée de zéro, une ou plusieurs contacts. -->
+<!ELEMENT cnt:contacts (cnt:contact*)>
+
+<!-- Un contact est caractérisée par les coordonnées réduites d'une personne et une référence vers le site de l’entreprise sur lequel il possède son principal bureau. -->
+<!-- REMARQUE : puisqu'on a utilisé localement l'entité paramètre "commun" (cf. plus haut), cela veut dire que toutes les définitions qui composaient sa valeur, i.e. toutes les définitions figurant dans la DTD "commun.dtd", sont utilisables ici comme si elles avaient été définies localement. On "appelle" donc ici les définitions communes liées à la dénomination d'une personne et aux coordonnées réduites. -->
+<!-- REMARQUE : l'emplacement (le site) où travaille le contact est une référence vers un élément "site" situé ailleurs dans le document. Avec le langage DTD, ces références se font avec des attributs. On ne met donc pas cette notion de le modèle de contenu d'un "contact" : elle sera définie plus bas avec les attributs associés à cet élément. -->
+<!ELEMENT cnt:contact (com:coordonnéesRéduites)>
+
+<!-- Une liste d’entreprises est constituée de zéro, une ou plusieurs entreprises. -->
+<!ELEMENT cnt:entreprises (cnt:entreprise*)>
+
+<!-- Une entreprise est caractérisée par son nom et une liste de sites. -->
+<!-- REMARQUE : on réutilise ici la notion de "nom" définie dans les données communes du TP. -->
+<!ELEMENT cnt:entreprise (com:nom, cnt:listeSites)>
+
+<!-- Une liste de sites est constituée d’au moins un site. -->
+<!ELEMENT cnt:listeSites (cnt:site+)>
+
+<!-- Un site est décrit par un nom et une adresse postale. -->
+<!-- REMARQUE : on réutilise ici la notion de "nom" définie dans les données communes du TP. -->
+<!-- REMARQUE : on réutilise ici la notion de "adresse postale" définie dans les données communes du TP. -->
+<!-- REMARQUE : puisqu'on a utilisé localement l'entité paramètre "commun" (cf. plus haut), cela veut dire que toutes les définitions qui composaient sa valeur, i.e. toutes les définitions figurant dans la DTD "commun.dtd", sont utilisables ici comme si elles avaient été définies localement. On "appelle" donc ici la définition communes liée à l'adresse postale. -->
+<!ELEMENT cnt:site (com:nom, com:adressePostale)>
+
+<!-- Une liste de rendez-vous est constituée de zéro, un ou plusieurs rendez-vous. -->
+<!ELEMENT cnt:rendez-vous (cnt:rdv)*>
+
+<!-- Un rendez-vous est décrit par la ou les personnes avec lesquelles il est prévu, par sa date, par son heure de début, sa durée et l’adresse postale où il aura lieu (cf. définition adéquate dans les données communes du préambule). -->
+<!-- REMARQUE : on réutilise ici la notion de "adresse postale" définie dans les données communes du TP. -->
+<!ELEMENT cnt:rdv (cnt:personne+, cnt:date, cnt:heureDébut, cnt:durée, com:adressePostale)>
+
+<!-- Une personne avec laquelle on a rendez-vous est identifiée par sa civilité, son prénom usuel et son nom (cf. définitions adéquates dans les données communes du préambule). -->
+<!-- REMARQUE : on réutilise ici les notions de "civilité", "prénom usuel" et "nom" définies dans les données communes du TP. -->
+<!ELEMENT cnt:personne (com:civilité, com:prénomUsuel, com:nom)>
+
+<!-- La date du rendez-vous est une date valide. -->
+<!-- REMARQUE : ce type de contrainte ne peut être exprimé dans une DTD, puisqu'on ne peut y contraindre la forme d'une chaîne. On est obligé de s'en tenir au type #PCDATA. -->
+<!ELEMENT cnt:date (#PCDATA)>
+
+<!-- L’heure de début du rendez-vous est une heure valide. -->
+<!-- REMARQUE : ce type de contrainte ne peut être exprimé dans une DTD, puisqu'on ne peut y contraindre la forme d'une chaîne. On est obligé de s'en tenir au type #PCDATA. -->
+<!ELEMENT cnt:heureDébut (#PCDATA)>
+
+<!-- La durée du rendez-vous est une durée valide. -->
+<!-- REMARQUE : ce type de contrainte ne peut être exprimé dans une DTD, puisqu'on ne peut y contraindre la forme d'une chaîne. On est obligé de s'en tenir au type #PCDATA. -->
+<!ELEMENT cnt:durée (#PCDATA)>
+
+<!-- Il faut s'assurer qu’un contact (identifié par son nom et à la fois par son prénom usuel) est unique au sein du carnet. -->
+<!-- REMARQUE : on ne peut pas mettre en oeuvre strictement cette contrainte. En effet, dans le langage DTD, l'unicité est calculée globalement sur la liste de toutes les valeurs associées à tous les attributs du type ID du document, quel que soit leur nom et l'élément qui les porte. On fait donc au mieux : on associe à chaque contact un identifiant unique... -->
+<!-- REMARQUE : l'attribut de type IDREF sert à vérifier la dernière contrainte (voir plus bas). -->
+<!ATTLIST cnt:contact
+	id ID #REQUIRED
+	siteDeTravail IDREF #REQUIRED>
+
+<!-- Il faut s'assurer qu'un prénom est unique au sein de la liste de tous les prénoms (usuel et secondaires) d’un contact. -->
+<!-- REMARQUE : on ne peut pas mettre en oeuvre cette contrainte. Comme ci-dessus, l'unicité est calculée globalement sur tout le document. De plus, l'unicité se calcul sur une valeur d'un attribut de type ID, pas sur le contenu d'éléments textuels. On ne peut, pour cette contrainte, strictement rien faire... -->
+
+<!-- Il faut vérifier qu’une entreprise est unique au sein du carnet. -->
+<!-- REMARQUE : pour cela, on associe un attribut de type ID à l'élément "entreprise" pour garantir une pseudo-unicité, c'est le mieux que l'on puisse faire... -->
+<!ATTLIST cnt:entreprise
+	id ID #REQUIRED>
+
+<!-- Il faut s'assurer que la désignation du site de travail d’un contact existe dans le document, dans la liste des sites des entreprises -->
+<!-- REMARQUE : pour cela, il faut que la cible de la référence (les sites) soit associée à un attribut de type ID (c'est fait ci-dessous) et que la source de la référence (les contacts) soit associée à un attribut de type IDREF (c'est fait plus haut). -->
+<!ATTLIST cnt:site
+	id ID #REQUIRED>
+
+<!-- Il faut s'assurer qu'une personne avec laquelle est rendez-vous est pris dans exister dans la liste des contacts du carnet. -->
+<!-- REMARQUE : on ne peut pas mettre en oeuvre strictement cette contrainte. En effet, dans le lagage DTD, la référence est calculée globalement sur la liste de toutes les valeurs associées à tous les attributs de type IDREF du document, quel que soit leur nom et l'élément qui les porte, vers la liste de toutes les valeurs associées à des attributs de type ID du document, quel que soit leur nom et l'élément qui les porte. On fait donc au mieux : on associe à chaque personne un IDREF censé ciblé un ID (les contacts portent aussi un attribut de type ID). -->
+<!ATTLIST cnt:personne
+	avec IDREF #REQUIRED>
+	
+<!-- Déclaration de l'espace de nommage préfixé pour tout les éléments du carnet -->
+<!ENTITY % NAMESPACE_CARNET 'xmlns:cnt CDATA #FIXED "http://www.univ-amu.fr/XML/carnet"'>
+
+<!-- Inclusion de l'espace de nommage dans l'élément racine -->
+<!ATTLIST cnt:carnet
+	%NAMESPACE_CARNET;>

@@ -82,54 +82,7 @@
 <!-- Déclaration de l'espace de nommage pour tous les éléments susceptibles d'être des éléments racine -->
 <!ENTITY % NAMESPACE_GUIDE 'xmlns:gui CDATA #FIXED "http://www.univ-amu.fr/XML/guide"'>
 
-<!-- Inclusion de l'espace de nommage sur chaque élément sous forme d'attribut pour que chaque élément pour la considérer dans l'espace de nommage -->
+<!-- Inclusion de l'espace de nommage sur l'élément racine seulement -->
+<!-- Une fois le préfixe associé à l'espace de nommage, chaque élément, se trouvant entre la balise ouvrante incluse et la balise fermante incluse, et préfixé sera automatiquement associé à l'espace de nommage -->
 <!ATTLIST gui:guide
-	%NAMESPACE_GUIDE;>
-	
-<!ATTLIST gui:titre
-	%NAMESPACE_GUIDE;>
-
-<!ATTLIST gui:auteur
-	%NAMESPACE_GUIDE;>
-	
-<!ATTLIST gui:éditeur
-	%NAMESPACE_GUIDE;>
-	
-<!ATTLIST gui:année
-	%NAMESPACE_GUIDE;>
-
-<!ATTLIST gui:vallon
-	%NAMESPACE_GUIDE;>
-	
-<!ATTLIST gui:nomVallonItinéraire
-	%NAMESPACE_GUIDE;>
-	
-<!ATTLIST gui:introduction
-	%NAMESPACE_GUIDE;>
-	
-<!ATTLIST gui:paragraphe
-	%NAMESPACE_GUIDE;>
-	
-<!ATTLIST gui:note
-	%NAMESPACE_GUIDE;>
-	
-<!ATTLIST gui:renvoi
-	%NAMESPACE_GUIDE;>
-	
-<!ATTLIST gui:itinéraire
-	%NAMESPACE_GUIDE;>
-	
-<!ATTLIST gui:altitude
-	%NAMESPACE_GUIDE;>
-	
-<!ATTLIST gui:cotation
-	%NAMESPACE_GUIDE;>
-
-<!ATTLIST gui:altitude
-	%NAMESPACE_GUIDE;>
-	
-<!ATTLIST gui:cotation
-	%NAMESPACE_GUIDE;>
-
-<!ATTLIST gui:numéro
-	%NAMESPACE_GUIDE;>
+	%NAMESPACE_GUIDE;>	

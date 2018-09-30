@@ -107,8 +107,6 @@
 	%NAMESPACE_COMMUN;>
 <!ATTLIST com:adressePostale
 	%NAMESPACE_COMMUN;>
-
-<!-- éléments entourés d'une balise parente, donc pas besoin de mettre le namespace. Le préfixe suffit -->
 <!ATTLIST com:précision
 	%NAMESPACE_COMMUN;>
 <!ATTLIST com:complément
@@ -139,8 +137,6 @@
 	%NAMESPACE_COMMUN;>
 <!ATTLIST com:identité
 	%NAMESPACE_COMMUN;>
-	
-<!-- éléments entourés d'une balise parente, donc pas besoin de mettre le namespace. Le préfixe suffit -->
 <!ATTLIST com:dénominationPersonne
 	%NAMESPACE_COMMUN;>
 <!ATTLIST com:raisonSociale
