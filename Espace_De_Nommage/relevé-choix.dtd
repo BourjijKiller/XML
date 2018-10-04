@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Modifiez les DTDs relevé-choix.dtd et relevé-surcharge.dtd afin que, dans les documents XML basés sur elles, tous les éléments (mais pas les attributs) qui y sont déclarés soient associées à un espace de nommage d’identifiant http://www.univ-amu.fr/XML/releve et de préfixe rel. -->
+<!-- Modifiez la DTD carnet.dtd afin que, dans les documents XML basés sur elle, tous les éléments (mais pas les attributs) qui y sont déclarés soient associés à un espace de nommage d’identifiant http://www.univ-amu.fr/XML/carnet et de préfixe cnt. -->
+<!-- REMARQUE : contrairement à celle du préambule, cette DTD ne contient pas de définitions communes, pouvant être réutilisées indépendamment les unes des autres. On peut donc déclarer l'espace de nommage une seule fois (sur l'élément racine). Il faut par contre toujours penser à l'utiliser à bon escient pour qualifier ce qui doit l'être (ici, uniquement les éléments). -->
+<!-- REMARQUE : un bon usage est aussi de déclarer sur l'élément racine les espaces de nommage liés à des imports. -->
+
+<!ENTITY % commun SYSTEM "./commun.dtd">
+%commun;
+
+<!ELEMENT rel:relevé (rel:titulaire, rel:détails)>
+<!ATTLIST rel:relevé
+	devise (EURO | DOLLAR_US | LIVRE) "EURO"
+	xmlns:rel CDATA #FIXED "http://www.univ-amu.fr/XML/releve"
+	xmlns:com CDATA #FIXED "http://www.univ-amu.fr/XML/commun">
+
+<!ELEMENT rel:titulaire (com:coordonnéesComplètes)>
+
+<!ELEMENT rel:détails (rel:simple | rel:intermédiaire | rel:complet)>
+
+<!ELEMENT rel:simple (rel:compteSimple+)>
+
+<!ELEMENT rel:compteSimple (rel:numéroCompte, rel:intitulé, rel:soldeActuel, rel:dateSoldeActuel, rel:heureSoldeActuel)>
+
+<!ELEMENT rel:numéroCompte (#PCDATA)>
+
+<!ELEMENT rel:intitulé (#PCDATA)>
+
+<!ELEMENT rel:soldeActuel (#PCDATA)>
+
+<!ELEMENT rel:dateSoldeActuel (#PCDATA)>
+
+<!ELEMENT rel:heureSoldeActuel (#PCDATA)>
+
+<!ELEMENT rel:intermédiaire (rel:compteIntermédiaire+)>
+
+<!ENTITY % donnéesInterCompl "rel:numéroCompte, rel:intitulé, rel:soldeInitial, rel:dateSoldeInitial, rel:heureSoldeInitial, rel:opération*, rel:soldeActuel, rel:dateSoldeActuel, rel:heureSoldeActuel">
+
+<!ELEMENT rel:compteIntermédiaire (%donnéesInterCompl;)>
+
+<!ELEMENT rel:soldeInitial (#PCDATA)>
+
+<!ELEMENT rel:dateSoldeInitial (#PCDATA)>
+
+<!ELEMENT rel:heureSoldeInitial (#PCDATA)>
+
+<!ELEMENT rel:opération (rel:dateDemande, rel:dateValeur, rel:libellé, rel:montant)>
+<!ATTLIST rel:opération
+	id ID #REQUIRED>
+
+<!ELEMENT rel:dateDemande (#PCDATA)>
+
+<!ELEMENT rel:dateValeur (#PCDATA)>
+
+<!ELEMENT rel:libellé (#PCDATA)>
+
+<!ELEMENT rel:montant (#PCDATA)>
+
+<!ATTLIST rel:montant
+	type (débit | crédit) #REQUIRED>
+	
+<!ELEMENT rel:complet (rel:compteComplet+)>
+
+<!ELEMENT rel:compteComplet (%donnéesInterCompl;, rel:procuration*, rel:portefeuille?)>
+
+<!ELEMENT rel:procuration (com:coordonnéesComplètes)>
+
+<!ELEMENT rel:portefeuille (rel:action*, rel:montantPortefeuille, rel:dateMontant, rel:heureMontant)>
+
+<!ELEMENT rel:action (rel:intitulé, rel:quantité, rel:coutAchatUnitaire, rel:coutAchatGlobal, rel:dateAchat, rel:montantActuelUnitaire, rel:montantActuelGlobal, rel:dateMontantsActuels, rel:heureMontantsActuels)>
+<!ATTLIST rel:action
+	id ID #REQUIRED>
+
+<!ELEMENT rel:quantité (#PCDATA)>
+
+<!ELEMENT rel:coutAchatUnitaire (#PCDATA)>
+
+<!ELEMENT rel:coutAchatGlobal (#PCDATA)>
+
+<!ELEMENT rel:dateAchat (#PCDATA)>
+
+<!ELEMENT rel:montantActuelUnitaire (#PCDATA)>
+
+<!ELEMENT rel:montantActuelGlobal (#PCDATA)>
+
+<!ELEMENT rel:dateMontantsActuels (#PCDATA)>
+
+<!ELEMENT rel:heureMontantsActuels (#PCDATA)>
+
+<!ELEMENT rel:montantPortefeuille (#PCDATA)>
+
+<!ELEMENT rel:dateMontant (#PCDATA)>
+
+<!ELEMENT rel:heureMontant (#PCDATA)>

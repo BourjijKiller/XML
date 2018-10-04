@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Modifiez la DTD livre.dtd afin que, dans les documents XML basés sur elle, tous les éléments et tous les attributs qui y sont déclarés soient associées à un espace de nommage d’identifiant http://www.univ-amu.fr/XML/livre et de préfixe liv. -->
+<!-- REMARQUE : contrairement à celle du préambule, cette DTD ne contient pas de définitions communes, pouvant être réutilisées indépendamment les unes des autres. On peut donc déclarer l'espace de nommage une seule fois (sur l'élément racine). Il faut par contre toujours penser à l'utiliser à bon escient pour qualifier ce qui doit l'être (ici, uniquement les éléments). -->
+<!-- REMARQUE : un bon usage est aussi de déclarer sur l'élément racine les espaces de nommage liés à des imports. -->
+
+<!ENTITY % commun SYSTEM "./commun.dtd">
+%commun;
+
+<!ELEMENT liv:livre (liv:titre, liv:auteur+, liv:éditeur, liv:année, liv:leçon+)>
+<!ATTLIST liv:livre
+	liv:isbn CDATA #REQUIRED
+	xmlns:liv CDATA #FIXED "http://www.univ-amu.fr/XML/livre"
+	xmlns:com CDATA #FIXED "http://www.univ-amu.fr/XML/commun">
+	
+<!ELEMENT liv:titre (#PCDATA)>
+
+<!ELEMENT liv:auteur %personne;>
+
+<!ELEMENT liv:éditeur (#PCDATA)>
+
+<!ELEMENT liv:année (#PCDATA)>
+
+<!ELEMENT liv:leçon (liv:numéro, liv:titre, liv:introduction, liv:chapitre+, liv:exercice+)>
+<!ATTLIST liv:leçon
+	liv:id ID #REQUIRED>
+
+<!ELEMENT liv:numéro (#PCDATA)>
+
+<!ELEMENT liv:introduction (liv:paragraphe+)>
+
+<!ELEMENT liv:chapitre (liv:titre, liv:introduction, liv:section+)>
+
+<!ELEMENT liv:section (liv:titre, liv:paragraphe+)>
+
+<!ELEMENT liv:paragraphe (#PCDATA | liv:renvoi)*>
+
+<!ELEMENT liv:renvoi (#PCDATA)>
+<!ATTLIST liv:renvoi
+	liv:référence IDREF #REQUIRED>
+
+<!ELEMENT liv:exercice (liv:numéro, liv:QCM, liv:corrigé)>
+
+<!ELEMENT liv:QCM (liv:énoncé, liv:proposition, liv:proposition+)>
+
+<!ELEMENT liv:énoncé (#PCDATA)>
+
+<!ELEMENT liv:proposition (#PCDATA)>
+<!ATTLIST liv:proposition
+	liv:id ID #REQUIRED>
+
+<!ELEMENT liv:corrigé EMPTY>
+<!ATTLIST liv:corrigé
+	liv:réponsesCorrectes IDREFS #REQUIRED>
