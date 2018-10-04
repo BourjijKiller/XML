@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE carnet SYSTEM "carnet.dtd" >
+<carnet>
+  <liste-contact>
+    <contact id="idvalue0" siteEntreprise="idvalue1">
+      <coordonnees/>
+    </contact>
+  </liste-contact>
+  <liste-entreprise>
+    <entreprise id="idvalue1">
+      <nom-entreprise>nom-entreprise</nom-entreprise>
+      <liste-site>
+        <site>
+          <nom-site>nom-site</nom-site>
+          <adresse-postale>
+            <voie>
+              <nom-voie>nom-voie</nom-voie>
+            </voie>
+            <localite>
+              <code-postal>code-postal</code-postal>
+              <nom-commune>nom-commune</nom-commune>
+            </localite>
+          </adresse-postale>
+        </site>
+      </liste-site>
+    </entreprise>
+  </liste-entreprise>
+  <liste-rdv>
+    <rdv prenom-personne="idvalue0">
+      <personne>
+        <civilite type="M."/>
+        <prenom-usuel-carnet prenom="idvalue2"/>
+        <nom>nom</nom>
+      </personne>
+      <date>date</date>
+      <heure-debut>heure-debut</heure-debut>
+      <duree>duree</duree>
+      <adresse-postale>
+        <voie>
+          <nom-voie>nom-voie</nom-voie>
+        </voie>
+        <localite>
+          <code-postal>code-postal</code-postal>
+          <nom-commune>nom-commune</nom-commune>
+        </localite>
+      </adresse-postale>
+    </rdv>
+  </liste-rdv>
+</carnet>

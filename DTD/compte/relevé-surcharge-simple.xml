@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE relevé SYSTEM "./relevé-surcharge.dtd" [
+	<!ENTITY % simple "INCLUDE">
+	<!ENTITY % intermediaire "IGNORE">
+	<!ENTITY % complet "IGNORE">
+]>
+<relevé devise="EURO">
+	<titulaire>
+		<coordonnéesComplètes>
+			<identité>
+				<dénominationPersonne>
+					<civilité valeur="M."></civilité>
+					<prénomUsuel>Philippe</prénomUsuel>
+					<nom>RAMADOUR</nom>
+				</dénominationPersonne>
+			</identité>
+			<adressePostale>
+				<voie>
+					<numéroVoie>110</numéroVoie>
+					<nom>La Canebière</nom>
+				</voie>
+				<localité>
+					<codePostal>13001</codePostal>
+					<commune>MARSEILLE</commune>
+				</localité>
+				<pays>FRANCE</pays>
+			</adressePostale>
+			<numTéléphone>01.01.01.01.01</numTéléphone>
+			<adresseMél>philippe.ramadour@univ-amu.fr</adresseMél>
+		</coordonnéesComplètes>
+	</titulaire>
+	<détails>
+		<simple>
+			<compteSimple>
+				<numéroCompte>00000000001</numéroCompte>
+				<intitulé>Compte-chèques PHR</intitulé>
+				<soldeActuel>2500,00</soldeActuel>
+				<dateSoldeActuel>07/10/2017</dateSoldeActuel>
+				<heureSoldeActuel>12:00:00</heureSoldeActuel>
+			</compteSimple>
+			<compteSimple>
+				<numéroCompte>00000000002</numéroCompte>
+				<intitulé>Assurance-vie PHR</intitulé>
+				<soldeActuel>20000,00</soldeActuel>
+				<dateSoldeActuel>01/10/2017</dateSoldeActuel>
+				<heureSoldeActuel>09:00:00</heureSoldeActuel>
+			</compteSimple>
+		</simple>
+	</détails>
+</relevé>

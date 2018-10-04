@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- ENTITE genre pour réutilisation -->
+<!ENTITY % genre "genre-usuel, nombre-usuel">
+
+<!-- ENTITE expression pour réutilisation -->
+<!ENTITY % expression "ecriture-expression, domaine, sens-expression, exemple-utilisation*, traduction*">
+
+<!-- Déclaration d'un élément dictionnaire -->
+<!ELEMENT dictionnaire (entree+)>
+
+<!-- Un dictionnaire est contenu par une ou plusieurs entrée -->
+<!ELEMENT entree (orthographe, nature, prononciation, (renvoie | signification+), (%expression;)*, etymologie*)>
+<!ATTLIST entree id ID #REQUIRED>
+
+<!-- Déclaration de l'élément orthographe -->
+<!ELEMENT orthographe (orthographe-usuelle, orthographe-derivees*)>
+<!ELEMENT orthographe-usuelle (#PCDATA)>
+<!ELEMENT orthographe-derivees (#PCDATA)>
+
+<!-- Déclaration de l'élément nature -->
+<!ELEMENT nature (nom-propre | nom-commun | adjectif | verbe | pronom-personnel | pronom-relatif)>
+
+<!-- Déclaration de l'élément nom-propre -->
+<!ELEMENT nom-propre EMPTY>
+
+<!-- Déclaration de l'élément nom-commun -->
+<!ELEMENT nom-commun (%genre;)>
+<!ELEMENT genre-usuel EMPTY>
+<!ATTLIST genre-usuel genre (masculin | féminin | neutre) #REQUIRED>
+<!ELEMENT nombre-usuel EMPTY>
+<!ATTLIST nombre-usuel valeur (singulier | pluriel) #REQUIRED>
+
+<!-- Déclaration de l'élément verbe -->
+<!ELEMENT verbe (groupe, forme)>
+<!ELEMENT groupe (annotation*)>
+<!ELEMENT annotation (#PCDATA)>
+<!ATTLIST groupe valeur (1 | 2 | 3) #REQUIRED>
+<!ELEMENT forme (annotation*)>
+<!ATTLIST forme valeur (transitif | intransitif | réfléchi) #REQUIRED>
+
+<!-- Déclaration de l'élément adjectif -->
+<!ELEMENT adjectif (%genre;)>
+
+<!-- Déclaration de l'élément pronom-personnel -->
+<!ELEMENT pronom-personnel EMPTY>
+<!-- Déclaration de l'élément pronom-relatif -->
+<!ELEMENT pronom-relatif EMPTY>
+
+<!-- Déclaration de l'élément prononciation -->
+<!ELEMENT prononciation (#PCDATA)>
+
+<!-- Déclaration de l'élément renvoie -->
+<!ELEMENT renvoie EMPTY>
+<!ATTLIST renvoie reference IDREF #REQUIRED>
+
+<!-- Déclaration de l'élément signification -->
+<!ELEMENT signification (domaine, sens-mot, exemple-utilisation*, traduction*)>
+<!ELEMENT domaine (#PCDATA)>
+<!ELEMENT sens-mot (#PCDATA | renvoie)*>
+<!ELEMENT exemple-utilisation (#PCDATA)>
+
+<!-- élément traduction -->
+<!ELEMENT traduction (langue, ecriture-traduction, prononciation, annotation*)>
+<!ELEMENT langue (#PCDATA)>
+<!ELEMENT ecriture-traduction (#PCDATA)>
+<!ELEMENT etymologie (#PCDATA)>
+
+<!-- Expression -->
+<!ELEMENT ecriture-expression (#PCDATA)>
+<!ELEMENT sens-expression (#PCDATA)>

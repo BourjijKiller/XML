@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Déclaration de l'entité paramètre -->
+<!ENTITY % commun SYSTEM "../commun/commun.dtd">
+<!-- Import des définitions de l'entité paramètre -->
+%commun;
+
+<!-- Déclaration d'une entité paramètre guide -->
+<!ENTITY % livre "guide">
+
+<!-- Elément guide -->
+<!ELEMENT guide (titre, auteur+, editeur, annee, vallons+)>
+
+<!ELEMENT titre (#PCDATA)>
+<!ELEMENT editeur (#PCDATA)>
+<!ELEMENT auteur (%personne;)>
+<!ELEMENT annee (#PCDATA)>
+
+<!-- Elément vallon -->
+<!ELEMENT vallons (nomVallon, introduction, itineraires+)>
+<!ELEMENT nomVallon (#PCDATA)>
+<!ELEMENT introduction (paragraphes+)>
+
+<!-- Elément paragraphe contenu dans un vallon -->
+<!ELEMENT paragraphes (#PCDATA | notes | renvois)*>
+<!ELEMENT notes (#PCDATA)>
+<!ATTLIST notes
+	id ID #REQUIRED
+	type (prudence | matériel) #REQUIRED>
+<!ELEMENT renvois EMPTY>
+<!ATTLIST renvois reference IDREF #REQUIRED>
+
+<!-- Elément itinéraire -->
+<!ELEMENT itineraires (nom, altitude, cotation, numero, paragraphes+)>
+<!ATTLIST itineraires
+	id ID #REQUIRED>
+	
+<!ELEMENT altitude (#PCDATA)>
+<!ELEMENT cotation (#PCDATA)>
+<!ELEMENT numero (#PCDATA)>

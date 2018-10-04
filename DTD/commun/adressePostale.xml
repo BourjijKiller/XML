@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE adresse-postale SYSTEM "commun.dtd" >
+<adresse-postale>
+  <precision-personnelle>
+  	Appartement 558
+  </precision-personnelle>
+  <voie>
+    <numero-voie>56</numero-voie>
+    <type-voie>avenue</type-voie>
+    <nom-voie>Doriane Boolosse</nom-voie>
+  </voie>
+  <localite>
+    <code-postal>13256</code-postal>
+    <nom-commune>Aix-en-Provence</nom-commune>
+    <CEDEX value="8"></CEDEX>
+  </localite>
+  <pays>FRANCE</pays>
+</adresse-postale>

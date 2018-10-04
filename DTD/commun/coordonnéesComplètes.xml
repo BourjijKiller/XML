@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE complete SYSTEM "commun.dtd" >
+<complete>
+  <identite>
+    <denomination>
+      <civilite type="M."/>
+      <prenom-usuel>
+      	Samuel
+      </prenom-usuel>
+      <nom>
+      	Entezam
+      </nom>
+    </denomination>
+  </identite>
+  <adresse-postale>
+  <precision-personnelle>
+  	Appartement 558
+  </precision-personnelle>
+  <voie>
+    <numero-voie>56</numero-voie>
+    <type-voie>avenue</type-voie>
+    <nom-voie>Doriane Boolosse</nom-voie>
+  </voie>
+  <localite>
+    <code-postal>13256</code-postal>
+    <nom-commune>Aix-en-Provence</nom-commune>
+    <CEDEX value="8"></CEDEX>
+  </localite>
+  <pays>FRANCE</pays>
+</adresse-postale>
+  <num-tel>
+  	04.35.45.78.96
+  </num-tel>
+  <num-tel>
+  	04.87.65.23.78
+  </num-tel>
+  <num-fax>
+  	02.58.45.65.32
+  </num-fax>
+  <email>
+  	sami1606@live.fr
+  </email>
+</complete>

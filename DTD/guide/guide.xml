@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE guide SYSTEM "guide.dtd" >
+<guide>
+  <titre>titre</titre>
+  <auteur>
+    <civilite type="Mme"/>
+    <prenom-usuel>prenom-usuel</prenom-usuel>
+    <prenom-complementaire>prenom-complementaire</prenom-complementaire>
+    <nom>nom</nom>
+  </auteur>
+  <editeur>editeur</editeur>
+  <annee>annee</annee>
+  <vallons>
+    <nomVallon>nomVallon</nomVallon>
+    <introduction>
+      <paragraphes>
+      	<notes id="tg">
+      		je suis un bg
+      	</notes>
+      </paragraphes>
+      <paragraphes>
+      	<renvois reference="tg"/>
+      	Je renvoie vers la note tg
+      </paragraphes>
+    </introduction>
+    <itineraires id="idvalue0">
+      <nom>nom</nom>
+      <altitude>altitude</altitude>
+      <cotation>cotation</cotation>
+      <numero>numero</numero>
+      <paragraphes/>
+    </itineraires>
+  </vallons>
+</guide>

@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE relevé SYSTEM "./relevé-surcharge.dtd" [
+	<!ENTITY % simple "IGNORE">
+	<!ENTITY % intermediaire "IGNORE">
+	<!ENTITY % complet "INCLUDE">
+]>
+<relevé devise="EURO">
+	<titulaire>
+		<coordonnéesComplètes>
+			<identité>
+				<dénominationPersonne>
+					<civilité valeur="M."></civilité>
+					<prénomUsuel>Philippe</prénomUsuel>
+					<nom>RAMADOUR</nom>
+				</dénominationPersonne>
+			</identité>
+			<adressePostale>
+				<voie>
+					<numéroVoie>110</numéroVoie>
+					<nom>La Canebière</nom>
+				</voie>
+				<localité>
+					<codePostal>13001</codePostal>
+					<commune>MARSEILLE</commune>
+				</localité>
+				<pays>FRANCE</pays>
+			</adressePostale>
+			<numTéléphone>01.01.01.01.01</numTéléphone>
+			<adresseMél>philippe.ramadour@univ-amu.fr</adresseMél>
+		</coordonnéesComplètes>
+	</titulaire>
+	<détails>
+		<complet>
+			<compteComplet>
+				<numéroCompte>00000000001</numéroCompte>
+				<intitulé>Compte-chèques PHR</intitulé>
+				<soldeInitial>100,00</soldeInitial>
+				<dateSoldeInitial>01/01/2017</dateSoldeInitial>
+				<heureSoldeInitial>10:00:00</heureSoldeInitial>
+				<opération id="OP00001">
+					<dateDemande>20/02/2017</dateDemande>
+					<dateValeur>21/02/2017</dateValeur>
+					<libellé>Remise de chèques</libellé>
+					<montant type="crédit">800,00</montant>
+				</opération>
+				<opération id="OP00002">
+					<dateDemande>01/06/2017</dateDemande>
+					<dateValeur>01/06/2017</dateValeur>
+					<libellé>Retrait D.A.B.</libellé>
+					<montant type="crédit">400,00</montant>
+				</opération>
+				<soldeActuel>500,00</soldeActuel>
+				<dateSoldeActuel>07/10/2017</dateSoldeActuel>
+				<heureSoldeActuel>12:00:00</heureSoldeActuel>
+				<procuration>
+					<coordonnéesComplètes>
+						<identité>
+							<dénominationPersonne>
+								<civilité valeur="Mme"></civilité>
+								<prénomUsuel>Marie-Laure</prénomUsuel>
+								<nom>RAMADOUR</nom>
+							</dénominationPersonne>
+						</identité>
+						<adressePostale>
+							<voie>
+								<numéroVoie>20</numéroVoie>
+								<typeVoie valeur="rue"/>
+								<nom>Sainte</nom>
+							</voie>
+							<localité>
+								<codePostal>13001</codePostal>
+								<commune>MARSEILLE</commune>
+							</localité>
+							<pays>FRANCE</pays>
+						</adressePostale>
+						<numTéléphone>02.02.02.02.02</numTéléphone>
+					</coordonnéesComplètes>
+				</procuration>
+			</compteComplet>
+			<compteComplet>
+				<numéroCompte>00000000002</numéroCompte>
+				<intitulé>Assurance-vie PHR</intitulé>
+				<soldeInitial>500,00</soldeInitial>
+				<dateSoldeInitial>01/01/2017</dateSoldeInitial>
+				<heureSoldeInitial>10:00:00</heureSoldeInitial>
+				<opération id="OP00003">
+					<dateDemande>14/05/2017</dateDemande>
+					<dateValeur>15/05/2017</dateValeur>
+					<libellé>Dépôt de liquidités</libellé>
+					<montant type="crédit">500,00</montant>
+				</opération>
+				<opération id="OP00004">
+					<dateDemande>20/06/2017</dateDemande>
+					<dateValeur>20/06/2017</dateValeur>
+					<libellé>Remise de chèques</libellé>
+					<montant type="crédit">1000,00</montant>
+				</opération>
+				<soldeActuel>2000,00</soldeActuel>
+				<dateSoldeActuel>01/10/2017</dateSoldeActuel>
+				<heureSoldeActuel>09:00:00</heureSoldeActuel>
+				<procuration>
+					<coordonnéesComplètes>
+						<identité>
+							<dénominationPersonne>
+								<civilité valeur="Mme"></civilité>
+								<prénomUsuel>Marie-Laure</prénomUsuel>
+								<nom>RAMADOUR</nom>
+							</dénominationPersonne>
+						</identité>
+						<adressePostale>
+							<voie>
+								<numéroVoie>20</numéroVoie>
+								<typeVoie valeur="rue"/>
+								<nom>Sainte</nom>
+							</voie>
+							<localité>
+								<codePostal>13001</codePostal>
+								<commune>MARSEILLE</commune>
+							</localité>
+							<pays>FRANCE</pays>
+						</adressePostale>
+						<numTéléphone>02.02.02.02.02</numTéléphone>
+					</coordonnéesComplètes>
+				</procuration>
+				<procuration>
+					<coordonnéesComplètes>
+						<identité>
+							<dénominationPersonne>
+								<civilité valeur="M."></civilité>
+								<prénomUsuel>Théo</prénomUsuel>
+								<nom>RAMADOUR</nom>
+							</dénominationPersonne>
+						</identité>
+						<adressePostale>
+							<voie>
+								<numéroVoie>20</numéroVoie>
+								<typeVoie valeur="rue"/>
+								<nom>Sainte</nom>
+							</voie>
+							<localité>
+								<codePostal>13001</codePostal>
+								<commune>MARSEILLE</commune>
+							</localité>
+							<pays>FRANCE</pays>
+						</adressePostale>
+						<numTéléphone>03.03.03.03.03</numTéléphone>
+					</coordonnéesComplètes>
+				</procuration>
+				<portefeuille>
+					<action id="A00001">
+						<intitulé>IBM</intitulé>
+						<quantité>20</quantité>
+						<coutAchatUnitaire>50,00</coutAchatUnitaire>
+						<coutAchatGlobal>1000,00</coutAchatGlobal>
+						<dateAchat>15/01/2017</dateAchat>
+						<montantActuelUnitaire>75,00</montantActuelUnitaire>
+						<montantActuelGlobal>1500,00</montantActuelGlobal>
+						<dateMontantsActuels>01/10/2017</dateMontantsActuels>
+						<heureMontantsActuels>17:00:00</heureMontantsActuels>
+					</action>
+					<action id="A00002">
+						<intitulé>HP</intitulé>
+						<quantité>10</quantité>
+						<coutAchatUnitaire>25,00</coutAchatUnitaire>
+						<coutAchatGlobal>250,00</coutAchatGlobal>
+						<dateAchat>15/8/2017</dateAchat>
+						<montantActuelUnitaire>20,00</montantActuelUnitaire>
+						<montantActuelGlobal>200,00</montantActuelGlobal>
+						<dateMontantsActuels>01/10/2017</dateMontantsActuels>
+						<heureMontantsActuels>17:00:00</heureMontantsActuels>
+					</action>
+					<montantPortefeuille>1700,00</montantPortefeuille>
+					<dateMontant>01/10/2017</dateMontant>
+					<heureMontant>18:00:00</heureMontant>
+				</portefeuille>
+			</compteComplet>
+		</complet>
+	</détails>
+</relevé>
