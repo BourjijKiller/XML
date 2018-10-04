@@ -18,3 +18,4 @@ Many notions are derived from XML. This is called the _**XML galaxy**_.
 
 1. "DTD/" Folder : DTD Branch
 2. "Espace_De_Nommage/" Folder : Nommage Branch
+3. "XML_Schema/" Folder : Xshema Branch
