@@ -97,15 +97,96 @@ _Avec cette méthode, il n'y aura plus de conflits entre l'élément réseauTran
 ------------------------------------------------
 ## UTILISATION
 
-**[En cours de rédaction]**
+L'utilisation des **espaces de nommage** est équivalent à l'utilisation des packages en Java, à la seule différence que :
+1. En _Java_, les packages ont une réalité phydique (représenté par des simples dossiers) tandis qu'en XML, les URI n'en ont pas, ce qui explique le fait qu'on ne vérifie pas l'existence de l'URI
+2. En _Java_, **l'opérateur de qualification est le "." alors qu'en XML, c'est le ":"**
+ 
+Indiquer dans des documents XML des noms étendus d’éléments, d’attributs, …, de la forme **URI:nom**
+peut vite devenir contraignant, même si cela résout les problèmes de conflits de noms. C’est pourquoi
+on n’utilise en fait pas ces noms étendus mais deux techniques d'espaces de nommage.
 
-### 1°) Préfixes d'espaces de nommage
-**[En cours de rédaction]**
+### 1°) Préfixes d'espace de nommage
+
+Un **préfixe d'espace de nommage est un mécanisme d'alias : le préfixe est donc l'alias d'une URI identifiant un espace de nommage**.
+
+Le préfixe fera donc référence à l'espace de nommage (représenté par l'URI) et il suffira ainsi de préfixer les éléments avec ce dernier pour dire
+"Je veux inclure cet élément dans l'espace de nommage XX".
+
+#####Déclaration et utilisation d'un espace préfixe d'espace de nommage
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<element xmlns:pre1 = "http://ww.example.fr/XML/DTD"
+         xmlns:pre2 = "http://www.juju.fr/Pourquoi"
+         xmlns:pre3 = "http://worldoftanks.fr/Malinovka">
+         <!-- Contenu de l'élément -->
+         <!-- Il suffira ensuite de préfixer les éléments pour lui associer un espace de nommage -->
+</element>
+```
 
 ### 2°) Espace de nommage par défaut
-**[En cours de rédaction]**
+
+Un **espace de nommage par défaut est un mécanisme d'association implicite d'éléments à un espace de nommage, à condition que ces éléments ne soient pas explicitement qualifiés.**
+
+Lors de la déclaration d'un espace de nommage par défaut, tout les éléments suivants seront automatiquement associé à ce dernier, sauf si :
+* L'espace de nommage par défaut est **annhilé** (annulé / vidé)
+* L'élément porte **un préfixe** qui fait référence à un autre espace de nommage par défaut
+
+#####Déclaration et utilisation d'un espace de nommage par défaut
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Déclaration de deux préfixes d'espaces de nommage suivi de l'espace de nommage par défaut -->
+<element xmlns:wot = "http://worldoftanks.fr/Malinovka"
+         xmlns:flyff = "http://www.flyff.fr/Rartesia"
+         xmlns = "http://espacedenommagepardefaut.fr/General">
+         <!-- Les éléments n'étant pas préfixés, ils sont associés à l'espace de nommage par défaut -->
+         <Autoroutes>
+            <A1> Je suis associé à l'espace de nommage par défaut http://espacedenommagepardefaut.fr/General </A1>
+            <A2> Je suis associé à l'espace de nommage par défaut http://espacedenommagepardefaut.fr/General </A2>
+            <!-- L'élément suivant est préfixé par flyff, donc elle prendra l'espace de nommage associé à ce préfixe -->
+            <!-- Ainsi que ses enfants, si ils sont préfixés -->
+            <flyff:Autoroute-flyff>
+                <flyff:texte>
+                    Je suis associé à l'espace de nommage http://www.flyff.fr/Rartesia
+                </flyff:texte>
+            </flyff:Autoroute-flyff>
+            <!-- L'élément suivant est préfixé par wot, donc elle prendra l'espace de nommage associé à ce préfixe -->
+            <wot:Autoroute-wot>
+                <wot:texte>
+                    Je suis associé à l'espace de nommage http://worldoftanks.fr/Malinovka
+                </wot:texte>
+            </wot:Autoroute-wot>
+            <!-- Ici, on annhile l'espace de nommage par défaut, donc par conséquent, depuis la balise ouvrante incluse Routes jusqu'à la balise fermante incluse Routes, il n'existe plus d'espace de nommage par défaut -->
+            <Routes xmlns = "">
+                <D456>
+                    Elément associé à aucun espace de nommage
+                </D456>
+            </Routes>
+         </Autoroutes>
+</element>
+```
 
 ------------------------------------------------
 ## RÈGLES DE VISIBILITÉS
 
-**[En cours de rédaction]**
+Un **préfixe d’espace de nommage** est visible :
+
+* Dans l’élément dans lequel il est déclaré (il peut être utilisé y compris dans le nom de l’élément
+figurant dans la balise ouvrante dans laquelle il est défini).
+
+* Dans tous les descendants de cet élément à moins :
+    * Qu’un nouvel espace de même préfixe ne soit déclaré dans certains de ces descendants (il recouvre alors temporairement le préfixe déclaré dans son ancêtre).
+    * Que sa déclaration ne soit annihilée localement dans certains de ces descendants.
+    
+    
+Un **espace de nommage par défaut** est visible :
+
+* Dans l’élément dans lequel il est déclaré (il peut être utilisé y compris dans le nom de l’élément figurant dans la balise ouvrante dans laquelle il est défini).
+
+* Dans tous les descendants de cet élément à moins :
+    * Qu’un nouvel espace de nommage par défaut ne soit déclaré dans certains de ces descendants (il recouvre alors temporairement celui déclaré dans son ancêtre).
+    * Que sa déclaration ne soit annihilée localement dans certains de ces descendants.
+
+
+_Ces règles de portée et de visibilité sont classiques : ce sont les mêmes qui régissent en général la
+portée et la visibilité de déclarations de variables dans des langages de programmation classiques._
