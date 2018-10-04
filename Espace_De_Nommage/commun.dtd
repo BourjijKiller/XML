@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Une civilité est une chaîne de caractères prenant une des valeurs suivantes : « M. », « Mme » ou « Mlle ». -->
+<!-- REMARQUE : le langage DTD n'offre la possibilité de faire des listes de valeurs autorisées que pour les attributs dont le type est un choix de valeur entre tokens donnés. Il est donc impossible de dire qu'un élément contient soit la chaîne "M.", soit la chaîne "Mme", soit la chaîne "Mlle" (par contre, il pourrait contenir soit un élément imbriqué nommé "M.", soit un élément imbriqué nommé "Mme", soit un élément imbriqué nommé "Mlle", ce qui ne répond pas du tout à notre besoin ici)... On va donc faire la chose suivante : on va définir un élément "civilité" vide, donc qui ne contiendra directement aucune donnée. Par contre, on va lui faire porter un attribut nommé "valeur", obligatoire", qui pourra prendre, lui, l'une des trois valeurs autorisées pour la civilité. -->
+<!ELEMENT com:civilité EMPTY>
+<!ATTLIST com:civilité
+	valeur (M. | Mme | Mlle) #REQUIRED>
+
+<!-- Un prénom usuel et un prénom complémentaire sont des chaînes de 50 caractères au maximum. -->
+<!-- REMARQUE : on ne peut, avec le langage DTD, poser de contrainte sur la longueur d'une chaîne de caractères. On fait donc sans... -->
+<!ELEMENT com:prénomUsuel (#PCDATA)>
+<!ELEMENT com:prénomComplémentaire (#PCDATA)>
+
+<!-- Un nom est une chaîne de 100 caractères au maximum. -->
+<!-- REMARQUE : on ne peut, avec le langage DTD, poser de contrainte sur la longueur d'une chaîne de caractères. On fait donc sans... -->
+<!ELEMENT com:nom (#PCDATA)>
+
+<!-- Une adresse postale est exprimée sous le format suivant (dans cet ordre)  : une précision personnelle optionnelle (n° d’appartement ou BAL, étage, couloir, escalier, …), un complément géographique optionnel (entrée, immeuble, bâtiment, résidence, Z.I., …), une voie obligatoire, un service postal particulier optionnel (lieu-dit ou service particulier de distribution), une localité obligatoire, un pays optionnel. -->
+<!ELEMENT com:adressePostale (com:précision?, com:complément?, com:voie, com:servicePostal?, com:localité, com:pays?)>
+
+<!-- Une précision personnelle est une chaîne de 100 caractères au maximum. -->
+<!-- Un complément géographique est une chaîne de 100 caractères au maximum. -->
+<!-- REMARQUE : on ne peut, avec le langage DTD, poser de contrainte sur la longueur d'une chaîne de caractères. On fait donc sans... -->
+<!ELEMENT com:précision (#PCDATA)>
+<!ELEMENT com:complément (#PCDATA)>
+
+<!-- Une voie est décrite comme suit (dans cet ordre) : un numéro dans la voie  optionnel, un type de voie optionnel, un nom de voie obligatoire. -->
+<!-- REMARQUE : on va factoriser la notion de "nom de personne" avec celle de "nom de voie", étant donné qu'elles ont une même sémantique (ce sont des noms) et une même nature. On référence donc ici la définition faite ailleurs d'un élément "nom". -->
+<!ELEMENT com:voie (com:numéroVoie?, com:typeVoie?, com:nom)>
+
+<!-- Un numéro dans une voie est un entier strictement positif. -->
+<!-- REMARQUE : on ne peut, avec le langage DTD, poser de contrainte sur un type de données. On fait donc sans... -->
+<!ELEMENT com:numéroVoie (#PCDATA)>
+
+<!-- Un type de voie est une chaîne de caractères prenant sa valeur parmi une liste : « avenue », « boulevard », « rue », … -->
+<!-- On se retrouve ici avec le même problème que pour la civilité. On y répond donc de la même façon : avec un élément vide nommé "typeVoie" que l'on associe à un attribut obligatoire nommé "valeur". -->
+<!ELEMENT com:typeVoie EMPTY>
+<!ATTLIST com:typeVoie
+	valeur (avenue | boulevard | rue | place | chemin | route | allée) #REQUIRED>
+
+<!-- Un nom de voie est une chaîne de 100 caractères au maximum. -->
+<!-- REMARQUE : nul besoin de définir spécifiquement cela ici : comme dit plus haut, on factorise cela avec la notion de "nom" définie pour une personne. -->
+
+<!-- Un service postal particulier est une chaîne de 100 caractères au maximum. -->
+<!-- REMARQUE : on ne peut, avec le langage DTD, poser de contrainte sur la longueur d'une chaîne de caractères. On fait donc sans... -->
+<!ELEMENT com:servicePostal (#PCDATA)>
+
+<!-- Une localité est décrite comme suit (dans cet ordre) : un code postal  obligatoire, un nom de commune obligatoire, un CEDEX (Courrier d'Entreprise à Distribution Exceptionnelle) optionnel. -->
+<!ELEMENT com:localité (com:codePostal, com:commune, com:CEDEX?)>
+
+<!-- Un code postal est un entier strictement positif sur 5 chiffres exactement. -->
+<!-- REMARQUE : on ne peut, avec le langage DTD, poser de contrainte sur la longueur d'une chaîne de caractères ni sur le type des caractères qu'elle peut contenir. On fait donc sans... -->
+<!ELEMENT com:codePostal (#PCDATA)>
+
+<!-- Un nom de commune est une chaîne de 50 caractères au maximum. -->
+<!-- Un CEDEX est une chaîne de 50 caractères au maximum. -->
+<!-- Un pays est une chaîne de 50 caractères au maximum. -->
+<!-- REMARQUE : on ne peut, avec le langage DTD, poser de contrainte sur la longueur d'une chaîne de caractères. On fait donc sans... -->
+<!ELEMENT com:commune (#PCDATA)>
+<!ELEMENT com:CEDEX (#PCDATA)>
+<!ELEMENT com:pays (#PCDATA)>
+
+<!-- Un numéro de téléphone est exprimé selon le format français : « XX.XX.XX.XX.XX ». -->
+<!-- Un numéro de fax est exprimé selon le format français : « XX.XX.XX.XX.XX ». -->
+<!-- Une adresse mél est une chaîne de caractères de la forme « texte@texte.texte » où chaque apparition de « texte » respect les règles suivantes [...]. --> 
+<!-- REMARQUE : on ne peut, avec le langage DTD, poser de contrainte sur la longueur d'une chaîne de caractères ni sur le type des caractères qu'elle peut contenir. On fait donc sans... -->
+<!ELEMENT com:numTéléphone (#PCDATA)>
+<!ELEMENT com:numFax (#PCDATA)>
+<!ELEMENT com:adresseMél (#PCDATA)>
+
+<!-- Une identité est : soit la dénomination d’une personne, soit la raison sociale d’une entreprise, soit l’appellation d’une association/organisation. -->
+<!-- REMARQUE : on répond ici simplement avec un choix entre éléments imbriqués. On aurait pu répondre à ce point de bien d'autres façons cependant... -->
+<!ELEMENT com:identité (com:dénominationPersonne | com:raisonSociale | com:appellationOrganisation)>
+
+<!-- La dénomination d’une personne est constituée de sa civilité, de son prénom usuel, éventuellement de ses prénoms complémentaires, puis de son nom. -->
+<!-- REMARQUE : on a déjà réglé le problème de la cilité (cf. plus haut). -->
+<!ELEMENT com:dénominationPersonne (com:civilité, com:prénomUsuel, com:prénomComplémentaire*, com:nom)>
+
+<!-- La raison sociale d’une entreprise est une chaîne de 100 caractères au maximum. -->
+<!-- L’appellation d’une association/organisation est une chaîne de 100 caractères au maximum. -->
+<!-- REMARQUE : on ne peut, avec le langage DTD, poser de contrainte sur la longueur d'une chaîne de caractères. On fait donc sans... -->
+<!ELEMENT com:raisonSociale (#PCDATA)>
+<!ELEMENT com:appellationOrganisation (#PCDATA)>
+
+<!-- Les coordonnées d’une personne/entreprise/organisation/association sont soit réduites, soit complètes. -->
+<!ELEMENT com:coordonnées (com:coordonnéesRéduites|com:coordonnéesComplètes)>
+
+<!-- Les coordonnées réduites d’une personne/entreprise/organisation/association sont composées comme suit (dans cet ordre) : son identité obligatoire, un numéro de téléphone principal obligatoire, un numéro de fax principal optionnel, une adresse mél optionnelle. -->
+<!ELEMENT com:coordonnéesRéduites (com:identité, com:numTéléphone, com:numFax?, com:adresseMél?)>
+
+<!-- Les coordonnées complètes d’une personne/entreprise/organisation/association sont composées comme suit (dans cet ordre) : son identité obligatoire, son adresse postale principale obligatoire, tous ses numéros de téléphone (au moins un donc), tous ses numéros de fax (s’il y a lieu, donc éventuellement aucun et autant que l’on veut), toutes ses adresses mél (s’il y a lieu, donc éventuellement aucune et autant que l’on veut. -->
+<!ELEMENT com:coordonnéesComplètes (com:identité, com:adressePostale, com:numTéléphone+, com:numFax*, com:adresseMél*)>
+
+<!-- Une entité paramètre nommée personne sera définie avec pour valeur un modèle de contenu d’élément de la forme suivante (dans cet ordre) : une civilité obligatoire, un prénom usuel obligatoire, éventuellement suivi d’un ou plusieurs prénoms complémentaires (optionnels donc), suivi(s) d’un nom obligatoire. -->
+<!ENTITY % personne "(com:civilité, com:prénomUsuel, com:prénomComplémentaire*, com:nom)">
+
+<!-- Déclaration de l'espace de nommage pour tous les éléments susceptibles d'être des éléments racine -->
+<!ENTITY % NAMESPACE_COMMUN 'xlmns:com CDATA #FIXED "http://www.univ-amu.fr/XML/commun"'>
+<!-- Inclusion de l'espace de nom dans les attributs de chaque éléments -->
+<!-- éléments entourés d'une balise parente, donc pas besoin de mettre le namespace. Le préfixe suffit -->
+<!ATTLIST com:civilité
+	%NAMESPACE_COMMUN;>
+<!ATTLIST com:prénomUsuel
+	%NAMESPACE_COMMUN;>
+<!ATTLIST com:prénomComplémentaire 
+	%NAMESPACE_COMMUN;>
+<!ATTLIST com:nom 
+	%NAMESPACE_COMMUN;>
+<!ATTLIST com:adressePostale
+	%NAMESPACE_COMMUN;>
+<!ATTLIST com:précision
+	%NAMESPACE_COMMUN;>
+<!ATTLIST com:complément
+	%NAMESPACE_COMMUN;>
+<!ATTLIST com:voie 
+	%NAMESPACE_COMMUN;>
+<!ATTLIST com:servicePostal
+	%NAMESPACE_COMMUN;>
+<!ATTLIST com:localité
+	%NAMESPACE_COMMUN;>
+<!ATTLIST com:pays
+	%NAMESPACE_COMMUN;>
+<!ATTLIST com:numéroVoie
+	%NAMESPACE_COMMUN;>
+<!ATTLIST com:typeVoie
+	%NAMESPACE_COMMUN;>
+<!ATTLIST com:codePostal
+	%NAMESPACE_COMMUN;>
+<!ATTLIST com:commune
+	%NAMESPACE_COMMUN;>
+<!ATTLIST com:CEDEX
+	%NAMESPACE_COMMUN;>
+<!ATTLIST com:numTéléphone
+	%NAMESPACE_COMMUN;>
+<!ATTLIST com:numFax
+	%NAMESPACE_COMMUN;>
+<!ATTLIST com:adresseMél
+	%NAMESPACE_COMMUN;>
+<!ATTLIST com:identité
+	%NAMESPACE_COMMUN;>
+<!ATTLIST com:dénominationPersonne
+	%NAMESPACE_COMMUN;>
+<!ATTLIST com:raisonSociale
+	%NAMESPACE_COMMUN;>
+<!ATTLIST com:appellationOrganisation
+	%NAMESPACE_COMMUN;>
+<!ATTLIST com:coordonnées
+	%NAMESPACE_COMMUN;>
+<!ATTLIST com:coordonnéesRéduites
+	%NAMESPACE_COMMUN;>
+<!ATTLIST com:coordonnéesComplètes
+	%NAMESPACE_COMMUN;>

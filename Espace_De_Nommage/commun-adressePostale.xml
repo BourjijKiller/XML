@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE com:adressePostale SYSTEM "./commun.dtd">
+<!--  Le fait d'assigner l'URI à un préfixe, et que ce préfixe soir renseigné dans toutes les balises, évite de remettre l'URI dans toute les balises -->
+<!--  Chaque balise qui contient le préfixe com: sera automatiquement assignée à l'espace de nom http://www.univ-amu.fr/XML/commun-->
+<com:adressePostale xlmns:com="http://www.univ-amu.fr/XML/commun">
+	<com:précision>2ème étage</com:précision>
+	<com:complément>Bâtiment Austerlitz</com:complément>
+	<com:voie>
+		<com:numéroVoie>15-19</com:numéroVoie>
+		<com:typeVoie valeur="allée"/>
+		<com:nom>Claude Forbin</com:nom>
+	</com:voie>
+	<com:localité>
+		<com:codePostal>13100</com:codePostal>
+		<com:commune>AIX-EN-PROVENCE</com:commune>
+	</com:localité>
+	<com:pays>FRANCE</com:pays>
+</com:adressePostale>

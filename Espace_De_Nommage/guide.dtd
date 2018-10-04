@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- REMARQUE : puisque l'on va se servir d'au moins une définition commune (écrite dans la DTD "commun.dtd"), ici en l'occurrence pour définir un auteur, on doit "importer/appeler" cette DTD "commun.dtd". Pour cela, on définit ici une entité paramètre nommée "commun" dont la valeur est l'ensemble du contenu de "commun.dtd" (sauf son prologue). Donc, la valeur de cette entité paramètre "commun" contient toutes les définitions figurant dans la DTD "commun.dtd". -->
+<!ENTITY % commun SYSTEM "./commun.dtd">
+
+<!-- REMARQUE : on a donné comme valeur à l'entité paramètre "commun" l'ensemble des définitions figurant dans la DTD "commun.dtd". Mais, on ne peut pas encore utiliser ces définitions ! Elles ne figurent en effet PAS dans la DTD courante. Pour cela, il faut qu'on utilise localement cette entité paramètre "commun" (on peut faire une analogie avec déclaration et initialisation de variables). La valeur de cette entité paramètre est un ensemble valide de définitions. Elle doit donc être utilisée en tant qu'instruction à part entière. -->
+%commun;
+
+<!-- Un guide est composé d’un titre, d’une liste d’un ou plusieurs auteurs, d’un éditeur, d’une année et d’une liste d’un ou plusieurs vallons. -->
+<!ELEMENT gui:guide (gui:titre, gui:auteur+, gui:éditeur, gui:année, gui:vallon+)>
+
+<!-- Un titre est une chaîne de caractères. -->
+<!ELEMENT gui:titre (#PCDATA)>
+
+<!-- Un auteur est une personne (cf. entité paramètre "personne" dans les données communes du préambule au TP). -->
+<!-- REMARQUE : puisqu'on a utilisé localement l'entité paramètre "commun" (cf. plus haut), cela veut dire que toutes les définitions qui composaient sa valeur, i.e. toutes les définitions figurant dans la DTD "commun.dtd", sont utilisables ici comme si elles avaient été définies localement. C'est donc aussi le cas de l'entité paramètre "personne" définie dans "commun.dtdt" : elle aussi est maintenant utilisable localement sans problème. C'est ce qu'on fait ici. Comme la valeur associée à cette entité paramètre "personne" est un fragment d'une instruction DTD, la référence à cette entité paramètre doit figurer au sein d'une instruction DTD. -->
+<!ELEMENT gui:auteur %personne;>
+
+<!-- Un éditeur est une chaîne de caractères. -->
+<!ELEMENT gui:éditeur (#PCDATA)>
+
+<!-- Une année est une année (entier strictement positif sur 4 chiffres). -->
+<!-- REMARQUE : ce type de contrainte ne peut être exprimé dans une DTD, puisqu'on ne peut y contraindre ni la longueur d'une chaîne ni le type des caractères qui y sont contenus. On est obligé de s'en tenir au type #PCDATA. -->
+<!ELEMENT gui:année (#PCDATA)>
+
+<!-- Un vallon est composé d’un nom, d’une introduction et de la liste des itinéraires que l’on peut y réaliser (un ou plusieurs itinéraires). -->
+<!ELEMENT gui:vallon (gui:nomVallonItinéraire, gui:introduction, gui:itinéraire+)>
+
+<!-- Un nom de vallon est une chaîne de caractères. -->
+<!-- REMARQUE : ici, on ne peut pas appeler cet élément simplement "nom", il y aurait confusion avec l'élément "nom" importé depuis la DTD "commun.dtd" grâce à l'entité paramètre "commun" référencée plus haut. -->
+<!ELEMENT gui:nomVallonItinéraire (#PCDATA)>
+
+<!-- Une introduction est composée d’une liste d’un ou plusieurs paragraphes. -->
+<!ELEMENT gui:introduction (gui:paragraphe+)>
+
+<!-- Un paragraphe est un élément mixte dans lequel peuvent éventuellement être insérés une ou des notes et/ou un ou des renvois vers d’autres itinéraires et/ou du texte libre. -->
+<!-- REMARQUE : tous les éléments mixtes ont un modèle de contenu de la forme "(#PCDATA | element1 | element2 | ...)*", ce qui est bien le cas ici de l'élément "paragraphe". -->
+<!ELEMENT gui:paragraphe (#PCDATA | gui:renvoi | gui:note)*>
+
+<!-- Une note est un texte donnant des consignes de prudence ou recommandant l’utilisation d’un matériel spécifique (crampons, piolet, …). Les notes sont donc typées. -->
+<!-- REMARQUE : le type des éléments "note" est défini par un choix entre 2 valeurs ("prudence" ou "matériel"). Ceci ne peut être réalisé, au sein d'une DTD, que via un attribut. On associe donc aux éléments "note" un attribut "type" (voir plus bas) et, donc, cette notion de type, n'apparait pas dans le modèle de contenu de l'élément "note". -->
+<!ELEMENT gui:note (#PCDATA)>
+
+<!-- Un renvoi est un élément vide référençant un itinéraire ou une note du guide. -->
+<!-- REMARQUE : dès qu'on parle de référence interne d'un élément du document (ici "renvoi") vers un autre élément du document (ici "itineraire"), il faut placer sur l'élément source de la référence un attribut de type IDREF ou IDREFS et il faut placer sur l'élément cible de la référence un attribut de type ID. C'est ce qui est fait plus bas dans cette DTD. -->
+<!ELEMENT gui:renvoi EMPTY>
+
+<!-- Un itinéraire est caractérisé par un nom, une altitude, une cotation, un numéro et un ou plusieurs paragraphes le décrivant. -->
+<!ELEMENT gui:itinéraire (gui:nomVallonItinéraire, gui:altitude, gui:cotation, gui:numéro, gui:paragraphe+)>
+
+<!-- Une altitude est un entier strictement positif inférieur à 9000. -->
+<!-- REMARQUE : ce type de contrainte ne peut être exprimé dans une DTD, puisqu'on ne peut y contraindre ni la longueur d'une chaîne ni le type des caractères qui y sont contenus et encore moins poser de condition sur sa valeur. On est obligé de s'en tenir au type #PCDATA. -->
+<!ELEMENT gui:altitude (#PCDATA)>
+
+<!-- Une cotation est une chaîne contenant uniquement de 1 à 5 fois « * ». -->
+<!-- REMARQUE : comme pour le type des éléments "note",  le cahier des charges suggère que le contenu des éléments "cotation" est une valeur à prendre parmi plusieurs possibles (ici, 5 sont possibles). On sait que la description du modèle de contenu d'un élément au sein d'une DTD ne permet pas d'exprimer ce type de contrainte. On pourrait donc essayer d'exprimer cela au moyen de la définition d'un attribut que l'on associerait aux éléments "cotation" (qui seraient alors vides). Cela dit, la définition des attributs d'une DTD autorise bien d'exprimer un choix au sein d'une liste de valeurs autorisées mais celles-ci doivent absolument toutes être des tokens de nom XML. Or, le caractère "*" n'est pas autorisé au sein d'un token de nom XML. On est donc finalement ici obligé de s'en tenir au #PCDATA. -->
+<!ELEMENT gui:cotation (#PCDATA)>
+
+<!-- Un numéro est un entier strictement positif. -->
+<!-- REMARQUE : ce type de contrainte ne peut être exprimé dans une DTD, puisqu'on ne peut y contraindre ni la longueur d'une chaîne ni le type des caractères qui y sont contenus. On est obligé de s'en tenir au type #PCDATA. -->
+<!ELEMENT gui:numéro (#PCDATA)>
+
+<!-- Il faut s’assurer que les itinéraires sont identifiés par un identifiant unique au sein du guide. -->
+<!-- REMARQUE : ceci est fait en associant aux éléments "itineraire" un attribut de type ID. -->
+<!ATTLIST gui:itinéraire
+	id ID #REQUIRED>
+
+<!-- Il faut s’assurer que les notes sont identifiées de façon unique dans le document. -->
+<!-- REMARQUE : ceci est fait en associant aux éléments "note" un attribut de type ID. -->
+<!-- REMARQUE : l'attribut "type" permet d'indiquer que le type d'une note est soit la chaîne de caractères "prudence" soit la chaîne de caractères "matériel". On n'aurait pas pu indiquer ce genre de contrainte au sein de la définition d'un élément. -->
+<!ATTLIST gui:note
+	id ID #REQUIRED
+	type (prudence | matériel) #REQUIRED>
+
+<!-- Il faut s’assurer que les renvois référencent des itinéraires ou des notes existant dans le guide. -->
+<!-- REMARQUE : ceci est fait en associant aux éléments "renvoi" un attribut de type IDREF (un attribut de type IDREFS aurait permis de référencer plusieurs itinéraires/notes depuis un même renvoi). -->
+<!ATTLIST gui:renvoi
+	vers IDREF #REQUIRED>
+
+<!-- Il faut s’assurer que le nom d’un itinéraire est unique au sein d’un vallon (on autorise 2 itinéraires de 2 vallons différents à porter le même nom tout simplement parce qu’un même itinéraire peut se prolonger sur plusieurs vallons). -->
+<!-- REMARQUE : on ne peut exprimer ce genre de contrainte au sein d'une DTD. En effet, les contraintes posées avec ce langage portent forcément sur l'ensemble du document (ici, le guide). On ne peut donc restreindre leur portée à une partie de ce document (ici, le vallon). -->
+
+<!-- Déclaration de l'espace de nommage pour tous les éléments susceptibles d'être des éléments racine -->
+<!ENTITY % NAMESPACE_GUIDE 'xmlns:gui CDATA #FIXED "http://www.univ-amu.fr/XML/guide"'>
+
+<!-- Inclusion de l'espace de nommage sur l'élément racine seulement -->
+<!-- Une fois le préfixe associé à l'espace de nommage, chaque élément, se trouvant entre la balise ouvrante incluse et la balise fermante incluse, et préfixé sera automatiquement associé à l'espace de nommage -->
+<!ATTLIST gui:guide
+	%NAMESPACE_GUIDE;>	

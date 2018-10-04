@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE liv:livre SYSTEM "./livre.dtd">
+<liv:livre liv:isbn="1111111111111">
+	<liv:titre>Un bouquin sur XML</liv:titre>
+	<liv:auteur>
+		<com:civilité valeur="M."/>
+		<com:prénomUsuel>Philippe</com:prénomUsuel>
+		<com:nom>RAMADOUR</com:nom>
+	</liv:auteur>
+	<liv:éditeur>AMU / FEG / ISSG / MIAGE</liv:éditeur>
+	<liv:année>2017</liv:année>
+	<liv:leçon liv:id="L1">
+		<liv:numéro>1</liv:numéro>
+		<liv:titre>Introduction à XML</liv:titre>
+		<liv:introduction>
+			<liv:paragraphe>Pourquoi ce langage ? Quels sont ses avantages ? Quels sont ses principales caractéristiques ?</liv:paragraphe>
+		</liv:introduction>
+		<liv:chapitre>
+			<liv:titre>Les difficultés de la gestion de données structurées</liv:titre>
+			<liv:introduction>
+				<liv:paragraphe>La gestion de données structurées est éprouvée depuis 50 ans.</liv:paragraphe>
+				<liv:paragraphe>Mais, elle apporte un lot de contraintes parfois délicates à appréhender/mettre en oeuvre.</liv:paragraphe>
+			</liv:introduction>
+			<liv:section>
+				<liv:titre>Par rapports aux SGBDR</liv:titre>
+				<liv:paragraphe>Difficultés de lisibilité, ...</liv:paragraphe>
+				<liv:paragraphe>Modélisation stricte, ...</liv:paragraphe>
+			</liv:section>
+			<liv:section>
+				<liv:titre>Par rapport aux SGBDOO</liv:titre>
+				<liv:paragraphe>Difficulté de lisibilité (encore), ...</liv:paragraphe>
+				<liv:paragraphe>Lourdeur, ...</liv:paragraphe>
+			</liv:section>
+		</liv:chapitre>
+		<liv:chapitre>
+			<liv:titre>Avantages des formalismes semi-structurés</liv:titre>
+			<liv:introduction>
+				<liv:paragraphe>Moins de recul mais de nombreuses facilités offertes...</liv:paragraphe>
+			</liv:introduction>
+			<liv:section>
+				<liv:titre>Extensibilité du langage</liv:titre>
+				<liv:paragraphe>Possibilité de définir ses propres données <liv:renvoi liv:référence="L2">(cf. "Le langage XML")</liv:renvoi>.</liv:paragraphe>
+			</liv:section>
+			<liv:section>
+				<liv:titre>Portabilité</liv:titre>
+				<liv:paragraphe>Elle est due notamment à la standardisation <liv:renvoi liv:référence="L2">(cf. "le langage XML")</liv:renvoi>.</liv:paragraphe>
+				<liv:paragraphe>Elel est facilité par la myriade d'outils disponibles.</liv:paragraphe>
+			</liv:section>
+			<liv:section>
+				<liv:titre>Lisibilité</liv:titre>
+				<liv:paragraphe>Repose sur l'extensibilité.</liv:paragraphe>
+				<liv:paragraphe>Facilite la compréhension humaine.</liv:paragraphe>
+			</liv:section>
+		</liv:chapitre>
+		<liv:exercice>
+			<liv:numéro>1</liv:numéro>
+			<liv:QCM>
+				<liv:énoncé>XML est un langage...</liv:énoncé>
+				<liv:proposition liv:id="L1-1-A">Structuré</liv:proposition>
+				<liv:proposition liv:id="L1-1-B">Semi structuré</liv:proposition>
+				<liv:proposition liv:id="L1-1-C">Non structuré</liv:proposition>
+			</liv:QCM>
+			<liv:corrigé liv:réponsesCorrectes="L1-1-B"/>
+		</liv:exercice>
+		<liv:exercice>
+			<liv:numéro>2</liv:numéro>
+			<liv:QCM>
+				<liv:énoncé>Par rapport aux SGBDR, la gestion de données en XML est...</liv:énoncé>
+				<liv:proposition liv:id="L1-2-A">Plus stricte</liv:proposition>
+				<liv:proposition liv:id="L1-2-B">Moins stricte</liv:proposition>
+				<liv:proposition liv:id="L1-2-C">Avantageuse sur des volumes de données de granularité faible à moyenne</liv:proposition>
+				<liv:proposition liv:id="L1-2-D">Avantageuse sur des volumes de données élevés à extrêmes (big data)</liv:proposition>
+			</liv:QCM>
+			<liv:corrigé liv:réponsesCorrectes="L1-2-B L1-2-C"/>
+		</liv:exercice>
+	</liv:leçon>
+	<liv:leçon liv:id="L2">
+		<liv:numéro>2</liv:numéro>
+		<liv:titre>Le langage XML</liv:titre>
+		<liv:introduction>
+			<liv:paragraphe>XML est un langage qui s'impose de plus en plus (malgré la présence de "concurrents" tels que JSON).</liv:paragraphe>
+		</liv:introduction>
+		<liv:chapitre>
+			<liv:titre>Le petit historique</liv:titre>
+			<liv:introduction>
+				<liv:paragraphe>Evolution des langages semi-structurés depuis SGML...</liv:paragraphe>
+			</liv:introduction>
+			<liv:section>
+				<liv:titre>SGML</liv:titre>
+				<liv:paragraphe>Le "premier vrai" langage semi-structuré.</liv:paragraphe>
+				<liv:paragraphe>Merci au monde de l'édition :-)</liv:paragraphe>
+			</liv:section>
+			<liv:section>
+				<liv:titre>HTML</liv:titre>
+				<liv:paragraphe>La popularisation de la semi-structuration.</liv:paragraphe>
+				<liv:paragraphe>Merci au Web :-)</liv:paragraphe>
+			</liv:section>
+			<liv:section>
+				<liv:titre>XML</liv:titre>
+				<liv:paragraphe>La vague de la semi-structuration.</liv:paragraphe>
+				<liv:paragraphe>Merci à la professionnalisation du Web :-)</liv:paragraphe>
+			</liv:section>
+		</liv:chapitre>
+		<liv:chapitre>
+			<liv:titre>Caractéristiques du langage</liv:titre>
+			<liv:introduction>
+				<liv:paragraphe>Comme tout langage, XML a ses propres caractéristiques.</liv:paragraphe>
+			</liv:introduction>
+			<liv:section>
+				<liv:titre>Langage ouvert</liv:titre>
+				<liv:paragraphe>Repose sur son extensibilité <liv:renvoi liv:référence="L1">(cf. "Introduction à XML")</liv:renvoi>.</liv:paragraphe>
+				<liv:paragraphe>Ensemble de balises et d'attributs quasiment non-prédéfini et peu contraint.</liv:paragraphe>
+			</liv:section>
+			<liv:section>
+				<liv:titre>Méta-langage</liv:titre>
+				<liv:paragraphe>C'est un langage. Il peut donc être "instancié" (comme un modèle).</liv:paragraphe>
+				<liv:paragraphe>Ces instances peuvent être des documents (c'est l'usage courant).</liv:paragraphe>
+				<liv:paragraphe>Ces instances peuvent également être d'autres langages (donc, des modèles, c'est pourquoi on qualifie XML de "méta-langage").</liv:paragraphe>
+			</liv:section>
+		</liv:chapitre>
+		<liv:exercice>
+			<liv:numéro>1</liv:numéro>
+			<liv:QCM>
+				<liv:énoncé>Quelle est la nature de XML ?</liv:énoncé>
+				<liv:proposition liv:id="L2-1-A">C'est un langage structuré</liv:proposition>
+				<liv:proposition liv:id="L2-1-B">C'est un langage semi-structuré</liv:proposition>
+				<liv:proposition liv:id="L2-1-C">C'est un méta-langage</liv:proposition>
+				<liv:proposition liv:id="L2-1-D">C'est un langage totalement prédéfini</liv:proposition>
+			</liv:QCM>
+			<liv:corrigé liv:réponsesCorrectes="L2-1-B L2-1-D"/>
+		</liv:exercice>
+	</liv:leçon>
+</liv:livre>

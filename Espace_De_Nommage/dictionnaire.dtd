@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Modifiez la DTD dictionnaire.dtd afin que, dans les documents XML basés sur elle, tous les éléments et tous les attributs qui y sont déclarés soient associés à un espace de nommage d’identifiant http://www.univ-amu.fr/XML/dictionnaire et de préfixe dico. -->
+<!-- REMARQUE : contrairement à celle du préambule, cette DTD ne contient pas de définitions communes, pouvant être réutilisées indépendamment les unes des autres. On peut donc déclarer l'espace de nommage une seule fois (sur l'élément racine). Il faut par contre toujours penser à l'utiliser à bon escient pour qualifier ce qui doit l'être (ici, uniquement les éléments). -->
+
+<!ELEMENT dico:dictionnaire (dico:entrée)+>
+<!ATTLIST dico:dictionnaire
+	xmlns:dico CDATA #FIXED "http://www.univ-amu.fr/XML/dictionnaire">
+
+<!ELEMENT dico:entrée (dico:orthographe, (dico:nomPropre | dico:nomCommun | dico:adjectif | dico:verbe | dico:pronomPersonnel | dico:pronomRelatif), dico:prononciation, (dico:renvoi | dico:signification+), dico:expression*, dico:étymologie?)>
+<!ATTLIST dico:entrée
+	dico:identifiant ID #REQUIRED>
+
+<!ELEMENT dico:orthographe (dico:usuelle, dico:dérivée*)>
+
+<!ELEMENT dico:usuelle (#PCDATA)>
+
+<!ELEMENT dico:dérivée (#PCDATA)>
+
+<!ELEMENT dico:nomPropre EMPTY>
+
+<!ELEMENT dico:nomCommun (dico:genre, dico:nombre)>
+
+<!ELEMENT dico:verbe (dico:groupe, dico:forme)>
+
+<!ELEMENT dico:adjectif (dico:genre, dico:nombre)>
+
+<!ELEMENT dico:pronomPersonnel EMPTY>
+
+<!ELEMENT dico:pronomRelatif EMPTY>
+
+<!ELEMENT dico:genre (dico:annotation*)>
+<!ATTLIST dico:genre
+	dico:valeur (masculin | féminin | neutre) #REQUIRED>
+
+<!ELEMENT dico:nombre (dico:annotation*)>
+<!ATTLIST dico:nombre
+	dico:valeur (singulier | pluriel) #REQUIRED>
+
+<!ELEMENT dico:annotation (#PCDATA)>
+
+<!ELEMENT dico:groupe (dico:annotation*)>
+<!ATTLIST dico:groupe
+	dico:valeur (1er | 2ème | 3ème) #REQUIRED>
+
+<!ELEMENT dico:forme (dico:annotation*)>
+<!ATTLIST dico:forme
+	dico:valeur (transitif | intransitif | réfléchi) #REQUIRED>
+
+<!ELEMENT dico:prononciation (#PCDATA)>
+
+<!ELEMENT dico:renvoi EMPTY>
+<!ATTLIST dico:renvoi
+	dico:cible IDREF #REQUIRED>
+
+<!ELEMENT dico:signification (dico:sens, dico:exemple*, dico:traduction*)>
+<!ATTLIST dico:signification
+	dico:domaine (lang.fam. | lang.cour. | finance | informatique) #REQUIRED>
+
+<!ELEMENT dico:sens (#PCDATA | dico:renvoi)*>
+
+<!ELEMENT dico:exemple (#PCDATA)>
+
+<!ELEMENT dico:traduction (dico:écriture, dico:prononciation, dico:annotation*)>
+<!ATTLIST dico:traduction
+	dico:langue (anglais | américain | espagnol | italien) #REQUIRED>
+
+<!ELEMENT dico:écriture (#PCDATA)>
+
+<!ELEMENT dico:expression (dico:écriture, dico:sens, dico:exemple*, dico:traduction*)>
+<!ATTLIST dico:expression
+	dico:domaine (lang.fam. | lang.cour. | finance | informatique) #REQUIRED>
+
+<!ELEMENT dico:étymologie (#PCDATA)>

@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE cnt:carnet SYSTEM "./carnet.dtd">
+<cnt:carnet xmlns:cnt="http://www.univ-amu.fr/XML/carnet">
+	<cnt:contacts>
+		<cnt:contact id="PRA" siteDeTravail="MIAGE-MRS">
+			<com:coordonnéesRéduites xlmns:com="http://www.univ-amu.fr/XML/commun">
+				<com:identité>
+					<com:dénominationPersonne>
+						<com:civilité valeur="M."/>
+						<com:prénomUsuel>Philippe</com:prénomUsuel>
+						<com:nom>RAMADOUR</com:nom>
+					</com:dénominationPersonne>
+				</com:identité>
+				<com:numTéléphone>01.01.01.01.01</com:numTéléphone>
+				<com:adresseMél>philippe.ramadour@univ-amu.fr</com:adresseMél>
+			</com:coordonnéesRéduites>
+		</cnt:contact>
+		<cnt:contact id="JCA" siteDeTravail="MIAGE-AIX">
+			<com:coordonnéesRéduites xlmns:com="http://www.univ-amu.fr/XML/commun">
+				<com:identité>
+					<com:dénominationPersonne>
+						<com:civilité valeur="M."/>
+						<com:prénomUsuel>Jean</com:prénomUsuel>
+						<com:nom>CAUSSANEL</com:nom>
+					</com:dénominationPersonne>
+				</com:identité>
+				<com:numTéléphone>01.01.01.01.02</com:numTéléphone>
+				<com:adresseMél>jean.caussanel@univ-amu.fr</com:adresseMél>
+			</com:coordonnéesRéduites>
+		</cnt:contact>
+		<cnt:contact id="NRA" siteDeTravail="MIAGE-MRS">
+			<com:coordonnéesRéduites xlmns:com="http://www.univ-amu.fr/XML/commun">
+				<com:identité>
+					<com:dénominationPersonne>
+						<com:civilité valeur="Mme"/>
+						<com:prénomUsuel>Nina</com:prénomUsuel>
+						<com:nom>RALIJAONA</com:nom>
+					</com:dénominationPersonne>
+				</com:identité>
+				<com:numTéléphone>02.02.02.02.01</com:numTéléphone>
+				<com:numFax>02.02.02.02.02</com:numFax>
+				<com:adresseMél>feg-miage-marseille.univ-amu.fr</com:adresseMél>
+			</com:coordonnéesRéduites>
+		</cnt:contact>
+		<cnt:contact id="SFO" siteDeTravail="LSIS-PolytechGII">
+			<com:coordonnéesRéduites xlmns:com="http://www.univ-amu.fr/XML/commun">
+				<com:identité>
+					<com:dénominationPersonne>
+						<com:civilité valeur="M."/>
+						<com:prénomUsuel>Sébastien</com:prénomUsuel>
+						<com:nom>FOURNIER</com:nom>
+					</com:dénominationPersonne>
+				</com:identité>
+				<com:numTéléphone>03.03.03.03.03</com:numTéléphone>
+				<com:adresseMél>sebastien.fournier@univ-amu.fr</com:adresseMél>
+			</com:coordonnéesRéduites>
+		</cnt:contact>
+	</cnt:contacts>
+	<cnt:entreprises>
+		<cnt:entreprise id="MIAGE">
+			<com:nom>MIAGE Aix-Marseille</com:nom>
+			<cnt:listeSites>
+				<cnt:site id="MIAGE-AIX">
+					<com:nom xlmns:com="http://www.univ-amu.fr/XML/commun">MIAGE Aix-Marseille (site d'Aix/Forbin)</com:nom>
+					<com:adressePostale xlmns:com="http://www.univ-amu.fr/XML/commun">
+						<com:précision>2ème étage</com:précision>
+						<com:complément>Bâtiment Austerlitz</com:complément>
+						<com:voie>
+							<com:numéroVoie>15-19</com:numéroVoie>
+							<com:typeVoie valeur="allée"/>
+							<com:nom>Claude Forbin</com:nom>
+						</com:voie>
+						<com:localité>
+							<com:codePostal>13100</com:codePostal>
+							<com:commune>AIX-EN-PROVENCE</com:commune>
+						</com:localité>
+						<com:pays>FRANCE</com:pays>
+					</com:adressePostale>
+				</cnt:site>
+				<cnt:site id="MIAGE-MRS">
+					<com:nom xlmns:com="http://www.univ-amu.fr/XML/commun">MIAGE Aix-Marseille (site de Marseille/Du Bois)</com:nom>
+					<com:adressePostale xlmns:com="http://www.univ-amu.fr/XML/commun">
+						<com:complément>Ilôt Du Bois</com:complément>
+						<com:voie>
+							<com:numéroVoie>5</com:numéroVoie>
+							<com:typeVoie valeur="boulevard"/>
+							<com:nom>Maurice Bourdet</com:nom>
+						</com:voie>
+						<com:localité>
+							<com:codePostal>13205</com:codePostal>
+							<com:commune>MARSEILLE</com:commune>
+							<com:CEDEX>CEDEX 1</com:CEDEX>
+						</com:localité>
+						<com:pays>FRANCE</com:pays>
+					</com:adressePostale>
+				</cnt:site>
+			</cnt:listeSites>
+		</cnt:entreprise>
+		<cnt:entreprise id="LSIS">
+			<com:nom xlmns:com="http://www.univ-amu.fr/XML/commun">Laboratoire des Sciences de l'Information et des Systèmes</com:nom>
+			<cnt:listeSites>
+				<cnt:site id="LSIS-PolytechGII">
+					<com:nom xlmns:com="http://www.univ-amu.fr/XML/commun">Antenne LSIS de Polytech'GII</com:nom>
+					<com:adressePostale xlmns:com="http://www.univ-amu.fr/XML/commun">
+						<com:précision>Domaine Universitaire de Saint-Jérôme</com:précision>
+						<com:complément>Batiment Polytech'GII</com:complément>
+						<com:voie>
+							<com:typeVoie valeur="avenue"/>
+							<com:nom>Escadrille Normandie-Niemen</com:nom>
+						</com:voie>
+						<com:localité>
+							<com:codePostal>13397</com:codePostal>
+							<com:commune>MARSEILLE</com:commune>
+							<com:CEDEX>CEDEX 20</com:CEDEX>
+						</com:localité>
+						<com:pays>FRANCE</com:pays>
+					</com:adressePostale>
+				</cnt:site>
+				<cnt:site id="LSIS-Luminy">
+					<com:nom xlmns:com="http://www.univ-amu.fr/XML/commun">Antenne LSIS de Luminy</com:nom>
+					<com:adressePostale xlmns:com="http://www.univ-amu.fr/XML/commun">
+						<com:précision>Bâtiment Polytech</com:précision>
+						<com:complément>Case 925</com:complément>
+						<com:voie>
+							<com:numéroVoie>163</com:numéroVoie>
+							<com:typeVoie valeur="avenue"/>
+							<com:nom>de Luminy</com:nom>
+						</com:voie>
+						<com:localité>
+							<com:codePostal>13288</com:codePostal>
+							<com:commune>MARSEILLE</com:commune>
+							<com:CEDEX>CEDEX 9</com:CEDEX>
+						</com:localité>
+						<com:pays>FRANCE</com:pays>
+					</com:adressePostale>
+				</cnt:site>
+			</cnt:listeSites>
+		</cnt:entreprise>
+	</cnt:entreprises>
+	<cnt:rendez-vous>
+		<cnt:rdv>
+			<cnt:personne avec="PRA">
+				<com:civilité xlmns:com="http://www.univ-amu.fr/XML/commun" valeur="M."/>
+				<com:prénomUsuel xlmns:com="http://www.univ-amu.fr/XML/commun">Philippe</com:prénomUsuel>
+				<com:nom xlmns:com="http://www.univ-amu.fr/XML/commun">RAMADOUR</com:nom>
+			</personne>
+			<cnt:personne avec="JCA">
+				<com:civilité xlmns:com="http://www.univ-amu.fr/XML/commun" valeur="M."/>
+				<com:prénomUsuel xlmns:com="http://www.univ-amu.fr/XML/commun">Jean</com:prénomUsuel>
+				<com:nom xlmns:com="http://www.univ-amu.fr/XML/commun">CAUSSANEL</com:nom>
+			</cnt:personne>
+			<cnt:date>19/10/2017</cnt:date>
+			<cnt:heureDébut>10h00</cnt:heureDébut>
+			<cnt:durée>2h00</cnt:durée>
+			<com:adressePostale xlmns:com="http://www.univ-amu.fr/XML/commun">
+				<com:complément>Ilôt Du Bois</com:complément>
+				<com:voie>
+					<com:numéroVoie>5</com:numéroVoie>
+					<com:typeVoie valeur="boulevard"/>
+					<com:nom>Maurice Bourdet</com:nom>
+				</com:voie>
+				<com:localité>
+					<com:codePostal>13205</com:codePostal>
+					<com:commune>MARSEILLE</com:commune>
+					<com:CEDEX>CEDEX 1</com:CEDEX>
+				</com:localité>
+				<com:pays>FRANCE</com:pays>
+			</com:adressePostale>
+		</cnt:rdv>
+		<cnt:rdv>
+			<cnt:personne avec="NRA">
+				<com:civilité xlmns:com="http://www.univ-amu.fr/XML/commun" valeur="Mme"/>
+				<com:prénomUsuel xlmns:com="http://www.univ-amu.fr/XML/commun">Nina</com:prénomUsuel>
+				<com:nom xlmns:com="http://www.univ-amu.fr/XML/commun">RALIJAONA</com:nom>
+			</cnt:personne>
+			<cnt:date>20/10/2017</cnt:date>
+			<cnt:heureDébut>13h30</cnt:heureDébut>
+			<cnt:durée>00h05</cnt:durée>
+			<com:adressePostale xlmns:com="http://www.univ-amu.fr/XML/commun">
+				<com:complément>Ilôt Du Bois</com:complément>
+				<com:voie>
+					<com:numéroVoie>5</com:numéroVoie>
+					<com:typeVoie valeur="boulevard"/>
+					<com:nom>Maurice Bourdet</com:nom>
+				</com:voie>
+				<com:localité>
+					<com:codePostal>13205</com:codePostal>
+					<com:commune>MARSEILLE</com:commune>
+					<com:CEDEX>CEDEX 1</com:CEDEX>
+				</com:localité>
+				<com:pays>FRANCE</com:pays>
+			</com:adressePostale>
+		</cnt:rdv>
+		<cnt:rdv>
+			<cnt:personne avec="SFO">
+				<com:civilité xlmns:com="http://www.univ-amu.fr/XML/commun" valeur="M."/>
+				<com:prénomUsuel xlmns:com="http://www.univ-amu.fr/XML/commun">Sébastien</com:prénomUsuel>
+				<com:nom xlmns:com="http://www.univ-amu.fr/XML/commun">FOURNIER</com:nom>
+			</cnt:personne>
+			<cnt:personne avec="PRA">
+				<com:civilité xlmns:com="http://www.univ-amu.fr/XML/commun" valeur="M."/>
+				<com:prénomUsuel xlmns:com="http://www.univ-amu.fr/XML/commun">Philippe</com:prénomUsuel>
+				<com:nom xlmns:com="http://www.univ-amu.fr/XML/commun">RAMADOUR</com:nom>
+			</cnt:personne>
+			<cnt:personne avec="JCA">
+				<com:civilité xlmns:com="http://www.univ-amu.fr/XML/commun" valeur="M."/>
+				<com:prénomUsuel xlmns:com="http://www.univ-amu.fr/XML/commun">Jean</com:prénomUsuel>
+				<com:nom xlmns:com="http://www.univ-amu.fr/XML/commun">CAUSSANEL</com:nom>
+			</cnt:personne>
+			<cnt:date>20/10/2017</cnt:date>
+			<cnt:heureDébut>18h00</cnt:heureDébut>
+			<cnt:durée>01h00</cnt:durée>
+			<com:adressePostale xlmns:com="http://www.univ-amu.fr/XML/commun">
+				<com:précision>Domaine Universitaire de Saint-Jérôme</com:précision>
+				<com:complément>Batiment Polytech'GII</com:complément>
+				<com:voie>
+					<com:typeVoie valeur="avenue"/>
+					<com:nom>Escadrille Normandie-Niemen</com:nom>
+				</com:voie>
+				<com:localité>
+					<com:codePostal>13397</com:codePostal>
+					<com:commune>MARSEILLE</com:commune>
+					<com:CEDEX>CEDEX 20</com:CEDEX>
+				</com:localité>
+				<com:pays>FRANCE</com:pays>
+			</com:adressePostale>
+		</cnt:rdv>
+	</cnt:rendez-vous>
+</cnt:carnet>
