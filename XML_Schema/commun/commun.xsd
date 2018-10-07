@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.univ-amu.fr/XML/commun"
+	xmlns:com="http://www.univ-amu.fr/XML/commun"
+	elementFormDefault="qualified"
+	attributeFormDefault="unqualified">
+	
+	<xs:annotation>
+		<xs:documentation>
+			Déclaration d'un groupe d'attributs contenant un ensemble d'attributs globaux
+		</xs:documentation>
+	</xs:annotation>
+	<xs:attributeGroup name="communAttr">
+	
+		<!-- Attribut Civilité -->
+        <xs:attribute name="Civilité">
+            <xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="M." />
+					<xs:enumeration value="Mme" />
+					<xs:enumeration value="Mlle" />
+				</xs:restriction>
+			</xs:simpleType>
+        </xs:attribute>
+    </xs:attributeGroup>
+	
+	<xs:annotation>
+		<xs:documentation>
+			Chaine de 50 caractères maximum
+		</xs:documentation>
+	</xs:annotation>
+	<xs:simpleType name="string50">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="50" />
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:annotation>
+		<xs:documentation>
+			Chaine de 100 caractères maximum
+		</xs:documentation>
+	</xs:annotation>
+	<xs:simpleType name="string100">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="100" />
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:annotation>
+		<xs:documentation>
+			Format XX.XX.XX.XX.XX où XX sont des entiers strictements positifs
+		</xs:documentation>
+	</xs:annotation>
+	<xs:simpleType name="formatTéléphoneFax">
+		<xs:restriction base="xs:nonNegativeInteger">
+			<xs:pattern value="(\d{2}\.){4}\d{2}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<!-- Un prénom usuel est une chaîne de 50 caractère maximum -->
+	<xs:element name="prénom-usuel" type="com:string50" />
+	<!-- Un prénom complémentaire est une chaîne de 50 caractère -->
+	<xs:element name="prénom-complémentaire" type="com:string50" />
+	<!-- Un nom est une chaîne de 100 caractère maximum -->
+	<xs:element name="nom" type="com:string100" />
+	
+	<!-- Une adresse contient une précision personnelle optionnel, un complément géographique optionnel,
+	une voie contenant :
+		un numéro de voie, optionnel,
+		un type de voie, optionnel,
+		un nom de voie
+	un service postal particulier, optionnel,
+	une localité contenant :
+		un code postal,
+		un nom de commune,
+		un CEDEX, optionnel
+	-->
+	<xs:element name="adresse-postale">
+        <xs:complexType>
+			<xs:sequence maxOccurs="1">
+				<!-- Une précision personnelle est une chaîne de 100 caractères maximum -->
+				<xs:element name="précision-personnelle" minOccurs="0" maxOccurs="1" type="com:string100" />
+				
+				<!-- Le complément géographique est une chaîne de caractère optionnelle -->
+				<xs:element name="complément-géographique" minOccurs="0" maxOccurs="1" type="com:string100"/>
+				
+				<!-- Une voie est obligatoire -->
+				<xs:element name="voie" maxOccurs="1">
+					<xs:complexType>
+						<xs:sequence maxOccurs="1">
+							<!-- Le numéro de voie est optionnel et ne peux être négatif -->
+							<xs:element name="numéro-voie" minOccurs="0" maxOccurs="1">
+								<xs:simpleType>
+									<xs:restriction base="xs:nonNegativeInteger" />
+								</xs:simpleType>
+							</xs:element>
+							
+							<!-- Le type de voie est obligatoire, et contient une liste de valeurs ci-dessous à choisir -->
+							<xs:element name="type-voie" minOccurs="0" maxOccurs="1">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<!-- Liste de valeurs possibles, avec 1 choix -->
+										<xs:enumeration value="avenue" />
+										<xs:enumeration value="boulevard" />
+										<xs:enumeration value="rue" />
+										<!--   BG PRADAAAP -->
+										<xs:enumeration value="allée" />
+										<xs:enumeration value="impasse" />
+										<xs:enumeration value="carrefour" />
+										<xs:enumeration value="chemin" />
+										<xs:enumeration value="route" />
+										<xs:enumeration value="ruelle" />
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							
+							<!-- Un nom de voie est une chaîne de caractère de taille 100 -->
+							<xs:element name="nom-voie" maxOccurs="1" type="com:string100" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				
+				<!-- Un service postale est une chaîne de 100 caractères maximum, optionnel -->
+				<xs:element name="service-postal" minOccurs="0" maxOccurs="1" type="com:string100" />
+				
+				<!-- Une localité, obligatoire, composé d'un code postal,
+				d'un nom de commune ainsi que d'un CEDEX, optionnel -->
+				<xs:element name="localité" maxOccurs="1">
+					<xs:complexType>
+						<xs:sequence>
+							<!-- Un code postal est un entier strictement positif sur exactement 5 chiffres -->
+							<xs:element name="code-postal" maxOccurs="1">
+								<xs:simpleType>
+									<xs:restriction base="xs:nonNegativeInteger">
+										<xs:totalDigits value="5"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							
+							<!-- Un nom de commune est une chaine de 50 caractères maximum -->
+							<xs:element name="nom-commune" maxOccurs="1" type="com:string50"/>
+							
+							<!-- Un CEDEX, optionnel, est une chaîne de 50 caractères maximum -->
+							<xs:element name="CEDEX" minOccurs="0" maxOccurs="1" type="com:string50"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				
+				<!-- Un pays, optionnel, est une chaîne de 50 caractères maximum -->
+				<xs:element name="pays" minOccurs="0" maxOccurs="1" type="com:string50"/>
+			</xs:sequence>
+		</xs:complexType>
+    </xs:element>
+    
+    <!-- Un numéro de téléphone selon le format Français -->
+    <xs:element name="téléphone" type="com:formatTéléphoneFax"/>
+    
+    <!-- Un numéro de fax selon le format Français -->
+    <xs:element name="fax" type="com:formatTéléphoneFax" />
+    
+    <!-- TODO email, identité, coordonnées -->
+    
+</xs:schema>
