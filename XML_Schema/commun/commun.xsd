@@ -8,22 +8,20 @@
 	
 	<xs:annotation>
 		<xs:documentation>
-			Déclaration d'un groupe d'attributs contenant un ensemble d'attributs globaux
+			Déclaration d'un attribut civilité
 		</xs:documentation>
 	</xs:annotation>
-	<xs:attributeGroup name="communAttr">
 	
-		<!-- Attribut Civilité -->
-        <xs:attribute name="Civilité">
-            <xs:simpleType>
-				<xs:restriction base="xs:string">
-					<xs:enumeration value="M." />
-					<xs:enumeration value="Mme" />
-					<xs:enumeration value="Mlle" />
-				</xs:restriction>
-			</xs:simpleType>
-        </xs:attribute>
-    </xs:attributeGroup>
+	<!-- Elément Civilité -->
+	<xs:element name="civilité">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="M."/>
+				<xs:enumeration value="Mme"/>
+				<xs:enumeration value="Mlle"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
 	
 	<xs:annotation>
 		<xs:documentation>
@@ -78,17 +76,17 @@
 	-->
 	<xs:element name="adresse-postale">
         <xs:complexType>
-			<xs:sequence maxOccurs="1">
+			<xs:sequence minOccurs="1" maxOccurs="1">
 				<!-- Une précision personnelle est une chaîne de 100 caractères maximum -->
 				<xs:element name="précision-personnelle" minOccurs="0" maxOccurs="1" type="com:string100" />
 				
 				<!-- Le complément géographique est une chaîne de caractère optionnelle -->
 				<xs:element name="complément-géographique" minOccurs="0" maxOccurs="1" type="com:string100"/>
-				
+								
 				<!-- Une voie est obligatoire -->
 				<xs:element name="voie" maxOccurs="1">
 					<xs:complexType>
-						<xs:sequence maxOccurs="1">
+						<xs:sequence minOccurs="1" maxOccurs="1">
 							<!-- Le numéro de voie est optionnel et ne peux être négatif -->
 							<xs:element name="numéro-voie" minOccurs="0" maxOccurs="1">
 								<xs:simpleType>
@@ -133,7 +131,7 @@
 							<xs:element name="code-postal" maxOccurs="1">
 								<xs:simpleType>
 									<xs:restriction base="xs:nonNegativeInteger">
-										<xs:totalDigits value="5"/>
+										<xs:pattern value="(\d){5}"/>
 									</xs:restriction>
 								</xs:simpleType>
 							</xs:element>
@@ -157,8 +155,107 @@
     <xs:element name="téléphone" type="com:formatTéléphoneFax"/>
     
     <!-- Un numéro de fax selon le format Français -->
-    <xs:element name="fax" type="com:formatTéléphoneFax" />
+    <xs:element name="fax" type="com:formatTéléphoneFax"/>
     
-    <!-- TODO email, identité, coordonnées -->
+    <!-- Une adresse mail est une chaîne de caractères sous la forme teste@texte.fr avec des règles spécifiques pour texte -->
+    <xs:element name="email">
+    	<xs:simpleType>
+    		<xs:restriction base="xs:string">
+    			<!-- REGEX de l'adresse email -->
+    			<xs:pattern value="[A-Za-z][A-Za-z0-9.\-_]*[A-Za-z0-9]@[A-Za-z][A-Za-z0-9.\-_]*[A-Za-z0-9]\.[A-Za-z][A-Za-z0-9.\-_]*[A-Za-z0-9]"/>
+    			<xs:minLength value="1"/>
+    		</xs:restriction>
+    	</xs:simpleType>
+    </xs:element>
     
+    <!-- Une identité est soit la dénomination d'une personne,
+    	soit la raison sociale d'une entreprise,
+    	soit l'appellation d'une association/organisation -->
+    	
+    <xs:element name="identité">
+    	<xs:complexType>
+    		<xs:choice minOccurs="1" maxOccurs="1">
+    		
+    			<!-- Dénomination d'une personne -->
+    			<xs:element name="dénomination-personne">
+    				<xs:complexType>
+    					<xs:sequence>
+    					    <!-- On référence la civilité -->
+    					    <xs:element ref="com:civilité"/>
+    						<!-- Obligatoire -->
+    						<xs:element ref="com:prénom-usuel"/>
+    						<!-- Eventuellement de ses prénoms complémentaires -->
+    						<xs:element ref="com:prénom-complémentaire" minOccurs="0" maxOccurs="unbounded"/>
+    						<!-- Obligatoire -->
+    						<xs:element ref="com:nom"/>
+    					</xs:sequence>
+    				</xs:complexType>
+    			</xs:element>
+    			
+    			<!-- La raison sociale d'une entreprise est une chaîne de 100 caractères maximum -->
+    			<xs:element name="raisonSociale-entreprise" type="com:string100"/>
+    			
+    			<!-- L'appellation d'une association/organisation est une chaîne de 100 caractères maximum -->
+    			<xs:element name="appellation" type="com:string100"/>
+    		</xs:choice>
+    	</xs:complexType>
+    </xs:element>
+    
+    <!-- Les coordonnées d'une personne sont soit réduites, soit ncomplètes -->
+    <xs:element name="coordonnées">
+    	<xs:complexType>
+    		<xs:choice>
+    			<!-- Coordonnées réduites -->
+    			<xs:element name="coordonnées-réduites">
+    				<xs:complexType>
+    					<xs:sequence>
+    						<!-- Identité obligatoire -->
+    						<xs:element ref="com:identité"/>
+    						<!-- Numéro de téléphone obligatoire -->
+    						<xs:element ref="com:téléphone"/>
+    						<!-- Numéro de fax, optionnel -->
+    						<xs:element ref="com:fax" minOccurs="0" maxOccurs="1"/>
+    						<!-- Une adresse mail, optionnelle -->
+    						<xs:element ref="com:email" minOccurs="0" maxOccurs="1"/>
+    					</xs:sequence>
+    				</xs:complexType>
+    			</xs:element>
+    			<!-- Coordonnées complètes -->
+    			<xs:element name="coordonnées-complètes">
+    				<xs:complexType>
+    					<xs:sequence>
+    						<!-- Identité, obligatoire -->
+    						<xs:element ref="com:identité"/>
+    						<!-- Adresse postale principale, obligatoire -->
+    						<xs:element ref="com:adresse-postale"/>
+    						<!-- Tous ses numéros de téléphone, au moins 1 -->
+    						<xs:element ref="com:téléphone" minOccurs="1" maxOccurs="unbounded"/>
+    						<!-- Tous ses numéros de fax, optionnel -->
+    						<xs:element ref="com:fax" minOccurs="0" maxOccurs="unbounded"/>
+    						<!-- Toutes ses adresses mail, optionnel -->
+    						<xs:element ref="com:email" minOccurs="0" maxOccurs="unbounded"/>
+    					</xs:sequence>
+    				</xs:complexType>
+    			</xs:element>
+    		</xs:choice>
+    	</xs:complexType>
+    </xs:element>
+    
+    <xs:annotation>
+    	<xs:documentation>
+    		Groupe d'éléments contenant une séquence d'éléments destinée pour réutilisation
+    	</xs:documentation>
+    </xs:annotation>
+    <!-- Une personne est définit par une civilité, obligatoire
+    	 un prénom usuel, obligatoire,
+    	 un ou plusieurs prénoms complémentaires, optionnel
+    	 un nom obligatoire -->
+    <xs:group name="personne">
+    	<xs:sequence>
+    		<xs:element ref="com:civilité"/>
+    		<xs:element ref="com:prénom-usuel"/>
+    		<xs:element ref="com:prénom-complémentaire" minOccurs="1" maxOccurs="unbounded"/>
+    		<xs:element ref="com:nom"/>
+    	</xs:sequence>
+    </xs:group>
 </xs:schema>
