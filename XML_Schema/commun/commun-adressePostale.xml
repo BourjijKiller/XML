@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<com:adresse-postale xmlns:com="http://www.univ-amu.fr/XML/commun"
+					xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+					xsi:schemaLocation="http://www.univ-amu.fr/XML/commun commun.xsd">
+ 	<com:précision-personnelle>
+ 		Appartement 666
+ 	</com:précision-personnelle>
+  	<com:complément-géographique>
+  		Malinovla
+  	</com:complément-géographique>
+  	<com:voie>
+    	<com:numéro-voie>7</com:numéro-voie>
+    	<com:type-voie>boulevard</com:type-voie>
+    	<com:nom-voie>Roi rené</com:nom-voie>
+  	</com:voie>
+  	<com:service-postal>
+  		La poste
+  	</com:service-postal>
+  	<com:localité>
+    	<com:code-postal>34130</com:code-postal>
+    	<com:nom-commune>Mauguio</com:nom-commune>
+    	<com:CEDEX>CEDEX 1</com:CEDEX>
+    </com:localité>
+    <com:pays>FRANCE</com:pays>
+</com:adresse-postale>

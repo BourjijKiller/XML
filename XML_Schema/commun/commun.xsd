@@ -51,7 +51,7 @@
 		</xs:documentation>
 	</xs:annotation>
 	<xs:simpleType name="formatTéléphoneFax">
-		<xs:restriction base="xs:nonNegativeInteger">
+		<xs:restriction base="xs:string">
 			<xs:pattern value="(\d{2}\.){4}\d{2}"/>
 		</xs:restriction>
 	</xs:simpleType>
@@ -201,45 +201,48 @@
     	</xs:complexType>
     </xs:element>
     
-    <!-- Les coordonnées d'une personne sont soit réduites, soit ncomplètes -->
+    <!-- Les coordonnées d'une personne sont soit réduites, soit complètes -->
     <xs:element name="coordonnées">
     	<xs:complexType>
     		<xs:choice>
-    			<!-- Coordonnées réduites -->
-    			<xs:element name="coordonnées-réduites">
-    				<xs:complexType>
-    					<xs:sequence>
-    						<!-- Identité obligatoire -->
-    						<xs:element ref="com:identité"/>
-    						<!-- Numéro de téléphone obligatoire -->
-    						<xs:element ref="com:téléphone"/>
-    						<!-- Numéro de fax, optionnel -->
-    						<xs:element ref="com:fax" minOccurs="0" maxOccurs="1"/>
-    						<!-- Une adresse mail, optionnelle -->
-    						<xs:element ref="com:email" minOccurs="0" maxOccurs="1"/>
-    					</xs:sequence>
-    				</xs:complexType>
-    			</xs:element>
-    			<!-- Coordonnées complètes -->
-    			<xs:element name="coordonnées-complètes">
-    				<xs:complexType>
-    					<xs:sequence>
-    						<!-- Identité, obligatoire -->
-    						<xs:element ref="com:identité"/>
-    						<!-- Adresse postale principale, obligatoire -->
-    						<xs:element ref="com:adresse-postale"/>
-    						<!-- Tous ses numéros de téléphone, au moins 1 -->
-    						<xs:element ref="com:téléphone" minOccurs="1" maxOccurs="unbounded"/>
-    						<!-- Tous ses numéros de fax, optionnel -->
-    						<xs:element ref="com:fax" minOccurs="0" maxOccurs="unbounded"/>
-    						<!-- Toutes ses adresses mail, optionnel -->
-    						<xs:element ref="com:email" minOccurs="0" maxOccurs="unbounded"/>
-    					</xs:sequence>
-    				</xs:complexType>
-    			</xs:element>
+    			<xs:element ref="com:coordonnées-réduites"/>
+    			<xs:element ref="com:coordonnées-complètes"/>
     		</xs:choice>
     	</xs:complexType>
     </xs:element>
+    
+    <!-- Coordonnées réduites -->
+	<xs:element name="coordonnées-réduites">
+		<xs:complexType>
+			<xs:sequence>
+				<!-- Identité obligatoire -->
+				<xs:element ref="com:identité"/>
+				<!-- Numéro de téléphone obligatoire -->
+				<xs:element ref="com:téléphone"/>
+				<!-- Numéro de fax, optionnel -->
+				<xs:element ref="com:fax" minOccurs="0" maxOccurs="1"/>
+				<!-- Une adresse mail, optionnelle -->
+				<xs:element ref="com:email" minOccurs="0" maxOccurs="1"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<!-- Coordonnées complètes -->
+	<xs:element name="coordonnées-complètes">
+		<xs:complexType>
+			<xs:sequence>
+				<!-- Identité, obligatoire -->
+				<xs:element ref="com:identité"/>
+				<!-- Adresse postale principale, obligatoire -->
+				<xs:element ref="com:adresse-postale"/>
+				<!-- Tous ses numéros de téléphone, au moins 1 -->
+				<xs:element ref="com:téléphone" minOccurs="1" maxOccurs="unbounded"/>
+				<!-- Tous ses numéros de fax, optionnel -->
+				<xs:element ref="com:fax" minOccurs="0" maxOccurs="unbounded"/>
+				<!-- Toutes ses adresses mail, optionnel -->
+				<xs:element ref="com:email" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
     
     <xs:annotation>
     	<xs:documentation>
