@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+		targetNamespace="http://www.univ-amu.fr/XML/guide"
+		xmlns:gui="http://www.univ-amu.fr/XML/guide"
+		xmlns:com="http://www.univ-amu.fr/XML/commun"
+		elementFormDefault="qualified"
+		attributeFormDefault="unqualified">
+		
+		<!-- Import du schéma XML commun.xsd -->
+		<xs:import schemaLocation="../commun/commun.xsd" namespace="http://www.univ-amu.fr/XML/commun"/>
+		
+		<xs:annotation>
+			<xs:documentation>
+				Déclaration d'un guide composé d'un titre, d'une liste d'un ou plusieurs auteur(s),
+				d'un éditeur, d'une année d'édition et d'une liste d'un ou plusieurs vallons
+			</xs:documentation>
+		</xs:annotation>
+		<!-- Elément guide -->
+		<xs:element name="guide">
+			<xs:complexType>
+				<!-- On peut déclarer un ou plusieurs guide -->
+				<xs:sequence minOccurs="1" maxOccurs="unbounded">
+					<!-- Un titre est une chaîne de caractères -->
+					<xs:element name="titre" type="xs:string"/>
+					<!-- Une liste d'un ou plusieurs auteurs -->
+					<xs:element name="auteur">
+						<xs:complexType>
+							<xs:sequence minOccurs="1" maxOccurs="unbounded">
+								<xs:group ref="com:personne"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+				</xs:sequence>
+			</xs:complexType>
+		</xs:element>
+</xs:schema>
