@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gui:guide
+	xmlns:com="http://www.univ-amu.fr/XML/commun"
+	xmlns:gui="http://www.univ-amu.fr/XML/guide"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.univ-amu.fr/XML/guide guide.xsd ">
+	
+	<gui:titre>
+		Comment faire du ski ?
+	</gui:titre>
+	<gui:auteurs>
+		<gui:auteur>
+			<com:civilité>M.</com:civilité>
+			<com:prénom-usuel>Samuel</com:prénom-usuel>
+			<com:prénom-complémentaire>Dorian</com:prénom-complémentaire>
+			<com:prénom-complémentaire>Pradap</com:prénom-complémentaire>
+			<com:nom>Entezam</com:nom>
+		</gui:auteur>
+	 </gui:auteurs>
+	 <gui:éditeur>ValléMan</gui:éditeur>
+	 <gui:année-édition>2017</gui:année-édition>
+	 <gui:vallons>
+	 	<gui:vallon>
+	 		<gui:nom>Vallon n°1</gui:nom>
+	 		<gui:introduction>
+	 			<gui:paragraphe>
+	 			Un paragraphe d'un vallon
+	 			Voici une note :
+	 				<gui:note type-note="prudence" id="note1">
+	 					Ce paragraphe décrit la manière dont le kashmir village attire des indous
+	 				</gui:note>
+	 			</gui:paragraphe>
+	 			<gui:paragraphe>
+	 				Un autre paragraphe du vallon courant
+	 				Référence à la première note :
+	 					<gui:renvoi référence="note1"/>
+	 			</gui:paragraphe>
+	 		</gui:introduction>
+	 	</gui:vallon>
+	 </gui:vallons>
+</gui:guide>

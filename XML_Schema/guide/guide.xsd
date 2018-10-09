@@ -6,31 +6,119 @@
 		elementFormDefault="qualified"
 		attributeFormDefault="unqualified">
 		
-		<!-- Import du schéma XML commun.xsd -->
-		<xs:import schemaLocation="../commun/commun.xsd" namespace="http://www.univ-amu.fr/XML/commun"/>
-		
-		<xs:annotation>
-			<xs:documentation>
-				Déclaration d'un guide composé d'un titre, d'une liste d'un ou plusieurs auteur(s),
-				d'un éditeur, d'une année d'édition et d'une liste d'un ou plusieurs vallons
-			</xs:documentation>
-		</xs:annotation>
-		<!-- Elément guide -->
-		<xs:element name="guide">
-			<xs:complexType>
-				<!-- On peut déclarer un ou plusieurs guide -->
-				<xs:sequence minOccurs="1" maxOccurs="unbounded">
-					<!-- Un titre est une chaîne de caractères -->
-					<xs:element name="titre" type="xs:string"/>
-					<!-- Une liste d'un ou plusieurs auteurs -->
-					<xs:element name="auteur">
-						<xs:complexType>
-							<xs:sequence minOccurs="1" maxOccurs="unbounded">
-								<xs:group ref="com:personne"/>
-							</xs:sequence>
-						</xs:complexType>
-					</xs:element>
-				</xs:sequence>
-			</xs:complexType>
-		</xs:element>
+	<!-- Import du schéma XML commun.xsd -->
+	<xs:import schemaLocation="../commun/commun.xsd" namespace="http://www.univ-amu.fr/XML/commun"/>
+	
+	<xs:annotation>
+		<xs:documentation>
+			Déclaration d'un guide composé d'un titre, d'une liste d'un ou plusieurs auteur(s),
+			d'un éditeur, d'une année d'édition et d'une liste d'un ou plusieurs vallons
+		</xs:documentation>
+	</xs:annotation>
+	<!-- Elément guide -->
+	<xs:element name="guide">
+		<xs:complexType>
+			<!-- On peut déclarer un ou plusieurs guide -->
+			<xs:sequence minOccurs="1" maxOccurs="unbounded">
+				<!-- Un titre est une chaîne de caractères -->
+				<xs:element name="titre" type="xs:string"/>
+				<!-- Une liste d'un ou plusieurs auteurs -->
+				<xs:element name="auteurs">
+					<xs:complexType>
+						<!-- On peut avoir 1 ou plusieurs auteurs -->
+						<xs:sequence minOccurs="1" maxOccurs="unbounded">
+							<xs:element name="auteur">
+								<!-- Un auteur étant une personne, on fait référence au groupe déclaré dans commun.dtd -->
+								<xs:complexType>
+									<xs:group ref="com:personne"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				
+				<!-- Un éditeur est une chaîne de caractères -->
+				<xs:element name="éditeur" type="xs:string"/>
+				
+				<!-- Une année est un entier strictement postif sur 4 chiffres -->
+				<xs:element name="année-édition">
+					<xs:simpleType>
+						<xs:restriction base="xs:nonNegativeInteger">
+							<!-- REGEX XXXX où X est un chiffre strictement positif -->
+							<xs:pattern value="(\d){4}"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				
+				<!-- Déclaration d'une liste de vallons contenant 1 ou plusieurs vallon(s) -->
+				<xs:element name="vallons">
+					<xs:complexType>
+						<!-- On peut avoir 1 ou plusieurs vallon(s) -->
+						<xs:sequence minOccurs="1" maxOccurs="unbounded">
+							<xs:element name="vallon">
+								<!-- Un vallon est composé d’un nom,
+									d’une introduction
+									et de la liste des itinéraires que l’on peut y réaliser (un ou plusieurs itinéraires).
+								 -->
+								 <xs:complexType>
+								 	<xs:sequence>
+								 		<!-- Un nom de vallon est une chaîne de caractères -->
+								 		<xs:element name="nom" type="xs:string"/>
+								 		
+								 		<!-- Une introduction est constituée d'une liste d'un ou plusieurs paragraphes -->
+								 		<xs:element name="introduction">
+								 			<xs:complexType>
+								 				<xs:sequence>
+								 					<!-- Il peuy y avoir 1 ou plusieurs paragraphes -->
+								 					<xs:element name="paragraphe" minOccurs="1" maxOccurs="unbounded">
+								 						<!-- élément mixte (autoriser de texte) avec mixed = true -->
+								 						<xs:complexType mixed="true">
+								 							<!-- possibilité d'avoir éventuellement des notes et/ou des renvois -->
+								 							<xs:choice minOccurs="0" maxOccurs="unbounded">
+								 								<!-- Une note est une chaîne de caractères et sont typées -->
+								 								<!-- L'élément note doit donc contenir un attribut décrivant le type de note,
+								 									et en même temps, la note doit bien être typé par un string.
+								 									Pour cela, on effectue une dérivation à partir d'un type simple pour créer un type complexe,
+								 									le type de dérivation étant par extension -->
+								 								<xs:element name="note">
+								 									<xs:complexType>
+								 										<!-- Dérivation par extension -->
+								 										<xs:simpleContent>
+								 											<xs:extension base="xs:string">
+								 												<xs:attribute name="type-note" use="required">
+								 													<xs:simpleType>
+								 														<!-- 2 valeurs possibles pour l'attribut : prudence ou matériel -->
+								 														<xs:restriction base="xs:string">
+								 															<xs:enumeration value="prudence"/>
+								 															<xs:enumeration value="matériel"/>
+								 														</xs:restriction>
+								 													</xs:simpleType>
+								 												</xs:attribute>
+								 												<!-- Attribut de type ID pour chaque note, obligatoire-->
+								 												<xs:attribute name="id" use="required" type="xs:ID"/>
+								 											</xs:extension>
+								 										</xs:simpleContent>
+								 									</xs:complexType>
+								 								</xs:element>
+								 								<!-- Un renvoi est un élément vide dont le rôle est juste de référencer une note, obligatoire -->
+								 								<xs:element name="renvoi">
+								 									<xs:complexType>
+								 										<xs:attribute name="référence" use="required" type="xs:IDREF"/>
+								 									</xs:complexType>
+								 								</xs:element>
+								 							</xs:choice>
+								 						</xs:complexType>
+								 					</xs:element>
+								 				</xs:sequence>
+								 			</xs:complexType>
+								 		</xs:element>
+								 	</xs:sequence>
+								 </xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
 </xs:schema>
