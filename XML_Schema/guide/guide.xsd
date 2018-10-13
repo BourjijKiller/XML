@@ -112,6 +112,46 @@
 								 				</xs:sequence>
 								 			</xs:complexType>
 								 		</xs:element>
+								 		
+								 		<!-- Un itinéraire est caractérisé par un nom, une altitude, une cotation, un numéro et un ou plusieurs paragraphes -->
+								 		<xs:element name="itinéraires">
+								 			<xs:complexType>
+								 				<!-- On rapelle que la liste des itinéraires peut contenir au moins ou plusieurs itinéraires -->
+								 				<xs:sequence minOccurs="1" maxOccurs="unbounded">
+								 					<xs:element name="itinéraire">
+								 						<xs:complexType>
+								 							<!-- L'ordre des éléments n'étant pas spécifiés, on utilise donc xs:all -->
+								 							<xs:all minOccurs="1" maxOccurs="1">
+								 								<!-- Le nom est une chaîne de caractères -->
+								 								<xs:element name="nom" type="xs:string"/>
+								 								
+								 								<!-- Une altitude est un entier strictement positif inférieur à 9000 -->
+								 								<xs:element name="altitude">
+								 									<xs:simpleType>
+								 										<xs:restriction base="xs:nonNegativeInteger">
+								 											<xs:maxExclusive value="9000"/>
+								 										</xs:restriction>
+								 									</xs:simpleType>
+								 								</xs:element>
+								 								
+								 								<!-- Une cotation est une chaîne de caractères contenant uniquement de 1 à 5 fois le caractère * -->
+								 								<xs:element name="cotation">
+								 									<xs:simpleType>
+								 										<xs:restriction base="xs:string">
+								 											<!-- Caractère * uniquement, 1..5 -->
+								 											<xs:pattern value="[*]{1,5}"/>
+								 										</xs:restriction>
+								 									</xs:simpleType>
+								 								</xs:element>
+								 								
+								 								<!-- Un numéro est un entier strictement positif -->
+								 								<xs:element name="numéro" type="xs:positiveInteger"/>
+								 							</xs:all>
+								 						</xs:complexType>
+								 					</xs:element>
+								 				</xs:sequence>
+								 			</xs:complexType>
+								 		</xs:element>
 								 	</xs:sequence>
 								 </xs:complexType>
 							</xs:element>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+		targetNamespace="http://www.univamu.fr/XML/carnet"
+		xmlns:cnt="http://www.univamu.fr/XML/carnet"
+		xmlns:com="http://www.univ-amu.fr/XML/commun"
+		elementFormDefault="qualified"
+		attributeFormDefault="unqualified">
+		
+		<!-- Import du modèle commun.xsd -->
+		<xs:import namespace="http://www.univ-amu.fr/XML/commun" schemaLocation="../commun/commun.xsd"/>
+		
+		<xs:annotation>
+			<xs:documentation>
+				Une liste de contacts est constituée de 0, 1 ou plusieurs contacts
+			</xs:documentation>
+		</xs:annotation>
+		<xs:element name="liste-contacts">
+			<xs:complexType>
+				<!-- On peut avoir 0..n contact(s) -->
+				<xs:sequence minOccurs="0" maxOccurs="unbounded">
+					<xs:element name="contact">
+						
+					</xs:element>
+				</xs:sequence>
+			</xs:complexType>
+		</xs:element>
+</xs:schema>

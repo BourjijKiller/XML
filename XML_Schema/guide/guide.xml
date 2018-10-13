@@ -16,6 +16,13 @@
 			<com:prénom-complémentaire>Pradap</com:prénom-complémentaire>
 			<com:nom>Entezam</com:nom>
 		</gui:auteur>
+		<gui:auteur>
+			<com:civilité>Mlle</com:civilité>
+			<com:prénom-usuel>Harryette</com:prénom-usuel>
+			<com:prénom-complémentaire>Mélanie</com:prénom-complémentaire>
+			<com:prénom-complémentaire>Sarah</com:prénom-complémentaire>
+			<com:nom>Cover</com:nom>
+		</gui:auteur>
 	 </gui:auteurs>
 	 <gui:éditeur>ValléMan</gui:éditeur>
 	 <gui:année-édition>2017</gui:année-édition>
@@ -36,6 +43,47 @@
 	 					<gui:renvoi référence="note1"/>
 	 			</gui:paragraphe>
 	 		</gui:introduction>
+	 		<gui:itinéraires>
+	 			<gui:itinéraire>
+	 				<gui:altitude>8999</gui:altitude>
+	 				<gui:nom>Itinéraire n°1</gui:nom>
+	 				<gui:cotation>*****</gui:cotation>
+	 				<gui:numéro>1</gui:numéro>
+	 			</gui:itinéraire>
+	 			<gui:itinéraire>
+	 				<gui:nom>Itinéraire n°2</gui:nom>
+	 				<gui:cotation>*</gui:cotation>
+	 				<gui:altitude>532</gui:altitude>
+	 				<gui:numéro>2</gui:numéro>
+	 			</gui:itinéraire>
+	 		</gui:itinéraires>
+	 	</gui:vallon>
+	 	
+	 	<gui:vallon>
+	 		<gui:nom>Vallon n°2</gui:nom>
+	 		<gui:introduction>
+	 			<gui:paragraphe>
+	 				Confirmation de l'élément mixte
+	 				<gui:note type-note="matériel" id="note-bis-1">
+	 					Jeudi y'a Kashmir, vive 2 
+	 				</gui:note>
+	 			</gui:paragraphe>
+	 			<gui:paragraphe>
+	 				Ce paragraphe renvoie à la note n°1
+	 				<gui:renvoi référence="note1"/>
+	 			</gui:paragraphe>
+	 			<gui:paragraphe>
+	 				<gui:renvoi référence="note-bis-1"/>
+	 			</gui:paragraphe>
+	 		</gui:introduction>
+	 		<gui:itinéraires>
+	 			<gui:itinéraire>
+	 				<gui:altitude>100</gui:altitude>
+	 				<gui:nom>Aix-en-Provence --> Montpellier</gui:nom>
+	 				<gui:cotation>****</gui:cotation>
+	 				<gui:numéro>3</gui:numéro>
+	 			</gui:itinéraire>
+	 		</gui:itinéraires>
 	 	</gui:vallon>
 	 </gui:vallons>
 </gui:guide>
