@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cnt:carnet xmlns:cnt="http://www.univamu.fr/XML/carnet"
+			xmlns:com="http://www.univ-amu.fr/XML/commun"
+			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			xsi:schemaLocation="http://www.univamu.fr/XML/carnet carnet.xsd ">
+			
+  <cnt:liste-contacts>
+  		<cnt:contact désignation-site="Kashmir-Village">
+  			<com:coordonnées-réduites>
+  				<com:identité>
+  					<com:dénomination-personne>
+  						<com:civilité>M.</com:civilité>
+  						<com:prénom-usuel>Pradap</com:prénom-usuel>
+  						<com:prénom-complémentaire>Rachid</com:prénom-complémentaire>
+  						<com:prénom-complémentaire>Abdoul</com:prénom-complémentaire>
+  						<com:nom>Khan</com:nom>
+  					</com:dénomination-personne>
+  				</com:identité>
+  				<com:téléphone>06.67.43.56.34</com:téléphone>
+  				<com:fax>08.65.34.12.00</com:fax>
+  				<com:email>pradap.chicken@kashmir-village.fr</com:email>
+  			</com:coordonnées-réduites>
+  		</cnt:contact>
+  		
+  		<cnt:contact désignation-site="Domak">
+  			<com:coordonnées-réduites>
+  				<com:identité>
+  					<com:appellation>
+  						Macdonald's
+  					</com:appellation>
+  				</com:identité>
+  				<com:téléphone>09.67.45.12.24</com:téléphone>
+  				<com:fax>02.56.17.87.90</com:fax>
+  				<com:email>samuel.bot@macdo.fr</com:email>
+  			</com:coordonnées-réduites>
+  		</cnt:contact>
+  </cnt:liste-contacts>
+  <cnt:liste-entreprises>
+  		<cnt:entreprise>
+  			<cnt:nom-entreprise>Kashmir Village</cnt:nom-entreprise>
+  			<cnt:liste-sites>
+  				<cnt:site id="Kashmir-Village">
+  					<cnt:nom-site>Marseille</cnt:nom-site>
+  					<com:adresse-postale>
+  						<com:voie>
+  							<com:numéro-voie>252</com:numéro-voie>
+  							<com:type-voie>route</com:type-voie>
+  							<com:nom-voie>des Trois Lucs à la Valentine</com:nom-voie>
+  						</com:voie>
+  						<com:service-postal>Je sais pas ?</com:service-postal>
+  						<com:localité>
+  							<com:code-postal>13011</com:code-postal>
+    						<com:nom-commune>Marseille</com:nom-commune>
+  						</com:localité>
+  						<com:pays>FRANCE</com:pays>
+  					</com:adresse-postale>
+  				</cnt:site>
+  			</cnt:liste-sites>
+  		</cnt:entreprise>
+  		
+  		<cnt:entreprise>
+  			<cnt:nom-entreprise>C'est la graisse</cnt:nom-entreprise>
+  			<cnt:liste-sites>
+  				<cnt:site id="Domak">
+  					<cnt:nom-site>DOMAK AIX</cnt:nom-site>
+  					<com:adresse-postale>
+  						<com:voie>
+  							<com:numéro-voie>39</com:numéro-voie>
+  							<com:type-voie>avenue</com:type-voie>
+  							<com:nom-voie>Jean Giono</com:nom-voie>
+  						</com:voie>
+  						<com:service-postal>Bacon</com:service-postal>
+  						<com:localité>
+  							<com:code-postal>13100</com:code-postal>
+    						<com:nom-commune>Aix-en-Provence</com:nom-commune>
+    						<com:CEDEX>CEDEX 1</com:CEDEX>
+  						</com:localité>
+  						<com:pays>FRANCE</com:pays>
+  					</com:adresse-postale>
+  				</cnt:site>
+  			</cnt:liste-sites>
+  		</cnt:entreprise>
+  </cnt:liste-entreprises>
+  
+  <cnt:liste-rdv>
+  		<cnt:rdv>
+  			<com:civilité>M.</com:civilité>
+  			<com:prénom-usuel>Laurent</com:prénom-usuel>
+  			<com:nom>Curry</com:nom>
+  			<cnt:date-rdv>2018-10-14+02:00</cnt:date-rdv>
+  			<cnt:heure-debut>09:30:00</cnt:heure-debut>
+  			<cnt:durée-rdv>P30M</cnt:durée-rdv>
+  			<com:adresse-postale>
+  				<com:précision-personnelle>Un immeuble en feu</com:précision-personnelle>
+  				<com:voie>
+  					<com:numéro-voie>6</com:numéro-voie>
+  					<com:type-voie>impasse</com:type-voie>
+  					<com:nom-voie>de la vallée</com:nom-voie>
+  				</com:voie>
+  				<com:localité>
+  					<com:code-postal>67100</com:code-postal>
+  					<com:nom-commune>Strasbourg</com:nom-commune>
+  					<com:CEDEX>CEDEX 3</com:CEDEX>
+  				</com:localité>
+  				<com:pays>Portugal</com:pays>
+  			</com:adresse-postale>
+  		</cnt:rdv>
+  </cnt:liste-rdv>
+</cnt:carnet>

@@ -11,15 +11,96 @@
 		
 		<xs:annotation>
 			<xs:documentation>
-				Une liste de contacts est constituée de 0, 1 ou plusieurs contacts
+				Un carnet est composé d'une liste de contacts, d'une liste d'entreprises et d'une liste de rendez-vous
 			</xs:documentation>
 		</xs:annotation>
-		<xs:element name="liste-contacts">
+		<xs:element name="carnet">
 			<xs:complexType>
-				<!-- On peut avoir 0..n contact(s) -->
-				<xs:sequence minOccurs="0" maxOccurs="unbounded">
-					<xs:element name="contact">
-						
+				<xs:sequence>
+					<!-- Une liste de contacts est constituée de 0, 1 ou plusieurs contacts -->
+					<xs:element name="liste-contacts">
+						<xs:complexType>
+						<!-- On peut avoir 0..n contact(s) -->
+							<xs:sequence minOccurs="0" maxOccurs="unbounded">
+								<!-- Un contact est caractérisé par les coordonnées réduites d'une personne,
+								et une référence vers l'ID du site de l'entreprise -->
+								<xs:element name="contact">
+									<xs:complexType>
+										<xs:sequence>
+											<!-- Référence vers le schéma XML commun -->
+											<xs:element ref="com:coordonnées-réduites"/>
+										</xs:sequence>
+										<!-- Référence vers le site de l'entreprise -->
+										<xs:attribute name="désignation-site" type="xs:IDREF" use="required"/>
+									</xs:complexType>
+								</xs:element>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<!-- Une liste d'entreprises est constituée de 0, 1 ou plusieurs entreprises -->
+					<xs:element name="liste-entreprises">
+						<!-- On peut avoir 0..n entreprises -->
+						<xs:complexType>
+							<xs:sequence minOccurs="0" maxOccurs="unbounded">
+								<!-- Une entreprise est caractérisée par son nom et une liste de sites -->
+								<xs:element name="entreprise">
+									<xs:complexType>
+										<xs:sequence>
+											<!-- Un nom d'entreprise est une chaîne de 50 caractères maximum -->
+											<xs:element name="nom-entreprise" type="com:string50"/>
+											<!-- Une liste de sites est constituée d'au moins 1 site -->
+											<xs:element name="liste-sites">
+												<xs:complexType>
+													<!-- On peut avoir 1..n site(s) -->
+													<xs:sequence minOccurs="1" maxOccurs="unbounded">
+														<!-- Un site est décrit par son nom et une adresse postale -->
+														<xs:element name="site">
+															<xs:complexType>
+																<xs:sequence>
+																	<!-- Un nom de site est décrit par une chaîne de 50 caractères maximum -->
+																	<xs:element name="nom-site" type="com:string50"/>
+																	<!-- Référence vers adresse-postale du schéma commun.xsd -->
+																	<xs:element ref="com:adresse-postale"/>
+																</xs:sequence>
+																<!-- Un site est identifié par son ID, référencé dans un contact -->
+																<xs:attribute name="id" type="xs:ID" use="required"/>
+															</xs:complexType>
+														</xs:element>
+													</xs:sequence>
+												</xs:complexType>
+											</xs:element>
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					
+					<!-- Une liste de rendez-vous est constituée de 0, 1 ou plusieurs rendez-vous -->
+					<xs:element name="liste-rdv">
+						<xs:complexType>
+							<!-- On peut 0..n rendez-vous -->
+							<xs:sequence minOccurs="0" maxOccurs="unbounded">
+								<!-- Un rendez-vous est décrit par la ou les personnes avec lesquelles il est prévu, par sa date, par
+								son heure de début, sa durée et l’adresse postale où il aura lieu -->
+								<xs:element name="rdv">
+									<xs:complexType>
+										<xs:sequence>	
+											<!-- Référence au groupe personne dans commun.xsd -->
+											<xs:group ref="com:personne" minOccurs="1" maxOccurs="unbounded"/>
+											<!-- La date du rendez-vous est une date valide -->
+											<xs:element name="date-rdv" type="xs:date"/>
+											<!-- L'heure du début du rendez-vous est une heure valide -->
+											<xs:element name="heure-debut" type="xs:time"/>
+											<!-- La durée du rendez-vous est une durée valide -->
+											<xs:element name="durée-rdv" type="xs:duration"/>
+											<!-- Référence à l'adresse postale de commun.xsd -->
+											<xs:element ref="com:adresse-postale"/>
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>
+							</xs:sequence>
+						</xs:complexType>
 					</xs:element>
 				</xs:sequence>
 			</xs:complexType>
