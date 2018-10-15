@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+		targetNamespace="http://www.univ-amu.fr/XML/dictionnaire"
+		xmlns:dico="http://www.univ-amu.fr/XML/dictionnaire"
+		elementFormDefault="qualified"
+		attributeFormDefault="unqualified">
+		
+		
+</xs:schema>

@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+		targetNamespace="http://www.univ-amu.fr/XML/livre"
+		xmlns:liv="http://www.univ-amu.fr/XML/livre"
+		xmlns:com="http://www.univ-amu.fr/XML/commun"
+		elementFormDefault="qualified"
+		attributeFormDefault="unqualified">
+		
+		<!-- Import du modèle de document commun.xsd -->
+		<xs:import namespace="http://www.univ-amu.fr/XML/commun" schemaLocation="../commun/commun.xsd"/>
+		
+		<xs:annotation>
+			<xs:documentation>
+				Une introduction est un ensemble de paragraphe (au moins 1)
+			</xs:documentation>
+		</xs:annotation>
+		<xs:element name="introduction">
+			<xs:complexType>
+				<!-- On peut avoir 1..n paragraphe(s) -->
+				<xs:sequence minOccurs="1" maxOccurs="unbounded">
+					<!-- Un paragraphe est un élément mixte constitué de texte et éventuellement de renvois vers des leçons -->
+					<xs:element ref="liv:paragraphe"/>
+				</xs:sequence>
+			</xs:complexType>
+		</xs:element>
+		
+		<xs:annotation>
+			<xs:documentation>
+				Un paragraphe est un élément mixte constitué de texte et éventuellement d'un ou plusieurs renvois vers une leçon
+			</xs:documentation>
+		</xs:annotation>
+		<xs:element name="paragraphe">
+			<!-- Mixed = true -> élément mixte -->
+			<xs:complexType mixed="true">
+				<xs:attribute name="référence" type="xs:IDREFS" use="optional"/>
+			</xs:complexType>
+		</xs:element>
+		
+		<xs:annotation>
+			<xs:documentation>
+				Un titre est une chaîne de caractères
+			</xs:documentation>
+		</xs:annotation>
+		<xs:element name="titre" type="xs:string"/>
+		
+		<xs:annotation>
+			<xs:documentation>
+				Un numéro est un entier strictement positif
+			</xs:documentation>
+		</xs:annotation>
+		<xs:element name="numéro" type="xs:nonNegativeInteger"/>
+		
+		<xs:annotation>
+			<xs:documentation>
+				Un livre est décrit par un titre, un ou plusieurs auteurs, un éditeur, une année d'édition, un numéro ISBN et un ensemble de leçons
+				(au moins une)
+			</xs:documentation>
+		</xs:annotation>
+		<xs:element name="livre">
+			<xs:complexType>
+				<xs:sequence>
+					<!-- Un titre est une chaîne de caractères -->
+					<xs:element ref="liv:titre"/>
+					<!-- Une liste d'auteurs peut contenir 1 ou plusieurs auteur(s) -->
+					<xs:element name="auteurs">
+						<xs:complexType>
+							<xs:sequence minOccurs="1" maxOccurs="unbounded">
+								<!-- Un auteur est une personne (Groupe personne commun.xsd) -->
+								<xs:element name="auteur">
+									<xs:complexType>
+										<xs:group ref="com:personne"/>
+									</xs:complexType>
+								</xs:element>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<!-- Un éditeur est une chaîne de caractères -->
+					<xs:element name="éditeur" type="xs:string"/>
+					<!-- Une année d’édition est un entier strictement positif sur 4 chiffres -->
+					<xs:element name="année-édition">
+						<xs:simpleType>
+							<xs:restriction base="xs:nonNegativeInteger">
+								<xs:pattern value="[\d]{4}"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					
+					<!-- Une leçon est décrite par un numéro,
+						un titre, une introduction,
+						un ensemble de chapitres (au moins un),
+						et un ensemble d'exercices (au moins 1) -->
+					<xs:element name="lecon" minOccurs="1" maxOccurs="unbounded">
+						<xs:complexType>
+							<xs:sequence>
+								<!-- Un numéro est un entier strictement positif -->
+								<xs:element ref="liv:numéro"/>
+								<!-- Un titre est une chaîne de caractères -->
+								<xs:element ref="liv:titre"/>
+								<!-- Une introduction est un ensemble de paragraphes -->
+								<xs:element ref="liv:introduction"/>
+								<!-- Un chapitre est constitué d'un titre, d'une introduction et de sections (au moins une)
+									On fait référence aux éléments titre et introduction afin de factoriser le code -->
+								<xs:element name="chapitres">
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element name="chapitre" minOccurs="1" maxOccurs="unbounded">
+												<xs:complexType>
+													<xs:sequence>
+													<!-- Référence à l'élément global titre -->
+														<xs:element ref="liv:titre"/>
+														<!-- Référence à l'élément global introduction -->
+														<xs:element ref="liv:introduction"/>
+														<!-- Une liste de sections est composée d'une ou plusieurs section(s) -->
+														<xs:element name="sections" minOccurs="1" maxOccurs="unbounded">
+															<xs:complexType>
+																<xs:sequence>
+																	<!-- Une section est constitué d'un titre et d'un ou plusieurs paragraphes -->
+																	<!-- On peut avoir 1..n section(s) -->
+																	<xs:element name="section" minOccurs="1" maxOccurs="unbounded">
+																		<xs:complexType>
+																			<xs:sequence>
+																				<xs:element ref="liv:titre"/>
+																				<!-- On peut avoir 1..n section(s) -->
+																				<xs:element ref="liv:paragraphe" minOccurs="1" maxOccurs="unbounded"/>
+																			</xs:sequence>
+																		</xs:complexType>
+																	</xs:element>
+																</xs:sequence>
+															</xs:complexType>
+														</xs:element>
+													</xs:sequence>
+												</xs:complexType>
+											</xs:element>
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>
+								<!-- Un ensemble d'exercices est constitué d'un ou plusieurs exercice(s) -->
+								<xs:element name="exercices">
+									<xs:complexType>
+										<!-- On peut avoir 1..n exercice(s) -->
+										<xs:sequence minOccurs="1" maxOccurs="unbounded">
+											<!-- Un exercice est constituée d'un numéro, d'un QCM ainsi que d'un corrigé -->
+											<xs:element name="exercice">
+												<xs:complexType>
+													<xs:sequence>
+														<!-- Référence à l'élément numéro déclaré globalement -->
+														<xs:element ref="liv:numéro"/>
+														<!-- Un QCM est composé d'un énoncé et d'au moins 2 propositions de réponses -->
+														<xs:element name="QCM">
+															<xs:complexType>
+																<xs:sequence>
+																	<xs:element name="énoncé" type="xs:string"/>
+																	<xs:element name="proposition-réponse" minOccurs="2" maxOccurs="unbounded" type="xs:string"/>
+																</xs:sequence>
+															</xs:complexType>
+														</xs:element>
+														<!-- Un corrigé désigne la ou les propositions de réponses valides parmi celles qui sont faites dans les propositions de réponses -->
+														<!-- TODO utiliser Xpath pour vérifier si le corrigé fait partie des propositions de réponses-->
+														<xs:element name="corrigé" type="xs:string"/>
+													</xs:sequence>
+												</xs:complexType>
+											</xs:element>
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>
+							</xs:sequence>
+							<!-- Une leçon est identifié de manière unique -->
+							<xs:attribute name="id" use="required" type="xs:ID"/>
+						</xs:complexType>
+					</xs:element>
+				</xs:sequence>
+				<!-- Un numéro ISBN est un entier strictement positif sur 13 chiffres -->
+				<xs:attribute name="ISBN" use="required">
+					<xs:simpleType>
+						<xs:restriction base="xs:nonNegativeInteger">
+							<xs:pattern value="[\d]{13}"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:attribute>
+			</xs:complexType>
+		</xs:element>
+</xs:schema>

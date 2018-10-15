@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<liv:livre ISBN="1234567890123"
+			xmlns:com="http://www.univ-amu.fr/XML/commun"
+			xmlns:liv="http://www.univ-amu.fr/XML/livre"
+			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			xsi:schemaLocation="http://www.univ-amu.fr/XML/livre livre.xsd ">
+			
+	<liv:titre>Titeuf</liv:titre>
+		<liv:auteurs>
+			<liv:auteur>
+				<com:civilité>Mlle</com:civilité>
+				<com:prénom-usuel>Pauline</com:prénom-usuel>
+				<com:prénom-complémentaire>Lila</com:prénom-complémentaire>
+				<com:nom>azerty</com:nom>
+			</liv:auteur>
+			<liv:auteur>
+				<com:civilité>M.</com:civilité>
+				<com:prénom-usuel>Samuel</com:prénom-usuel>
+				<com:nom>Entezam</com:nom>
+			</liv:auteur>
+		</liv:auteurs>
+		<liv:éditeur>Entezam Samuel</liv:éditeur>
+		<liv:année-édition>2014</liv:année-édition>
+		<liv:lecon id="lecon-1">
+			<liv:numéro>1</liv:numéro>
+			<liv:titre>Apprendre le XML</liv:titre>
+			<liv:introduction>
+				<liv:paragraphe>
+					Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500, quand un imprimeur anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte.
+				</liv:paragraphe>
+				<liv:paragraphe>
+					 Il n'a pas fait que survivre cinq siècles, mais s'est aussi adapté à la bureautique informatique, sans que son contenu n'en soit modifié.
+				</liv:paragraphe>
+			</liv:introduction>
+			<liv:chapitres>
+				<liv:chapitre>
+					<liv:titre>Chapitre n°1 : Historique du XML</liv:titre>
+					<liv:introduction>
+						<liv:paragraphe>
+							Il a été popularisé dans les années 1960 grâce à la vente de feuilles Letraset contenant des passages du Lorem Ipsum, et, plus récemment, par son inclusion dans des applications de mise en page de texte, comme Aldus PageMaker.
+						</liv:paragraphe>
+					</liv:introduction>
+					<liv:sections>
+						<liv:section>
+							<liv:titre>Section 1</liv:titre>
+							<liv:paragraphe>
+								Un paragraphe qui ne veut rien dire
+							</liv:paragraphe>
+							<liv:paragraphe>
+								Un deuxième paragraphe parlant d'une vallée innondée
+							</liv:paragraphe>
+							<liv:paragraphe référence="lecon-1">
+								On revient au XML
+							</liv:paragraphe>
+						</liv:section>
+					</liv:sections>
+				</liv:chapitre>
+			</liv:chapitres>
+			<liv:exercices>
+				<liv:exercice>
+					<liv:numéro>1</liv:numéro>
+					<liv:QCM>
+						<liv:énoncé>Qu'est-ce que MIAGE+ ? </liv:énoncé>
+						<liv:proposition-réponse>un BDE</liv:proposition-réponse>
+						<liv:proposition-réponse>Une association à but lucratif</liv:proposition-réponse>
+						<liv:proposition-réponse>Kashmir Village</liv:proposition-réponse>
+					</liv:QCM>
+					<liv:corrigé>
+						un BDE
+					</liv:corrigé>
+				</liv:exercice>
+				<liv:exercice>
+					<liv:numéro>2</liv:numéro>
+					<liv:QCM>
+						<liv:énoncé>Faut-il faire son PHP en cours de Java ?</liv:énoncé>
+						<liv:proposition-réponse>Oui</liv:proposition-réponse>
+						<liv:proposition-réponse>Non</liv:proposition-réponse>
+						<liv:proposition-réponse>Chicken</liv:proposition-réponse>
+					</liv:QCM>
+					<liv:corrigé>
+						Non
+					</liv:corrigé>
+				</liv:exercice>
+			</liv:exercices>
+		</liv:lecon>
+</liv:livre>
