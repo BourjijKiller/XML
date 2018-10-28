@@ -1,9 +1,182 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-		targetNamespace="http://www.univ-amu.fr/XML/dictionnaire"
-		xmlns:dico="http://www.univ-amu.fr/XML/dictionnaire"
-		elementFormDefault="qualified"
-		attributeFormDefault="unqualified">
-		
-		
+			xmlns:dico="http://www.univ-amu.fr/XML/dictionnaire"
+			targetNamespace="http://www.univ-amu.fr/XML/dictionnaire"
+			elementFormDefault="qualified"
+			attributeFormDefault="qualified">
+			
+	<xs:element name="dictionnaire">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="entrée" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="orthographe">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="usuelle" type="xs:string"/>
+										<xs:element name="dérivée" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:choice>
+								<xs:element name="nomPropre">
+									<xs:complexType mixed="false"/>
+								</xs:element>
+								<xs:element name="nomCommun" type="dico:nomCommunAdjectifType"/>
+								<xs:element name="adjectif" type="dico:nomCommunAdjectifType"/>
+								<xs:element name="verbe">
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element name="groupe">
+												<xs:complexType>
+													<xs:sequence>
+														<xs:element ref="dico:annotation" minOccurs="0" maxOccurs="unbounded"/>
+													</xs:sequence>
+													<xs:attribute name="valeur" use="required">
+														<xs:simpleType>
+															<xs:restriction base="xs:string">
+																<xs:enumeration value="1er"/>
+																<xs:enumeration value="2ème"/>
+																<xs:enumeration value="3ème"/>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:attribute>
+												</xs:complexType>
+											</xs:element>
+											<xs:element name="forme">
+												<xs:complexType>
+													<xs:sequence>
+														<xs:element ref="dico:annotation" minOccurs="0" maxOccurs="unbounded"/>
+													</xs:sequence>
+													<xs:attribute name="valeur" use="required">
+														<xs:simpleType>
+															<xs:restriction base="xs:string">
+																<xs:enumeration value="transitif"/>
+																<xs:enumeration value="intransitif"/>
+																<xs:enumeration value="réfléchi"/>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:attribute>
+												</xs:complexType>
+											</xs:element>
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>
+								<xs:element name="pronomPersonnel">
+									<xs:complexType mixed="false"/>
+								</xs:element>
+								<xs:element name="pronomRelatif">
+									<xs:complexType mixed="false"/>
+								</xs:element>
+							</xs:choice>
+							<xs:element ref="dico:prononciation"/>
+							<xs:choice>
+								<xs:element ref="dico:renvoi"/>
+								<xs:element name="signification" maxOccurs="unbounded">
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element ref="dico:domaine"/>
+											<xs:element ref="dico:sens"/>
+											<xs:element ref="dico:exemple" minOccurs="0" maxOccurs="unbounded"/>
+											<xs:element ref="dico:traduction" minOccurs="0" maxOccurs="unbounded"/>
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>
+							</xs:choice>
+							<xs:element name="expression" minOccurs="0" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="écriture" type="xs:string"/>
+										<xs:element ref="dico:domaine"/>
+										<xs:element ref="dico:sens"/>
+										<xs:element ref="dico:exemple" minOccurs="0" maxOccurs="unbounded"/>
+										<xs:element ref="dico:traduction" minOccurs="0" maxOccurs="unbounded"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="étymologie" type="xs:string" minOccurs="0"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="nomCommunAdjectifType">
+		<xs:sequence>
+			<xs:element name="genre">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="dico:annotation" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+					<xs:attribute name="valeur" use="required">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value="masculin"/>
+								<xs:enumeration value="féminin"/>
+								<xs:enumeration value="neutre"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="nombre">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="dico:annotation" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+					<xs:attribute name="valeur" use="required">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value="singulier"/>
+								<xs:enumeration value="pluriel"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="annotation" type="xs:string"/>
+	<xs:element name="renvoi">
+		<xs:complexType mixed="false"/>
+	</xs:element>
+	<xs:element name="prononciation" type="xs:string"/>
+	<xs:element name="domaine">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="langage familier"/>
+				<xs:enumeration value="langage courant"/>
+				<xs:enumeration value="finance"/>
+				<xs:enumeration value="informatique"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="sens">
+		<xs:complexType mixed="true">
+			<xs:sequence>
+				<xs:element ref="dico:renvoi" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="exemple" type="xs:string"/>
+	<xs:element name="traduction">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="langue">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="anglais"/>
+							<xs:enumeration value="américain"/>
+							<xs:enumeration value="espagnol"/>
+							<xs:enumeration value="italien"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="écriture" type="xs:string"/>
+				<xs:element ref="dico:prononciation"/>
+				<xs:element ref="dico:annotation" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
 </xs:schema>

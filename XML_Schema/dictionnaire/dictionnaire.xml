@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dico:dictionnaire xmlns:dico="http://www.univ-amu.fr/XML/dictionnaire" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.univ-amu.fr/XML/dictionnaire dictionnaire.xsd">
+	<dico:entrée>
+		<dico:orthographe>
+			<dico:usuelle>oignon</dico:usuelle>
+			<dico:dérivée>ognon</dico:dérivée>
+			<dico:dérivée>onion</dico:dérivée>
+		</dico:orthographe>
+		<dico:nomCommun>
+			<dico:genre dico:valeur="masculin"/>
+			<dico:nombre dico:valeur="singulier"/>
+		</dico:nomCommun>
+		<dico:prononciation>oanion</dico:prononciation>
+		<dico:signification>
+			<dico:domaine>langage courant</dico:domaine>
+			<dico:sens>Plante (liliacée) potagère du genre ail, dont le bulbe, d'une saveur et d'une odeur fortes et piquantes, est très employé en cuisine ; le bulbe lui-même. (L'oignon est une plante bisannuelle bulbeuse très anciennement cultivée.)</dico:sens>
+			<dico:traduction>
+				<dico:langue>espagnol</dico:langue>
+				<dico:écriture>cebola</dico:écriture>
+				<dico:prononciation>sébola</dico:prononciation>
+			</dico:traduction>
+		</dico:signification>
+		<dico:expression>
+			<dico:écriture>C'est pas tes oignons</dico:écriture>
+			<dico:domaine>langage courant</dico:domaine>
+			<dico:sens>Ce ne sont pas tes affaires, ça ne te concerne pas.</dico:sens>
+			<dico:exemple>Mêle toi de tes affaires : ce ne sont pas tes oignons, ça ne regarde que moi !</dico:exemple>
+		</dico:expression>
+	</dico:entrée>
+	<dico:entrée>
+		<dico:orthographe>
+			<dico:usuelle>cuisiner</dico:usuelle>
+		</dico:orthographe>
+		<dico:verbe>
+			<dico:groupe dico:valeur="1er"></dico:groupe>
+			<dico:forme dico:valeur="transitif"></dico:forme>
+		</dico:verbe>
+		<dico:prononciation>cuiziné</dico:prononciation>
+		<dico:signification>
+			<dico:domaine>langage courant</dico:domaine>
+			<dico:sens>Préparer et accommoder les aliments de telle sorte qu'ils soient propres à la consommation et agréables au goût</dico:sens>
+		</dico:signification>
+		<dico:expression>
+			<dico:écriture>Cuisiner quelqu'un</dico:écriture>
+			<dico:domaine>langage familier</dico:domaine>
+			<dico:sens>Interroger quelqu'un</dico:sens>
+		</dico:expression>
+	</dico:entrée>
+	<dico:entrée>
+		<dico:orthographe>
+			<dico:usuelle>préparer</dico:usuelle>
+		</dico:orthographe>
+		<dico:verbe>
+			<dico:groupe dico:valeur="1er"></dico:groupe>
+			<dico:forme dico:valeur="transitif"></dico:forme>
+		</dico:verbe>
+		<dico:prononciation>préparé</dico:prononciation>
+		<dico:signification>
+			<dico:domaine>langage courant</dico:domaine>
+			<dico:sens>Choisir, prendre, disposer à l'avance ce qui sera nécessaire pour une opération quelconque</dico:sens>
+		</dico:signification>
+		<dico:expression>
+			<dico:écriture>Préparer le repas</dico:écriture>
+			<dico:domaine>langage courant</dico:domaine>
+			<dico:sens><dico:renvoi/></dico:sens>
+		</dico:expression>
+	</dico:entrée>
+</dico:dictionnaire>

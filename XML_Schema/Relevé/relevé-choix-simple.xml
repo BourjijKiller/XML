@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rel:relevé devise="EURO" xmlns:rel="http://www.univ-amu.fr/XML/releve" xmlns:com="http://www.univ-amu.fr/XML/commun" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.univ-amu.fr/XML/releve relevé-choix.xsd">
+	<rel:titulaire>
+		<com:coordonnéesComplètes>
+			<com:identité>
+				<com:dénominationPersonne>
+					<com:civilité>M.</com:civilité>
+					<com:prénomUsuel>Philippe</com:prénomUsuel>
+					<com:nom>RAMADOUR</com:nom>
+				</com:dénominationPersonne>
+			</com:identité>
+			<com:adressePostale>
+				<com:voie>
+					<com:numéroVoie>110</com:numéroVoie>
+					<com:nom>La Canebière</com:nom>
+				</com:voie>
+				<com:localité>
+					<com:codePostal>13001</com:codePostal>
+					<com:commune>MARSEILLE</com:commune>
+				</com:localité>
+				<com:pays>FRANCE</com:pays>
+			</com:adressePostale>
+			<com:numTéléphone>01.01.01.01.01</com:numTéléphone>
+			<com:adresseMél>philippe.ramadour@univ-amu.fr</com:adresseMél>
+		</com:coordonnéesComplètes>
+	</rel:titulaire>
+	<rel:détails>
+		<rel:simple>
+			<rel:compteSimple>
+				<rel:numéroCompte>00000000001</rel:numéroCompte>
+				<rel:intitulé>Compte-chèques PHR</rel:intitulé>
+				<rel:soldeActuel>2500.00</rel:soldeActuel>
+				<rel:dateSoldeActuel>2017-10-07</rel:dateSoldeActuel>
+				<rel:heureSoldeActuel>12:00:00</rel:heureSoldeActuel>
+			</rel:compteSimple>
+			<rel:compteSimple>
+				<rel:numéroCompte>00000000002</rel:numéroCompte>
+				<rel:intitulé>Assurance-vie PHR</rel:intitulé>
+				<rel:soldeActuel>20000.00</rel:soldeActuel>
+				<rel:dateSoldeActuel>2017-10-01</rel:dateSoldeActuel>
+				<rel:heureSoldeActuel>09:00:00</rel:heureSoldeActuel>
+			</rel:compteSimple>
+		</rel:simple>
+	</rel:détails>
+</rel:relevé>

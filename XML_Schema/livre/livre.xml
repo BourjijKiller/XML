@@ -65,9 +65,7 @@
 						<liv:proposition-réponse>Une association à but lucratif</liv:proposition-réponse>
 						<liv:proposition-réponse>Kashmir Village</liv:proposition-réponse>
 					</liv:QCM>
-					<liv:corrigé>
-						un BDE
-					</liv:corrigé>
+					<liv:corrigé>un BDE</liv:corrigé>
 				</liv:exercice>
 				<liv:exercice>
 					<liv:numéro>2</liv:numéro>
@@ -77,9 +75,7 @@
 						<liv:proposition-réponse>Non</liv:proposition-réponse>
 						<liv:proposition-réponse>Chicken</liv:proposition-réponse>
 					</liv:QCM>
-					<liv:corrigé>
-						Non
-					</liv:corrigé>
+					<liv:corrigé>Non</liv:corrigé>
 				</liv:exercice>
 			</liv:exercices>
 		</liv:lecon>

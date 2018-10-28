@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:rel="http://www.univ-amu.fr/XML/releve"
+			xmlns:xs="http://www.w3.org/2001/XMLSchema"
+			xmlns:com="http://www.univ-amu.fr/XML/commun"
+			targetNamespace="http://www.univ-amu.fr/XML/releve"
+			elementFormDefault="qualified"
+			attributeFormDefault="unqualified">
+			
+	<xs:import namespace="http://www.univ-amu.fr/XML/commun" schemaLocation="../commun/commun.xsd"/>
+	<xs:element name="relevé">
+		<xs:annotation>
+			<xs:documentation>Relevé de comptes</xs:documentation>
+		</xs:annotation>
+		<xs:complexType mixed="false">
+			<xs:sequence>
+				<xs:element name="titulaire">
+					<xs:complexType mixed="false">
+						<xs:sequence>
+							<xs:element ref="com:coordonnées-complètes"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="détails">
+					<xs:complexType>
+						<xs:choice>
+							<xs:annotation>
+								<xs:documentation>Ici on peut contraindre à ce que tous les comptes figurant dans un relevé soient tous de même type : si le relevé est simple, il ne contiendra que des comptes simples, si le relevé est intermédiaire, il ne contiendra que des comptes intermédiaires et, enfin, si le relevé est complet, il ne contiendra que des comptes complets.</xs:documentation>
+							</xs:annotation>
+							<xs:element name="simple" type="rel:relevéSimpleType"/>
+							<xs:element name="intermédiaire" type="rel:relevéIntermédiaireType"/>
+							<xs:element name="complet" type="rel:relevéCompletType"/>
+						</xs:choice>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="devise" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="EURO"/>
+						<xs:enumeration value="DOLLAR US"/>
+						<xs:enumeration value="LIVRE"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="relevéSimpleType">
+		<xs:sequence>
+			<xs:element name="compteSimple" maxOccurs="unbounded">
+				<xs:complexType mixed="false">
+					<xs:complexContent>
+						<xs:extension base="rel:compteSimpleType"/>
+					</xs:complexContent>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="relevéIntermédiaireType">
+		<xs:sequence>
+			<xs:element name="compteIntermédiaire" type="rel:compteIntermédiaireType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="relevéCompletType">
+		<xs:sequence>
+			<xs:element name="compteComplet" maxOccurs="unbounded">
+				<xs:complexType mixed="false">
+					<xs:complexContent>
+						<xs:extension base="rel:compteCompletType"/>
+					</xs:complexContent>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="compteSimpleType">
+		<xs:sequence>
+			<xs:element name="numéroCompte">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:pattern value="\d{11}"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="intitulé">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="50"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="soldeActuel" type="rel:montantType"/>
+			<xs:element name="dateSoldeActuel" type="xs:date"/>
+			<xs:element name="heureSoldeActuel" type="xs:time"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="compteIntermédiaireType">
+		<xs:complexContent>
+			<xs:extension base="rel:compteSimpleType">
+				<xs:sequence>
+					<xs:element name="soldeInitial" type="rel:montantPositifNulType"/>
+					<xs:element name="dateSoldeInitial" type="xs:date"/>
+					<xs:element name="heureSoldeInitial" type="xs:time"/>
+					<xs:element name="opération" minOccurs="0" maxOccurs="unbounded">
+						<xs:complexType mixed="false">
+							<xs:sequence>
+								<xs:element name="dateDemande" type="xs:date"/>
+								<xs:element name="dateValeur" type="xs:date"/>
+								<xs:element name="libellé">
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:maxLength value="50"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:element>
+								<xs:element name="montant" type="rel:montantPositifType"/>
+							</xs:sequence>
+							<xs:attribute name="type" use="required">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:enumeration value="débit"/>
+										<xs:enumeration value="crédit"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:attribute>
+						</xs:complexType>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="compteCompletType">
+		<xs:complexContent>
+			<xs:extension base="rel:compteIntermédiaireType">
+				<xs:sequence>
+					<xs:element name="procuration" minOccurs="0" maxOccurs="unbounded">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element ref="com:coordonnéesComplètes"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="portefeuille" minOccurs="0">
+						<xs:complexType mixed="false">
+							<xs:sequence>
+								<xs:element name="action" minOccurs="0" maxOccurs="unbounded">
+									<xs:complexType mixed="false">
+										<xs:sequence>
+											<xs:element name="intitulé" type="xs:string"/>
+											<xs:element name="quantité" type="xs:positiveInteger"/>
+											<xs:element name="coûtAchatUnitaire" type="rel:montantPositifType"/>
+											<xs:element name="coûtAchatGlobal" type="rel:montantPositifType"/>
+											<xs:element name="dateAchat" type="xs:date"/>
+											<xs:element name="montantActuelUnitaire" type="rel:montantPositifType"/>
+											<xs:element name="montantActuelGlobal" type="rel:montantPositifType"/>
+											<xs:element name="dateMontantsActuels" type="xs:date"/>
+											<xs:element name="heureMontantsActuels" type="xs:time"/>
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>
+								<xs:element name="montantPortefeuille" type="rel:montantPositifNulType"/>
+								<xs:element name="dateMontant" type="xs:date"/>
+								<xs:element name="heureMontant" type="xs:time"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="montantPositifNulType">
+		<xs:restriction base="xs:decimal">
+			<xs:minInclusive value="0"/>
+			<xs:fractionDigits value="2"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="montantPositifType">
+		<xs:restriction base="xs:decimal">
+			<xs:minExclusive value="0"/>
+			<xs:fractionDigits value="2"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="montantType">
+		<xs:restriction base="xs:decimal">
+			<xs:fractionDigits value="2"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>
