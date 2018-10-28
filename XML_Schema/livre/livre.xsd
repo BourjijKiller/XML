@@ -159,18 +159,6 @@
 														<xs:element name="corrigé" type="xs:string"/>
 													</xs:sequence>
 												</xs:complexType>
-												
-												<!-- TODO A vérifier -->
-												<xs:keyref name="eza" refer="liv:aze">
-													<xs:selector xpath=".//."/>
-													<xs:field xpath="./liv:corrigé"/>
-												</xs:keyref>
-												<xs:key name="aze">
-													<!-- Ce sur quoi elle porte -->
-													<xs:selector xpath=".//."/>
-													<!-- Ses données de calculs -->
-													<xs:field xpath="./liv:QCM/liv:proposition-réponse"/>
-												</xs:key>
 											</xs:element>
 										</xs:sequence>
 									</xs:complexType>

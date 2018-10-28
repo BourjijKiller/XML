@@ -95,7 +95,7 @@
 								 													</xs:simpleType>
 								 												</xs:attribute>
 								 												<!-- Attribut de type ID pour chaque note, obligatoire-->
-								 												<xs:attribute name="id" use="required" type="xs:ID"/>
+								 												<xs:attribute name="id" use="required" type="xs:string"/>
 								 											</xs:extension>
 								 										</xs:simpleContent>
 								 									</xs:complexType>
@@ -103,7 +103,8 @@
 								 								<!-- Un renvoi est un élément vide dont le rôle est juste de référencer une note, obligatoire -->
 								 								<xs:element name="renvoi">
 								 									<xs:complexType>
-								 										<xs:attribute name="référence" use="required" type="xs:IDREF"/>
+								 										<!-- TODO REMPLACEMENT XS:IDREF PAR KEYREF -->
+								 										<xs:attribute name="référence" use="required" type="xs:string"/>
 								 									</xs:complexType>
 								 								</xs:element>
 								 							</xs:choice>
@@ -154,11 +155,58 @@
 								 		</xs:element>
 								 	</xs:sequence>
 								 </xs:complexType>
+								 <!-- Un itinéraire est unique au sein du vallon dans lequel il se trouve -->
+								 <!-- La contrainte d'intégrité doit donc être au niveau du vallon -->
+								 <xs:unique name="itinéraire-unique-vallon">
+								 	<!-- C'est l'itinéraire qui doit être unique -->
+								 	<xs:selector xpath="./gui:itinéraires/gui:itinéraire"/>
+								 	<!-- L'itinéraire sera unique par rapport à son nom (chemin absolue vers le nom depuis le selector) -->
+								 	<xs:field xpath="./gui:nom"/>
+								 </xs:unique>
 							</xs:element>
 						</xs:sequence>
 					</xs:complexType>
 				</xs:element>
 			</xs:sequence>
 		</xs:complexType>
+		
+		<!-- Un itinéraire est unique au sein du guide -->
+		<!-- L'itinéraire doit être unique au sein du guide, donc la contrainte d'intégrité se situe au niveau du guide -->
+		<xs:unique name="itinéraire-unique-guide">
+			<!-- C'est l'itinéraire qui doit être unique -->
+			<xs:selector xpath="gui:vallons/gui:vallon/gui:itinéraires/gui:itinéraire"/>
+			<!-- Contrainte par rapport au numéro (chemin absolu par rapport au selector -->
+			<xs:field xpath="./gui:numéro"/>
+		</xs:unique>
+		<!-- Un vallon est unique au sein d'un guide -->
+		<xs:unique name="vallon-unique">
+			<!-- Le vallon doit être unique au niveau de la liste de vallons -->
+			<xs:selector xpath="./gui:vallons/gui:vallon"/>
+			<!-- Le vallon doit être unique par rapport au nom du vallon -->
+			<xs:field xpath="./gui:nom"/>
+		</xs:unique>
+		<!-- Une note est unique au sein du guide -->
+		<xs:unique name="note-unique-guide">
+			<!-- C'est la note qui doit être unique -->
+			<xs:selector xpath="./gui:vallons/gui:vallon/gui:introduction/gui:paragraphe/gui:note"/>
+			<!-- La notre doit être unique par rapport à un l'identidiant quelconque de la note -->
+			<xs:field xpath="@id"/>
+		</xs:unique>
+		
+		<!-- Déclaration des types ID pour chaque attributs du documents
+			Permet de remplacer le type prédéfinis xs:ID
+		-->
+		<xs:key name="id-key">
+			<xs:selector xpath="./gui:vallons/gui:vallon/gui:introduction/gui:paragraphe/gui:note"/>
+			<xs:field xpath="./@id"/>
+		</xs:key>
+		
+		<!--Déclaration des types IDREF pour chaque attributs du documents
+			Permet de remplacer le type prédéfinis xs:IDREF
+		-->
+		<xs:keyref name="référence-keyref" refer="gui:id-key">
+			<xs:selector xpath="./gui:vallons/gui:vallon/gui:introduction/gui:paragraphe/gui:renvoi"/>
+			<xs:field xpath="./@référence"/>
+		</xs:keyref>
 	</xs:element>
 </xs:schema>
