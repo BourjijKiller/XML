@@ -190,6 +190,14 @@
     						<xs:element ref="com:nom"/>
     					</xs:sequence>
     				</xs:complexType>
+    				<!-- Au sein de la dénomination d'une personne, chaque prénom, usuel ou complémentaires, doit être unique -->
+    				<!-- La contrainte d'intégrité doit être portée au niveau de la dénomination d'une personne -->
+    				<xs:unique name="prénom-unique">
+    					<!-- C'est les prénoms complémentaires et le prénom usuel qui doivent être unique entre eux -->
+    					<xs:selector xpath="./com:prénom-usuel | ./com:prénom-complémentaire"/>
+    					<!-- Valeur textuelle -->
+    					<xs:field xpath="."/>
+    				</xs:unique>
     			</xs:element>
     			
     			<!-- La raison sociale d'une entreprise est une chaîne de 100 caractères maximum -->
@@ -242,6 +250,26 @@
 				<xs:element ref="com:email" minOccurs="0" maxOccurs="unbounded"/>
 			</xs:sequence>
 		</xs:complexType>
+		<!-- Au sein des coordonnées complètes, chaque numéro de téléphone doit être unique -->
+		<xs:unique name="unique-téléphone">
+			<!-- Le numéro doit être unique -->
+			<xs:selector xpath="./com:téléphone"/>
+			<!-- Les données de calcul sont les valeurs textuelles -->
+			<xs:field xpath="."/>
+		</xs:unique>
+		<!-- Au sein des coordonnées complètes, chaque numéro de fax doit être unique -->
+		<xs:unique name="unique-fax">
+			<!-- Le numéro de fax doit être unique -->
+			<xs:selector xpath="./com:fax"/>
+			<!-- Les données de calcul sont les valeurs textuelles -->
+			<xs:field xpath="."/>
+		</xs:unique>
+		<xs:unique name="unique-mail">
+			<!-- L'email doit être unique -->
+			<xs:selector xpath="./com:email"/>
+			<!-- Les données de calcul sont les valeurs textuelles -->
+			<xs:field xpath="."/>
+		</xs:unique>
 	</xs:element>
     
     <xs:annotation>

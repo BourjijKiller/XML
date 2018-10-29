@@ -45,16 +45,24 @@
 	 		</gui:introduction>
 	 		<gui:itinéraires>
 	 			<gui:itinéraire>
-	 				<gui:altitude>8999</gui:altitude>
 	 				<gui:nom>Itinéraire n°1</gui:nom>
+	 				<gui:altitude>8999</gui:altitude>
 	 				<gui:cotation>*****</gui:cotation>
 	 				<gui:numéro>1</gui:numéro>
+	 				<gui:paragraphe>
+	 					<gui:note type-note="prudence" id="note1-bis">
+	 						Une note dans un itinéraire
+	 					</gui:note>
+	 				</gui:paragraphe>
 	 			</gui:itinéraire>
 	 			<gui:itinéraire>
 	 				<gui:nom>Itinéraire n°2</gui:nom>
-	 				<gui:cotation>*</gui:cotation>
 	 				<gui:altitude>532</gui:altitude>
+	 				<gui:cotation>*</gui:cotation>
 	 				<gui:numéro>2</gui:numéro>
+	 				<gui:paragraphe>
+	 					<gui:renvoi référence="note1"/>
+	 				</gui:paragraphe>
 	 			</gui:itinéraire>
 	 		</gui:itinéraires>
 	 	</gui:vallon>
@@ -64,24 +72,59 @@
 	 		<gui:introduction>
 	 			<gui:paragraphe>
 	 				Confirmation de l'élément mixte
-	 				<gui:note type-note="matériel" id="note-bis-1">
+	 				<gui:note type-note="matériel" id="note2">
 	 					Jeudi y'a Kashmir, vive 2 
 	 				</gui:note>
 	 			</gui:paragraphe>
 	 			<gui:paragraphe>
 	 				Ce paragraphe renvoie à la note n°1
-	 				<gui:renvoi référence="note1"/>
+	 				<gui:renvoi référence="note1-bis"/>
 	 			</gui:paragraphe>
 	 			<gui:paragraphe>
-	 				<gui:renvoi référence="note-bis-1"/>
+	 				<gui:renvoi référence="note1"/>
 	 			</gui:paragraphe>
 	 		</gui:introduction>
 	 		<gui:itinéraires>
 	 			<gui:itinéraire>
-	 				<gui:altitude>100</gui:altitude>
 	 				<gui:nom>Aix-en-Provence --> Montpellier</gui:nom>
+	 				<gui:altitude>100</gui:altitude>
 	 				<gui:cotation>****</gui:cotation>
 	 				<gui:numéro>3</gui:numéro>
+	 				<gui:paragraphe>
+	 					<gui:note type-note="matériel" id="note2-bis">
+	 						Dorian a dit wot c'est bien
+	 					</gui:note>
+	 				</gui:paragraphe>
+	 				<gui:paragraphe>
+	 					<gui:note type-note="prudence" id="note3-bis">
+	 						Lorem Ipsun
+	 					</gui:note>
+	 				</gui:paragraphe>
+	 			</gui:itinéraire>
+	 		</gui:itinéraires>
+	 	</gui:vallon>
+	 	<gui:vallon>
+	 		<gui:nom>Vallon n°3</gui:nom>
+	 		<gui:introduction>
+	 			<gui:paragraphe>
+	 				Un paragraphe pour ne rien dire
+	 				<gui:note type-note="prudence" id="note3">
+	 					Une note est unique au sein d'un itinéraire aussi bien qu'au sein d'une introduction de vallon
+	 				</gui:note>
+	 				<!-- Référence à un numéro d'itinéraire -->
+	 				<gui:renvoi référence="3"/>
+	 			</gui:paragraphe>
+	 		</gui:introduction>
+	 		<gui:itinéraires>
+	 			<gui:itinéraire>
+	 				<gui:nom>Aix-en-Provence --> Marseille</gui:nom>
+	 				<gui:altitude>3210</gui:altitude>
+	 				<gui:cotation>**</gui:cotation>
+	 				<gui:numéro>4</gui:numéro>
+	 				<gui:paragraphe>
+	 					<!-- Référence à un identifiant de la note -->
+	 					<gui:renvoi référence="note3-bis"/>
+	 				</gui:paragraphe>
 	 			</gui:itinéraire>
 	 		</gui:itinéraires>
 	 	</gui:vallon>

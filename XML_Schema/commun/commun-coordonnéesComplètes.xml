@@ -7,9 +7,10 @@
     	<com:dénomination-personne>
 	      	<com:civilité>M.</com:civilité>
 	      	<com:prénom-usuel>Samuel</com:prénom-usuel>
-	      	<com:prénom-complémentaire>Robert</com:prénom-complémentaire>
+	      	<com:prénom-complémentaire>Léanne</com:prénom-complémentaire>
 	      	<com:prénom-complémentaire>Pradap</com:prénom-complémentaire>
-	      	<com:prénom-complémentaire>Taaaauuuumeuuuh</com:prénom-complémentaire>
+	      	<com:prénom-complémentaire>Robert</com:prénom-complémentaire>
+	      	<com:prénom-complémentaire>Dorian</com:prénom-complémentaire>
 	      	<com:nom>Entezam</com:nom>
     	</com:dénomination-personne>
     </com:identité>
@@ -29,6 +30,7 @@
     	<com:pays>France</com:pays>
   	</com:adresse-postale>
   	<com:téléphone>06.55.77.88.99</com:téléphone>
+  	<com:téléphone>06.55.77.88.91</com:téléphone>
   	<com:fax>06.55.77.88.99</com:fax>
   	<com:email>sami1606@live.fr</com:email>
 </com:coordonnées-complètes>
