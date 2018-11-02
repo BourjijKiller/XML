@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-		targetNamespace="http://www.univamu.fr/XML/carnet"
-		xmlns:cnt="http://www.univamu.fr/XML/carnet"
+		targetNamespace="http://www.univ-amu.fr/XML/carnet"
+		xmlns:cnt="http://www.univ-amu.fr/XML/carnet"
 		xmlns:com="http://www.univ-amu.fr/XML/commun"
 		elementFormDefault="qualified"
 		attributeFormDefault="unqualified">

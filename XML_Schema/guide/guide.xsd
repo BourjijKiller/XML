@@ -35,6 +35,23 @@
 		</xs:complexType>
 	</xs:element>
 	
+	<xs:element name="paragraphe">
+		<!-- élément mixte (autoriser de texte) avec mixed = true -->
+		<xs:complexType mixed="true">
+			<!-- possibilité d'avoir éventuellement des notes et/ou des renvois -->
+			<xs:choice minOccurs="0" maxOccurs="unbounded">
+				<!-- Une note est une chaîne de caractères et sont typées -->
+				<xs:element ref="gui:note"/>
+				<!-- Un renvoi est un élément vide dont le rôle est juste de référencer une note, obligatoire -->
+				<xs:element name="renvoi">
+					<xs:complexType>
+						<xs:attribute name="référence" use="required" type="xs:string"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+	
 	<xs:annotation>
 		<xs:documentation>
 			Déclaration d'un guide composé d'un titre, d'une liste d'un ou plusieurs auteur(s),
@@ -209,23 +226,5 @@
 			<xs:selector xpath=".//gui:renvoi"/>
 			<xs:field xpath="./@référence"/>
 		</xs:keyref>
-	</xs:element>
-	
-	<xs:element name="paragraphe">
-		<!-- élément mixte (autoriser de texte) avec mixed = true -->
-		<xs:complexType mixed="true">
-			<!-- possibilité d'avoir éventuellement des notes et/ou des renvois -->
-			<xs:choice minOccurs="0" maxOccurs="unbounded">
-				<!-- Une note est une chaîne de caractères et sont typées -->
-				<xs:element ref="gui:note"/>
-				<!-- Un renvoi est un élément vide dont le rôle est juste de référencer une note, obligatoire -->
-				<xs:element name="renvoi">
-					<xs:complexType>
-						<xs:attribute name="référence" use="required" type="xs:string"/>
-					</xs:complexType>
-				</xs:element>
-			</xs:choice>
-		</xs:complexType>
-	</xs:element>
-	
+	</xs:element>	
 </xs:schema>

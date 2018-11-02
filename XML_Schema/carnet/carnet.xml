@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<cnt:carnet xmlns:cnt="http://www.univamu.fr/XML/carnet"
+<cnt:carnet xmlns:cnt="http://www.univ-amu.fr/XML/carnet"
 			xmlns:com="http://www.univ-amu.fr/XML/commun"
 			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-			xsi:schemaLocation="http://www.univamu.fr/XML/carnet carnet.xsd ">
+			xsi:schemaLocation="http://www.univ-amu.fr/XML/carnet carnet.xsd ">
 			
   <cnt:liste-contacts>
   		<cnt:contact désignation-site="Kashmir-Village">
