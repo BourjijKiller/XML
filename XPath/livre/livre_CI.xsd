@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns="http://www.univ-amu.fr/XML/livre_ci"
+			xmlns:liv="http://www.univ-amu.fr/XML/livre_ci"
+			xmlns:xs="http://www.w3.org/2001/XMLSchema"
+			xmlns:com="http://www.univ-amu.fr/XML/commun"
+			targetNamespace="http://www.univ-amu.fr/XML/livre_ci"
+			elementFormDefault="qualified"
+			attributeFormDefault="qualified">
+			
+	<!-- Commun.xsd du prof -->
+	<xs:import namespace="http://www.univ-amu.fr/XML/commun" schemaLocation="../../T.P5_XPath/commun/commun.xsd"/>
+	<xs:element name="livre">
+		<xs:annotation>
+			<xs:documentation>Livre à contenu pédagogique</xs:documentation>
+		</xs:annotation>
+		<xs:complexType mixed="false">
+			<xs:sequence>
+				<xs:element name="titre" type="xs:string"/>
+				<xs:element name="auteur" type="com:personneType" maxOccurs="unbounded"/>
+				<xs:element name="éditeur" type="xs:string"/>
+				<xs:element name="année" type="xs:gYear"/>
+				<xs:element name="leçon" maxOccurs="unbounded">
+					<xs:complexType mixed="false">
+						<xs:sequence>
+							<xs:element name="titre" type="xs:string"/>
+							<xs:element ref="liv:introduction"/>
+							<xs:element name="chapitre" maxOccurs="unbounded">
+								<xs:complexType mixed="false">
+									<xs:sequence>
+										<xs:element name="titre" type="xs:string"/>
+										<xs:element ref="liv:introduction"/>
+										<xs:element name="section" maxOccurs="unbounded">
+											<xs:complexType mixed="false">
+												<xs:sequence>
+													<xs:element name="titre" type="xs:string"/>
+													<xs:element ref="liv:paragraphe" maxOccurs="unbounded"/>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+								
+								<!-- Au sein d'un même chapitre, les sections doivent avoir des titres différents -->
+								<xs:unique name="sections-unique">
+									<!-- La contrainte d'intégrité cible les sections d'un chapitre -->
+									<xs:selector xpath=".//liv:section"/>
+									<!-- L'unicité est calculée à partir du titre de chaque sections -->
+									<xs:field xpath="./liv:titre"/>
+								</xs:unique>
+							</xs:element>
+							<xs:element name="exercice" maxOccurs="unbounded">
+								<xs:complexType mixed="false">
+									<xs:sequence>
+										<xs:element name="QCM">
+											<xs:complexType mixed="false">
+												<xs:sequence>
+													<xs:element name="énoncé" type="xs:string"/>
+													<xs:element name="proposition" minOccurs="2" maxOccurs="unbounded">
+														<xs:complexType mixed="false">
+															<xs:simpleContent>
+																<xs:extension base="xs:string">
+																	<xs:attribute name="numéro" type="xs:positiveInteger" use="required"/>
+																</xs:extension>
+															</xs:simpleContent>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="corrigé">
+											<xs:complexType mixed="false">
+												<xs:sequence>
+													<xs:element name="bonneProposition" maxOccurs="unbounded">
+														<xs:complexType mixed="false">
+															<xs:attribute name="numéro" type="xs:positiveInteger" use="required"/>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+									<xs:attribute name="numéro" type="xs:positiveInteger" use="required"/>
+								</xs:complexType>
+								<xs:key name="proposition-réponse">
+									<xs:selector xpath=".//liv:proposition"/>
+									<xs:field xpath="./@liv:numéro"/>
+								</xs:key>
+								
+								<xs:keyref name="corrigé" refer="liv:proposition-réponse">
+									<xs:selector xpath=".//liv:bonneProposition"/>
+									<xs:field xpath="./@liv:numéro"/>
+								</xs:keyref>
+							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="numéro" type="xs:positiveInteger" use="required"/>
+					</xs:complexType>
+					
+					<!-- Au sein d'une même leçon, les chapitres doivent être identifiés de façon unique -->
+					<xs:unique name="chapitre-unique">
+						<!-- La contrainte d'intégrité cible les chapitres d'une leçon -->
+						<xs:selector xpath=".//liv:chapitre"/>
+						<!-- La donnée de calcul est le titre d'un chapitre -->
+						<xs:field xpath="./liv:titre"/>
+					</xs:unique>
+					
+					<!-- Au sein d'une même leçon, les exercices doivent être identifiés de facon unique -->
+					<xs:unique name="exercice-unique">
+						<!-- La contrainte d'intégrité cible les exercices d'une leçon -->
+						<xs:selector xpath=".//liv:exercice"/>
+						<!-- La donnée de calcul est le numéro d'une leçon (doit être unique) -->
+						<xs:field xpath="./@liv:numéro"/>
+					</xs:unique>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="ISBN" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:positiveInteger">
+						<xs:pattern value="\d{13}"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+		
+		<!-- TODO NE FONCTIONNE PAS -->
+		<!-- Au sein d'un même livre, les leçons doivent être identifiées de façon unique
+		<xs:unique name="leçon-unique">
+			La contrainte d'intégrité vise la leçon
+			<xs:selector xpath=".//liv:leçon"/>
+			La contrainte d'intégrité est calculée à partir du numéro et du titre du livre
+			<xs:field xpath="./liv:titre | ./@liv:numéro"/>
+		</xs:unique> -->
+		
+		<xs:unique name="leçon-unique-titre">
+			<xs:selector xpath=".//liv:leçon"/>
+			<xs:field xpath="./liv:titre"/>
+		</xs:unique>
+		
+		<xs:unique name="leçon-unique-numéro">
+			<xs:selector xpath=".//liv:leçon"/>
+			<xs:field xpath="./@liv:numéro"/>
+		</xs:unique>
+		
+		<!-- Au sein d'un livre, les auteurs doivent avoir des couples nom/prénom différents -->
+		<xs:unique name="auteur-unique">
+			<!-- La contrainte d'intégrité vise les auteurs -->
+			<xs:selector xpath=".//liv:auteur"/>
+			<!-- On ne peut avoir un couple nom et prénom identique
+				Par conséquent, on peut avoir des couples nom identique / prénom différents
+				ou encore nom différent / prénom identique
+				On met donc en champ calculé le nom et le prénom usuel
+			 -->
+			<xs:field xpath="./com:nom"/>
+			<xs:field xpath="./com:prénomUsuel"/>
+		</xs:unique>
+		
+		<xs:key name="leçon">
+			<xs:selector xpath="./liv:leçon"/>
+			<xs:field xpath="./liv:titre"/>
+			<xs:field xpath="./@liv:numéro"/>
+		</xs:key>
+		
+		<xs:keyref name="leçonIsExist" refer="liv:leçon">
+			<xs:selector xpath=".//liv:renvoi"/>
+			<xs:field xpath="./@liv:refTitre"/>
+			<xs:field xpath="./@liv:refNuméro"/>
+		</xs:keyref>
+	</xs:element>
+	<!-- Déclarations globales -->
+	<xs:element name="paragraphe">
+		<xs:complexType mixed="true">
+			<xs:sequence>
+				<xs:element name="renvoi" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:simpleContent>
+							<xs:extension base="xs:string">
+								<xs:attribute name="refTitre" type="xs:string" use="required"/>
+								<xs:attribute name="refNuméro" type="xs:positiveInteger" use="required"/>
+							</xs:extension>
+						</xs:simpleContent>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="introduction">
+		<xs:complexType mixed="false">
+			<xs:sequence>
+				<xs:element ref="liv:paragraphe" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>
