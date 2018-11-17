@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cnt:carnet xsi:schemaLocation="http://www.univ-amu.fr/XML/carnet_ci carnet_CI.xsd"
+			xmlns:cnt="http://www.univ-amu.fr/XML/carnet_ci"
+			xmlns:com="http://www.univ-amu.fr/XML/commun"
+			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+			
+	<cnt:contacts>
+		<cnt:contact siteDeTravail="MIAGE Aix-Marseille (site de Marseille/Du Bois)">
+			<com:coordonnées-réduites>
+				<com:identité>
+					<com:dénomination-personne>
+						<com:civilité>M.</com:civilité>
+						<com:prénom-usuel>Philippe</com:prénom-usuel>
+						<com:nom>RAMADOUR</com:nom>
+					</com:dénomination-personne>
+				</com:identité>
+				<com:téléphone>01.01.01.01.01</com:téléphone>
+				<com:email>philippe.ramadour@univ-amu.fr</com:email>
+			</com:coordonnées-réduites>
+		</cnt:contact>
+		<cnt:contact siteDeTravail="MIAGE Aix-Marseille (site d'Aix/Forbin)">
+			<com:coordonnées-réduites>
+				<com:identité>
+					<com:dénomination-personne>
+						<com:civilité>M.</com:civilité>
+						<com:prénom-usuel>Jean</com:prénom-usuel>
+						<com:nom>CAUSSANEL</com:nom>
+					</com:dénomination-personne>
+				</com:identité>
+				<com:téléphone>01.01.01.01.02</com:téléphone>
+				<com:email>jean.caussanel@univ-amu.fr</com:email>
+			</com:coordonnées-réduites>
+		</cnt:contact>
+		<cnt:contact siteDeTravail="MIAGE Aix-Marseille (site de Marseille/Du Bois)">
+			<com:coordonnées-réduites>
+				<com:identité>
+					<com:dénomination-personne>
+						<com:civilité>Mme</com:civilité>
+						<com:prénom-usuel>Nina</com:prénom-usuel>
+						<com:nom>RALIJAONA</com:nom>
+					</com:dénomination-personne>
+				</com:identité>
+				<com:téléphone>02.02.02.02.01</com:téléphone>
+				<com:fax>02.02.02.02.02</com:fax>
+				<com:email>feg-miage-marseille@univ-amu.fr</com:email>
+			</com:coordonnées-réduites>
+		</cnt:contact>
+		<cnt:contact siteDeTravail="Antenne LSIS de Polytech'GII">
+			<com:coordonnées-réduites>
+				<com:identité>
+					<com:dénomination-personne>
+						<com:civilité>M.</com:civilité>
+						<com:prénom-usuel>Sébastien</com:prénom-usuel>
+						<com:nom>FOURNIER</com:nom>
+					</com:dénomination-personne>
+				</com:identité>
+				<com:téléphone>03.03.03.03.03</com:téléphone>
+				<com:email>sebastien.fournier@univ-amu.fr</com:email>
+			</com:coordonnées-réduites>
+		</cnt:contact>
+	</cnt:contacts>
+	<cnt:entreprises>
+		<cnt:entreprise>
+			<com:nom>MIAGE Aix-Marseille</com:nom>
+			<cnt:listeSites>
+				<cnt:site>
+					<com:nom>MIAGE Aix-Marseille (site d'Aix/Forbin)</com:nom>
+					<com:adresse-postale>
+						<com:précision-personnelle>2ème étage</com:précision-personnelle>
+						<com:complément-géographique>Bâtiment Austerlitz</com:complément-géographique>
+						<com:voie>
+							<com:numéro-voie>16</com:numéro-voie>
+							<com:type-voie>allée</com:type-voie>
+							<com:nom-voie>Claude Forbin</com:nom-voie>
+						</com:voie>
+						<com:localité>
+							<com:code-postal>13100</com:code-postal>
+							<com:nom-commune>AIX-EN-PROVENCE</com:nom-commune>
+						</com:localité>
+						<com:pays>FRANCE</com:pays>
+					</com:adresse-postale>
+				</cnt:site>
+				<cnt:site>
+					<com:nom>MIAGE Aix-Marseille (site de Marseille/Du Bois)</com:nom>
+					<com:adresse-postale>
+						<com:complément-géographique>Ilôt Du Bois</com:complément-géographique>
+						<com:voie>
+							<com:numéro-voie>5</com:numéro-voie>
+							<com:type-voie>boulevard</com:type-voie>
+							<com:nom-voie>Maurice Bourdet</com:nom-voie>
+						</com:voie>
+						<com:localité>
+							<com:code-postal>13205</com:code-postal>
+							<com:nom-commune>MARSEILLE</com:nom-commune>
+							<com:CEDEX>CEDEX 1</com:CEDEX>
+						</com:localité>
+						<com:pays>FRANCE</com:pays>
+					</com:adresse-postale>
+				</cnt:site>
+			</cnt:listeSites>
+		</cnt:entreprise>
+		<cnt:entreprise>
+			<com:nom>Laboratoire des Sciences de l'Information et des Systèmes</com:nom>
+			<cnt:listeSites>
+				<cnt:site>
+					<com:nom>Antenne LSIS de Polytech'GII</com:nom>
+					<com:adresse-postale>
+						<com:précision-personnelle>Domaine Universitaire de Saint-Jérôme</com:précision-personnelle>
+						<com:complément-géographique>Batiment Polytech'GII</com:complément-géographique>
+						<com:voie>
+							<com:type-voie>avenue</com:type-voie>
+							<com:nom-voie>Escadrille Normandie-Niemen</com:nom-voie>
+						</com:voie>
+						<com:localité>
+							<com:code-postal>13397</com:code-postal>
+							<com:nom-commune>MARSEILLE</com:nom-commune>
+							<com:CEDEX>CEDEX 20</com:CEDEX>
+						</com:localité>
+						<com:pays>FRANCE</com:pays>
+					</com:adresse-postale>
+				</cnt:site>
+				<cnt:site>
+					<com:nom>Antenne LSIS de Luminy</com:nom>
+					<com:adresse-postale>
+						<com:précision-personnelle>Bâtiment Polytech</com:précision-personnelle>
+						<com:complément-géographique>Case 925</com:complément-géographique>
+						<com:voie>
+							<com:numéro-voie>163</com:numéro-voie>
+							<com:type-voie>avenue</com:type-voie>
+							<com:nom-voie>de Luminy</com:nom-voie>
+						</com:voie>
+						<com:localité>
+							<com:code-postal>13288</com:code-postal>
+							<com:nom-commune>MARSEILLE</com:nom-commune>
+							<com:CEDEX>CEDEX 9</com:CEDEX>
+						</com:localité>
+						<com:pays>FRANCE</com:pays>
+					</com:adresse-postale>
+				</cnt:site>
+			</cnt:listeSites>
+		</cnt:entreprise>
+		<cnt:entreprise>
+			<com:nom>Sopra Steria Group</com:nom>
+			<cnt:listeSites>
+				<cnt:site>
+					<com:nom>Sopra Steria Group (site Aix-Olympe)</com:nom>
+					<com:adresse-postale>
+						<com:précision-personnelle>Europôle Arbois</com:précision-personnelle>
+						<com:complément-géographique>Bâtiment Olympe</com:complément-géographique>
+						<com:voie>
+							<com:numéro-voie>550</com:numéro-voie>
+							<com:type-voie>rue</com:type-voie>
+							<com:nom-voie>Pierre Berthier</com:nom-voie>
+						</com:voie>
+						<com:localité>
+							<com:code-postal>13290</com:code-postal>
+							<com:nom-commune>AIX-EN-PROVENCE</com:nom-commune>
+						</com:localité>
+						<com:pays>FRANCE</com:pays>
+					</com:adresse-postale>
+				</cnt:site>
+				<cnt:site>
+					<com:nom>Sopra Steria Group (site Inde)</com:nom>
+					<com:adresse-postale>
+						<com:complément-géographique>Rien</com:complément-géographique>
+						<com:voie>
+							<com:numéro-voie>28</com:numéro-voie>
+							<com:type-voie>avenue</com:type-voie>
+							<com:nom-voie>Talawade Software Technology Park</com:nom-voie>
+						</com:voie>
+						<com:localité>
+							<com:code-postal>41210</com:code-postal>
+							<com:nom-commune>Maharashtra</com:nom-commune>
+						</com:localité>
+						<com:pays>INDE</com:pays>
+					</com:adresse-postale>
+				</cnt:site>
+			</cnt:listeSites>
+		</cnt:entreprise>
+	</cnt:entreprises>
+	<cnt:rendez-vous>
+		<cnt:rdv>
+			<cnt:personne>
+				<com:civilité>M.</com:civilité>
+				<com:prénom-usuel>Philippe</com:prénom-usuel>
+				<com:nom>RAMADOUR</com:nom>
+			</cnt:personne>
+			<cnt:personne>
+				<com:civilité>M.</com:civilité>
+				<com:prénom-usuel>Jean</com:prénom-usuel>
+				<com:nom>CAUSSANEL</com:nom>
+			</cnt:personne>
+			<cnt:date>2017-10-19</cnt:date>
+			<cnt:heureDébut>10:00:00</cnt:heureDébut>
+			<cnt:durée>P0Y0M0DT2H0M0S</cnt:durée>
+			<com:adresse-postale>
+				<com:complément-géographique>Ilôt Du Bois</com:complément-géographique>
+				<com:voie>
+					<com:numéro-voie>5</com:numéro-voie>
+					<com:type-voie>boulevard</com:type-voie>
+					<com:nom-voie>Maurice Bourdet</com:nom-voie>
+				</com:voie>
+				<com:localité>
+					<com:code-postal>13205</com:code-postal>
+					<com:nom-commune>MARSEILLE</com:nom-commune>
+					<com:CEDEX>CEDEX 1</com:CEDEX>
+				</com:localité>
+				<com:pays>FRANCE</com:pays>
+			</com:adresse-postale>
+		</cnt:rdv>
+		<cnt:rdv>
+			<cnt:personne>
+				<com:civilité>Mme</com:civilité>
+				<com:prénom-usuel>Nina</com:prénom-usuel>
+				<com:nom>RALIJAONA</com:nom>
+			</cnt:personne>
+			<cnt:date>2017-10-20</cnt:date>
+			<cnt:heureDébut>13:30:00</cnt:heureDébut>
+			<cnt:durée>P0Y0M0DT0H5M0S</cnt:durée>
+			<com:adresse-postale>
+				<com:complément-géographique>Ilôt Du Bois</com:complément-géographique>
+				<com:voie>
+					<com:numéro-voie>5</com:numéro-voie>
+					<com:type-voie>boulevard</com:type-voie>
+					<com:nom-voie>Maurice Bourdet</com:nom-voie>
+				</com:voie>
+				<com:localité>
+					<com:code-postal>13205</com:code-postal>
+					<com:nom-commune>MARSEILLE</com:nom-commune>
+					<com:CEDEX>CEDEX 1</com:CEDEX>
+				</com:localité>
+				<com:pays>FRANCE</com:pays>
+			</com:adresse-postale>
+		</cnt:rdv>
+		<cnt:rdv>
+			<cnt:personne>
+				<com:civilité>M.</com:civilité>
+				<com:prénom-usuel>Sébastien</com:prénom-usuel>
+				<com:nom>FOURNIER</com:nom>
+			</cnt:personne>
+			<cnt:personne>
+				<com:civilité>M.</com:civilité>
+				<com:prénom-usuel>Philippe</com:prénom-usuel>
+				<com:nom>RAMADOUR</com:nom>
+			</cnt:personne>
+			<cnt:personne>
+				<com:civilité>M.</com:civilité>
+				<com:prénom-usuel>Jean</com:prénom-usuel>
+				<com:nom>CAUSSANEL</com:nom>
+			</cnt:personne>
+			<cnt:date>2017-10-20</cnt:date>
+			<cnt:heureDébut>18:00:00</cnt:heureDébut>
+			<cnt:durée>P0Y0M0DT1H0M0S</cnt:durée>
+			<com:adresse-postale>
+				<com:précision-personnelle>Domaine Universitaire de Saint-Jérôme</com:précision-personnelle>
+				<com:complément-géographique>Batiment Polytech'GII</com:complément-géographique>
+				<com:voie>
+					<com:type-voie>avenue</com:type-voie>
+					<com:nom-voie>Escadrille Normandie-Niemen</com:nom-voie>
+				</com:voie>
+				<com:localité>
+					<com:code-postal>13397</com:code-postal>
+					<com:nom-commune>MARSEILLE</com:nom-commune>
+					<com:CEDEX>CEDEX 20</com:CEDEX>
+				</com:localité>
+				<com:pays>FRANCE</com:pays>
+			</com:adresse-postale>
+		</cnt:rdv>
+	</cnt:rendez-vous>
+</cnt:carnet>
+
+<!-- 
+Expressions XPath :
+	- Quels sont les contacts travaillant sur le site "MIAGE Aix-Marseille (site de Marseille) ? -> .//cnt:contact[./@siteDeTravail = 'MIAGE Aix-Marseille (site de Marseille/Du Bois)'] renvoi 2 contacts
+	- Combien de contacts travaillent sur le site de Luminy ? -> count(.//cnt:contact[./@siteDeTravail = "Antenne LSIS de Polytech'GII"]) renvoi 1
+	- Combien d'entreprises sont enregistrées dans le carnet ? -> count(.//cnt:entreprise) renvoi 2
+	- Quelle est la liste des pays dans lesquels est installée l'entreprise "Laboratoire des Sciences de l'Information et des Systèmes" ? -> .//cnt:entreprise[./com:nom = "Laboratoire des Sciences de l'Information et des Systèmes"]//com:pays renvoi 2 fois FRANCE
+	- Existe-t-il des entreprises n'étant pas installées en France ? -> boolean(.//cnt:entreprise[.//com:pays/text() != 'FRANCE']) renvoi false
+	- Quelle est la liste des entreprises internationales (établies sur des sites situés dans au moins 2 pays différents) -> .//cnt:entreprise[count(.//cnt:site) > 1][.//cnt:site[1]//com:pays/text() != .//cnt:site/following-sibling::cnt:site//com:pays/text()]/com:nom/text()
+	- Quelle est la taille moyenne (en nombre de contacts) d'une entreprise ? -> count(.//cnt:contact) div count(.//cnt:entreprise) renvoie 1.3333333
+	- En moyenne, sur combien de sites est répartie une entreprise ? -> count(.//cnt:site) div count(.//cnt:entreprise) renvoie 2
+	- Quelle est la liste des petites entreprises de moins de 5 employés -> IMPOSSIBLE AVEC XPATH 1.0
+	- Quelle est la liste des sités situés dans des pays dans lesquels sont installées au moins 2 entreprises ? -> IMPOSSIBLE AVEC XPATH 1.0
+-->
