@@ -1,10 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-			xmlns:dico="http://www.univ-amu.fr/XML/dictionnaire"
-			targetNamespace="http://www.univ-amu.fr/XML/dictionnaire"
-			elementFormDefault="qualified"
-			attributeFormDefault="qualified">
-			
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dico="http://www.univ-amu.fr/XML/dictionnaire" targetNamespace="http://www.univ-amu.fr/XML/dictionnaire" elementFormDefault="qualified" attributeFormDefault="qualified">
 	<xs:element name="dictionnaire">
 		<xs:complexType>
 			<xs:sequence>
@@ -43,6 +38,10 @@
 														</xs:simpleType>
 													</xs:attribute>
 												</xs:complexType>
+												<xs:unique name="annotationDsGroupeUnique">
+													<xs:selector xpath="./dico:annotation"/>
+													<xs:field xpath="."/>
+												</xs:unique>
 											</xs:element>
 											<xs:element name="forme">
 												<xs:complexType>
@@ -59,6 +58,10 @@
 														</xs:simpleType>
 													</xs:attribute>
 												</xs:complexType>
+												<xs:unique name="annotationDsFormeUnique">
+													<xs:selector xpath="./dico:annotation"/>
+													<xs:field xpath="."/>
+												</xs:unique>
 											</xs:element>
 										</xs:sequence>
 									</xs:complexType>
@@ -82,6 +85,15 @@
 											<xs:element ref="dico:traduction" minOccurs="0" maxOccurs="unbounded"/>
 										</xs:sequence>
 									</xs:complexType>
+									<xs:unique name="exempleDsSignificationUnique">
+										<xs:selector xpath="./dico:exemple"/>
+										<xs:field xpath="."/>
+									</xs:unique>
+									<xs:unique name="traductionDsSignificationUnique">
+										<xs:selector xpath="./dico:traduction"/>
+										<xs:field xpath="./dico:langue"/>
+										<xs:field xpath="./dico:écriture"/>
+									</xs:unique>
 								</xs:element>
 							</xs:choice>
 							<xs:element name="expression" minOccurs="0" maxOccurs="unbounded">
@@ -94,13 +106,38 @@
 										<xs:element ref="dico:traduction" minOccurs="0" maxOccurs="unbounded"/>
 									</xs:sequence>
 								</xs:complexType>
+								<xs:unique name="exempleDsExpressionUnique">
+									<xs:selector xpath="./dico:exemple"/>
+									<xs:field xpath="."/>
+								</xs:unique>
+								<xs:unique name="traductionDsExpressionUnique">
+									<xs:selector xpath="./dico:traduction"/>
+									<xs:field xpath="./dico:langue"/>
+									<xs:field xpath="./dico:écriture"/>
+								</xs:unique>
 							</xs:element>
 							<xs:element name="étymologie" type="xs:string" minOccurs="0"/>
 						</xs:sequence>
 					</xs:complexType>
+					<xs:unique name="orthographeUnique">
+						<xs:selector xpath=".//dico:orthographe/dico:*"/>
+						<xs:field xpath="."/>
+					</xs:unique>
+					<xs:unique name="expressionUnique">
+						<xs:selector xpath="./dico:expression"/>
+						<xs:field xpath="./dico:écriture"/>
+					</xs:unique>
 				</xs:element>
 			</xs:sequence>
 		</xs:complexType>
+		<xs:key name="entréeKey">
+			<xs:selector xpath="./dico:entrée"/>
+			<xs:field xpath=".//dico:usuelle"/>
+		</xs:key>
+		<xs:keyref name="renvoiKeyref" refer="dico:entréeKey">
+			<xs:selector xpath=".//dico:renvoi"/>
+			<xs:field xpath="."/>
+		</xs:keyref>
 	</xs:element>
 	<xs:complexType name="nomCommunAdjectifType">
 		<xs:sequence>
@@ -119,6 +156,10 @@
 						</xs:simpleType>
 					</xs:attribute>
 				</xs:complexType>
+				<xs:unique name="annotationDsGenreUnique">
+					<xs:selector xpath="./dico:annotation"/>
+					<xs:field xpath="."/>
+				</xs:unique>
 			</xs:element>
 			<xs:element name="nombre">
 				<xs:complexType>
@@ -134,13 +175,15 @@
 						</xs:simpleType>
 					</xs:attribute>
 				</xs:complexType>
+				<xs:unique name="annotationDsNombreUnique">
+					<xs:selector xpath="./dico:annotation"/>
+					<xs:field xpath="."/>
+				</xs:unique>
 			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
 	<xs:element name="annotation" type="xs:string"/>
-	<xs:element name="renvoi">
-		<xs:complexType mixed="false"/>
-	</xs:element>
+	<xs:element name="renvoi" type="xs:string"/>
 	<xs:element name="prononciation" type="xs:string"/>
 	<xs:element name="domaine">
 		<xs:simpleType>
@@ -158,6 +201,10 @@
 				<xs:element ref="dico:renvoi" minOccurs="0" maxOccurs="unbounded"/>
 			</xs:sequence>
 		</xs:complexType>
+		<xs:unique name="renvoiUnique">
+			<xs:selector xpath="./dico:renvoi"/>
+			<xs:field xpath="."/>
+		</xs:unique>
 	</xs:element>
 	<xs:element name="exemple" type="xs:string"/>
 	<xs:element name="traduction">
@@ -178,5 +225,9 @@
 				<xs:element ref="dico:annotation" minOccurs="0" maxOccurs="unbounded"/>
 			</xs:sequence>
 		</xs:complexType>
+		<xs:unique name="annotationDsTraductionUnique">
+			<xs:selector xpath="./dico:annotation"/>
+			<xs:field xpath="."/>
+		</xs:unique>
 	</xs:element>
 </xs:schema>
