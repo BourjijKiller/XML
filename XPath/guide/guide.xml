@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gui:guide
+	xmlns:com="http://www.univ-amu.fr/XML/commun"
+	xmlns:gui="http://www.univ-amu.fr/XML/guide"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.univ-amu.fr/XML/guide guide.xsd ">
+	
+	<gui:titre>
+		Comment faire du ski ?
+	</gui:titre>
+	<gui:auteurs>
+		<gui:auteur>
+			<com:civilité>M.</com:civilité>
+			<com:prénomUsuel>Samuel</com:prénomUsuel>
+			<com:prénomComplémentaire>Dorian</com:prénomComplémentaire>
+			<com:prénomComplémentaire>Pradap</com:prénomComplémentaire>
+			<com:nom>Entezam</com:nom>
+		</gui:auteur>
+		<gui:auteur>
+			<com:civilité>Mlle</com:civilité>
+			<com:prénomUsuel>Harryette</com:prénomUsuel>
+			<com:prénomComplémentaire>Mélanie</com:prénomComplémentaire>
+			<com:prénomComplémentaire>Sarah</com:prénomComplémentaire>
+			<com:nom>Cover</com:nom>
+		</gui:auteur>
+	 </gui:auteurs>
+	 <gui:éditeur>ValléMan</gui:éditeur>
+	 <gui:année-édition>2017</gui:année-édition>
+	 <gui:vallons>
+	 	<gui:vallon>
+	 		<gui:nom>Vallon n°1</gui:nom>
+	 		<gui:introduction>
+	 			<gui:paragraphe>
+	 			Un paragraphe d'un vallon
+	 			Voici une note :
+	 				<gui:note type-note="prudence" id="note1">
+	 					Ce paragraphe décrit la manière dont le kashmir village attire des indous
+	 				</gui:note>
+	 			</gui:paragraphe>
+	 			<gui:paragraphe>
+	 				Un autre paragraphe du vallon courant
+	 				Référence à la première note :
+	 					<gui:renvoi référence="note1"/>
+	 			</gui:paragraphe>
+	 		</gui:introduction>
+	 		<gui:itinéraires>
+	 			<gui:itinéraire>
+	 				<gui:nom>Itinéraire n°1</gui:nom>
+	 				<gui:altitude>8999</gui:altitude>
+	 				<gui:cotation>*****</gui:cotation>
+	 				<gui:numéro>1</gui:numéro>
+	 				<gui:paragraphe>
+	 					<gui:note type-note="prudence" id="note1-bis">
+	 						Une note dans un itinéraire
+	 					</gui:note>
+	 				</gui:paragraphe>
+	 			</gui:itinéraire>
+	 			<gui:itinéraire>
+	 				<gui:nom>Itinéraire n°2</gui:nom>
+	 				<gui:altitude>532</gui:altitude>
+	 				<gui:cotation>*</gui:cotation>
+	 				<gui:numéro>2</gui:numéro>
+	 				<gui:paragraphe>
+	 					<gui:renvoi référence="note1"/>
+	 				</gui:paragraphe>
+	 			</gui:itinéraire>
+	 		</gui:itinéraires>
+	 	</gui:vallon>
+	 	
+	 	<gui:vallon>
+	 		<gui:nom>Vallon n°2</gui:nom>
+	 		<gui:introduction>
+	 			<gui:paragraphe>
+	 				Confirmation de l'élément mixte
+	 				<gui:note type-note="matériel" id="note2">
+	 					Samedi y'a Kashmir !!!
+	 				</gui:note>
+	 			</gui:paragraphe>
+	 			<gui:paragraphe>
+	 				Ce paragraphe renvoie à la note n°1
+	 				<gui:renvoi référence="note1-bis"/>
+	 			</gui:paragraphe>
+	 			<gui:paragraphe>
+	 				<gui:renvoi référence="note1"/>
+	 			</gui:paragraphe>
+	 		</gui:introduction>
+	 		<gui:itinéraires>
+	 			<gui:itinéraire>
+	 				<gui:nom>Aix-en-Provence --> Montpellier</gui:nom>
+	 				<gui:altitude>100</gui:altitude>
+	 				<gui:cotation>****</gui:cotation>
+	 				<gui:numéro>3</gui:numéro>
+	 				<gui:paragraphe>
+	 					<gui:note type-note="matériel" id="note2-bis">
+	 						Dorian a dit wot c'est bien
+	 					</gui:note>
+	 				</gui:paragraphe>
+	 				<gui:paragraphe>
+	 					<gui:note type-note="prudence" id="note3-bis">
+	 						Lorem Ipsun
+	 					</gui:note>
+	 				</gui:paragraphe>
+	 			</gui:itinéraire>
+	 		</gui:itinéraires>
+	 	</gui:vallon>
+	 	<gui:vallon>
+	 		<gui:nom>Vallon n°3</gui:nom>
+	 		<gui:introduction>
+	 			<gui:paragraphe>
+	 				Un paragraphe pour ne rien dire
+	 				<gui:note type-note="prudence" id="note3">
+	 					Une note est unique au sein d'un itinéraire aussi bien qu'au sein d'une introduction de vallon
+	 				</gui:note>
+	 				<!-- Référence à un numéro d'itinéraire -->
+	 				<gui:renvoi référence="3"/>
+	 			</gui:paragraphe>
+	 		</gui:introduction>
+	 		<gui:itinéraires>
+	 			<gui:itinéraire>
+	 				<gui:nom>Aix-en-Provence --> Marseille</gui:nom>
+	 				<gui:altitude>3210</gui:altitude>
+	 				<gui:cotation>**</gui:cotation>
+	 				<gui:numéro>4</gui:numéro>
+	 				<gui:paragraphe>
+	 					<!-- Référence à un identifiant de la note -->
+	 					<gui:renvoi référence="note3-bis"/>
+	 				</gui:paragraphe>
+	 			</gui:itinéraire>
+	 		</gui:itinéraires>
+	 	</gui:vallon>
+	 </gui:vallons>
+</gui:guide>
+
+<!-- 
+Expressions XPath :
+	- Combien d'itinéraires possède le 2ème vallon du guide ? -> count(.//gui:vallon[2]/gui:itinéraires/gui:itinéraire) renvoie 1
+	- En moyenne, combien y'a-t-il d'itinéraires par vallon dans le guide ? -> count(.//gui:itinéraire) div count(.//gui:vallon) renvoie 1.333333
+	- Quel est le contenu textuel de toutes les notes relatives à des consignes d'usage de matériel ? -> .//gui:note[./@type-note = 'matériel']/text() renvoie Samedi y'a Kashmir !!! et Dorian a dit wot c'est bien
+	- Existe-t-il strictement plus d'itinéraires côtés ***** que d'itinéraires côtés ** ? -> count(.//gui:cotation[text() = '****']) > count(.//gui:cotation[text() = '**']) renvoie false
+	- Combien de notes y'a t'il dans le guide ? -> count(.//gui:note) renvoie 6
+	- Combien de notes y'a-t-il dans les introductions de vallons ? -> count(.//gui:introduction/gui:paragraphe/gui:note) renvoie 3
+	- Quels sont le nom et le numéro des itinéraires référencées depuis un autre itinéraire du guide ? -> 
+	.//gui:itinéraire[gui:numéro/text() = //gui:paragraphe/gui:renvoi/@référence]/gui:nom/text() | .//gui:itinéraire[gui:numéro/text() = //gui:paragraphe/gui:renvoi/@référence]/gui:numéro/text() renvoie 3 et Aix-en-Provence -> Montpellier
+	- Existe-t-il des itinéraires cotés **** ne faisant référence à aucun autre itinéraire -> boolean(.//gui:itinéraire[./gui:cotation = '****'][count(.//gui:renvoi) = 0 or contains(.//gui:renvoi/@référence, .//gui:itinéraire/gui:numéro)]) renvoie true
+ -->

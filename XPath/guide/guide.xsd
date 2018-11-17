@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+		targetNamespace="http://www.univ-amu.fr/XML/guide"
+		xmlns:gui="http://www.univ-amu.fr/XML/guide"
+		xmlns:com="http://www.univ-amu.fr/XML/commun"
+		elementFormDefault="qualified"
+		attributeFormDefault="unqualified">
+		
+	<!-- Import du schéma XML commun.xsd -->
+	<xs:import schemaLocation="../commun/commun.xsd" namespace="http://www.univ-amu.fr/XML/commun"/>
+	
+	<!-- Une note est une chaîne de caractères et sont typées -->
+	<!-- L'élément note doit donc contenir un attribut décrivant le type de note,
+		et en même temps, la note doit bien être typé par un string.
+		Pour cela, on effectue une dérivation à partir d'un type simple pour créer un type complexe,
+		le type de dérivation étant par extension -->
+	<xs:element name="note">
+		<xs:complexType>
+			<!-- Dérivation par extension -->
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+					<xs:attribute name="type-note" use="required">
+						<xs:simpleType>
+							<!-- 2 valeurs possibles pour l'attribut : prudence ou matériel -->
+							<xs:restriction base="xs:string">
+								<xs:enumeration value="prudence"/>
+								<xs:enumeration value="matériel"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<!-- Attribut de type ID pour chaque note, obligatoire-->
+					<xs:attribute name="id" use="required" type="xs:string"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="paragraphe">
+		<!-- élément mixte (autoriser de texte) avec mixed = true -->
+		<xs:complexType mixed="true">
+			<!-- possibilité d'avoir éventuellement des notes et/ou des renvois -->
+			<xs:choice minOccurs="0" maxOccurs="unbounded">
+				<!-- Une note est une chaîne de caractères et sont typées -->
+				<xs:element ref="gui:note"/>
+				<!-- Un renvoi est un élément vide dont le rôle est juste de référencer une note, obligatoire -->
+				<xs:element name="renvoi">
+					<xs:complexType>
+						<xs:attribute name="référence" use="required" type="xs:string"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:annotation>
+		<xs:documentation>
+			Déclaration d'un guide composé d'un titre, d'une liste d'un ou plusieurs auteur(s),
+			d'un éditeur, d'une année d'édition et d'une liste d'un ou plusieurs vallons
+		</xs:documentation>
+	</xs:annotation>
+	<!-- Elément guide -->
+	<xs:element name="guide">
+		<xs:complexType>
+			<!-- On peut déclarer un ou plusieurs guide -->
+			<xs:sequence minOccurs="1" maxOccurs="unbounded">
+				<!-- Un titre est une chaîne de caractères -->
+				<xs:element name="titre" type="xs:string"/>
+				<!-- Une liste d'un ou plusieurs auteurs -->
+				<xs:element name="auteurs">
+					<xs:complexType>
+						<!-- On peut avoir 1 ou plusieurs auteurs -->
+						<xs:sequence minOccurs="1" maxOccurs="unbounded">
+							<xs:element name="auteur">
+								<!-- Un auteur étant une personne, on fait référence au groupe déclaré dans commun.dtd -->
+								<xs:complexType>
+									<xs:group ref="com:personneGroup"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				
+				<!-- Un éditeur est une chaîne de caractères -->
+				<xs:element name="éditeur" type="xs:string"/>
+				
+				<!-- Une année est un entier strictement postif sur 4 chiffres -->
+				<xs:element name="année-édition" type="xs:gYear"/>
+				
+				<!-- Déclaration d'une liste de vallons contenant 1 ou plusieurs vallon(s) -->
+				<xs:element name="vallons">
+					<xs:complexType>
+						<!-- On peut avoir 1 ou plusieurs vallon(s) -->
+						<xs:sequence minOccurs="1" maxOccurs="unbounded">
+							<xs:element name="vallon">
+								<!-- Un vallon est composé d’un nom,
+									d’une introduction
+									et de la liste des itinéraires que l’on peut y réaliser (un ou plusieurs itinéraires).
+								 -->
+								 <xs:complexType>
+								 	<xs:sequence>
+								 		<!-- Un nom de vallon est une chaîne de caractères -->
+								 		<xs:element name="nom" type="xs:string"/>
+								 		
+								 		<!-- Une introduction est constituée d'une liste d'un ou plusieurs paragraphes -->
+								 		<xs:element name="introduction">
+								 			<xs:complexType>
+								 				<xs:sequence>
+								 					<!-- Il peuy y avoir 1 ou plusieurs paragraphes -->
+								 					<xs:element ref="gui:paragraphe" maxOccurs="unbounded"/>
+								 				</xs:sequence>
+								 			</xs:complexType>
+								 		</xs:element>
+								 		
+								 		<!-- Un itinéraire est caractérisé par un nom, une altitude, une cotation, un numéro et un ou plusieurs paragraphes -->
+								 		<xs:element name="itinéraires">
+								 			<xs:complexType>
+								 				<!-- On rapelle que la liste des itinéraires peut contenir au moins ou plusieurs itinéraires -->
+								 				<xs:sequence minOccurs="1" maxOccurs="unbounded">
+								 					<xs:element name="itinéraire">
+								 						<xs:complexType>
+								 							<!-- L'ordre des éléments n'étant pas spécifiés, on utilise donc xs:all -->
+								 							<xs:sequence>
+								 								<!-- Le nom est une chaîne de caractères -->
+								 								<xs:element name="nom" type="xs:string"/>
+								 								
+								 								<!-- Une altitude est un entier strictement positif inférieur à 9000 -->
+								 								<xs:element name="altitude">
+								 									<xs:simpleType>
+								 										<xs:restriction base="xs:nonNegativeInteger">
+								 											<xs:maxExclusive value="9000"/>
+								 										</xs:restriction>
+								 									</xs:simpleType>
+								 								</xs:element>
+								 								
+								 								<!-- Une cotation est une chaîne de caractères contenant uniquement de 1 à 5 fois le caractère * -->
+								 								<xs:element name="cotation">
+								 									<xs:simpleType>
+								 										<xs:restriction base="xs:string">
+								 											<!-- Caractère * uniquement, 1..5 -->
+								 											<xs:pattern value="[*]{1,5}"/>
+								 										</xs:restriction>
+								 									</xs:simpleType>
+								 								</xs:element>
+								 								
+								 								<!-- Un numéro est un entier strictement positif -->
+								 								<xs:element name="numéro" type="xs:positiveInteger"/>
+								 								
+								 								<xs:element ref="gui:paragraphe" maxOccurs="unbounded"/>
+								 							</xs:sequence>
+								 						</xs:complexType>
+								 						<!-- Une note est unique au sein d'un itinéraire -->
+								 						<!-- La portée de la contrainte d'intégrité se situe donc dans un itinéraire -->
+								 						<xs:unique name="note-unique-itinéraire">
+								 							<xs:selector xpath="./note"/>
+								 							<xs:field xpath="./@type-note"/>
+								 							<xs:field xpath="."/>
+								 						</xs:unique>
+								 					</xs:element>
+								 				</xs:sequence>
+								 			</xs:complexType>
+								 		</xs:element>
+								 	</xs:sequence>
+								 </xs:complexType>
+								 <!-- Un itinéraire est unique au sein du vallon dans lequel il se trouve -->
+								 <!-- La contrainte d'intégrité doit donc être au niveau du vallon -->
+								 <xs:unique name="itinéraire-unique-vallon">
+								 	<!-- C'est l'itinéraire qui doit être unique -->
+								 	<xs:selector xpath="./gui:itinéraires/gui:itinéraire"/>
+								 	<!-- L'itinéraire sera unique par rapport à son nom (chemin absolue vers le nom depuis le selector) -->
+								 	<xs:field xpath="./gui:nom"/>
+								 </xs:unique>
+								 
+								 <!-- Une note est unique sein d'une introduction de vallon -->
+								 <xs:unique name="note-unique-introduction">
+								 	<!-- C'est la note qui doit être unique -->
+								 	<xs:selector xpath="./gui:introduction/gui:paragraphe/gui:note"/>
+								 	<!-- La note est unique par rapport au type de note et au contenu textuel de la note -->
+								 	<xs:field xpath="./@type-note"/>
+								 	<!-- La note est unique par rapport à son contenu textuel -->
+								 	<xs:field xpath="."/>
+								 </xs:unique>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+		
+		<!-- Un itinéraire est unique au sein du guide -->
+		<!-- L'itinéraire doit être unique au sein du guide, donc la contrainte d'intégrité se situe au niveau du guide -->
+		<xs:unique name="itinéraire-unique-guide">
+			<!-- C'est l'itinéraire qui doit être unique -->
+			<xs:selector xpath="./gui:vallons/gui:vallon/gui:itinéraires/gui:itinéraire"/>
+			<!-- Contrainte par rapport au numéro (chemin absolu par rapport au selector) -->
+			<xs:field xpath="./gui:numéro"/>
+		</xs:unique>
+		<!-- Un vallon est unique au sein d'un guide -->
+		<xs:unique name="vallon-unique">
+			<!-- Le vallon doit être unique au niveau de la liste de vallons -->
+			<xs:selector xpath="./gui:vallons/gui:vallon"/>
+			<!-- Le vallon doit être unique par rapport au nom du vallon -->
+			<xs:field xpath="./gui:nom"/>
+		</xs:unique>
+		<!-- Une note est unique au sein du guide -->
+		<xs:unique name="note-unique-guide">
+			<!-- C'est la note qui doit être unique -->
+			<xs:selector xpath="./gui:vallons/gui:vallon/gui:introduction/gui:paragraphe/gui:note"/>
+			<!-- La notre doit être unique par rapport à un l'identidiant quelconque de la note -->
+			<xs:field xpath="./@id"/>
+		</xs:unique>
+		
+		<!-- Déclaration des types ID pour chaque attributs du documents
+			Permet de remplacer le type prédéfinis xs:ID
+		-->
+		<xs:key name="id-key">
+			<xs:selector xpath=".//gui:note | .//gui:itinéraire"/>
+			<!-- Les données de calcul sont l'attribut ID et le numéro d'itinéraire -->
+			<xs:field xpath="./@id | ./gui:numéro"/>
+		</xs:key>
+		
+		<!--Déclaration des types IDREF pour chaque attributs du documents
+			Permet de remplacer le type prédéfinis xs:IDREF
+		-->
+		<xs:keyref name="référence-keyref" refer="gui:id-key">
+			<!-- La contrainte est vérifiée par rapport au numéro de l'itinéraire ou à l'identidiant de la note -->
+			<xs:selector xpath=".//gui:renvoi"/>
+			<xs:field xpath="./@référence"/>
+		</xs:keyref>
+	</xs:element>	
+</xs:schema>
