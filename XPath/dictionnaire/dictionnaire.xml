@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dico:dictionnaire xmlns:dico="http://www.univ-amu.fr/XML/dictionnaire" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.univ-amu.fr/XML/dictionnaire dictionnaire.xsd">
+	<dico:entrée>
+		<dico:orthographe>
+			<dico:usuelle>oignon</dico:usuelle>
+			<dico:dérivée>ognon</dico:dérivée>
+			<dico:dérivée>onion</dico:dérivée>
+		</dico:orthographe>
+		<dico:nomCommun>
+			<dico:genre dico:valeur="masculin"/>
+			<dico:nombre dico:valeur="singulier"/>
+		</dico:nomCommun>
+		<dico:prononciation>oanion</dico:prononciation>
+		<dico:signification>
+			<dico:domaine>langage courant</dico:domaine>
+			<dico:sens>Plante (liliacée) potagère du genre ail, dont le bulbe, d'une saveur et d'une odeur fortes et piquantes, est très employé en cuisine ; le bulbe lui-même. (L'oignon est une plante bisannuelle bulbeuse très anciennement cultivée.)</dico:sens>
+			<dico:traduction>
+				<dico:langue>espagnol</dico:langue>
+				<dico:écriture>cebola</dico:écriture>
+				<dico:prononciation>sébola</dico:prononciation>
+			</dico:traduction>
+		</dico:signification>
+		<dico:expression>
+			<dico:écriture>C'est pas tes oignons</dico:écriture>
+			<dico:domaine>langage courant</dico:domaine>
+			<dico:sens>Ce ne sont pas tes affaires, ça ne te concerne pas.</dico:sens>
+			<dico:exemple>Mêle toi de tes affaires : ce ne sont pas tes oignons, ça ne regarde que moi !</dico:exemple>
+		</dico:expression>
+	</dico:entrée>
+	<dico:entrée>
+		<dico:orthographe>
+			<dico:usuelle>cuisiner</dico:usuelle>
+		</dico:orthographe>
+		<dico:verbe>
+			<dico:groupe dico:valeur="1er"></dico:groupe>
+			<dico:forme dico:valeur="transitif"></dico:forme>
+		</dico:verbe>
+		<dico:prononciation>cuiziné</dico:prononciation>
+		<dico:signification>
+			<dico:domaine>langage courant</dico:domaine>
+			<dico:sens>Préparer et accommoder les aliments de telle sorte qu'ils soient propres à la consommation et agréables au goût</dico:sens>
+		</dico:signification>
+		<dico:expression>
+			<dico:écriture>Cuisiner quelqu'un</dico:écriture>
+			<dico:domaine>langage familier</dico:domaine>
+			<dico:sens>Interroger quelqu'un</dico:sens>
+		</dico:expression>
+	</dico:entrée>
+	<dico:entrée>
+		<dico:orthographe>
+			<dico:usuelle>préparer</dico:usuelle>
+		</dico:orthographe>
+		<dico:verbe>
+			<dico:groupe dico:valeur="1er"></dico:groupe>
+			<dico:forme dico:valeur="transitif"></dico:forme>
+		</dico:verbe>
+		<dico:prononciation>préparé</dico:prononciation>
+		<dico:signification>
+			<dico:domaine>langage courant</dico:domaine>
+			<dico:sens>Choisir, prendre, disposer à l'avance ce qui sera nécessaire pour une opération quelconque</dico:sens>
+		</dico:signification>
+		<dico:expression>
+			<dico:écriture>Préparer le repas</dico:écriture>
+			<dico:domaine>langage courant</dico:domaine>
+			<dico:sens><dico:renvoi>cuisiner</dico:renvoi></dico:sens>
+		</dico:expression>
+	</dico:entrée>
+</dico:dictionnaire>
+
+<!-- 
+Expressions XPath :
+	- Vers quel(s) mot(s) le 3ème mot du dictionnaire possède-t-il des renvois (retourner la chaîne de caractères représentant l’orthographe usuelle des mots répondant à la question) ?.//dico:entrée[3]//dico:renvoi/text()
+	- Quelle est la liste des mots possédant plusieurs définitions et dont l’une d’entre elles au moins relève du domaine de l'informatique (retourner les éléments correspondant aux mots répondant à la question) ? .//dico:entrée[count(.//dico:signification) > 1][.//dico:signification/dico:domaine/text() = "informatique"]
+	- Quelle est la liste des mots possédant une traduction espagnole dans au moins une de leurs définitions (retourner la chaîne de caractères représentant l’orthographe usuelle des mots répondant à la question) ? .//dico:entrée[.//dico:signification//dico:langue = "espagnol"]/dico:orthographe/dico:usuelle/text()
+	- Quelle est la liste des mots possédant une note concernant leur pluriel (i.e. dont le nombre contient une annotation contenant elle-même la chaîne "pluriel" ; retourner la chaîne de caractères représentant l’orthographe usuelle des mots répondant à la question) ? .//dico:entrée[.//dico:nombre/dico:annotation[contains(./text(), "pluriel")]]/dico:orthographe/dico:usuelle/text()
+	- Existe-t-il un ou plusieurs mots possédant plus de 5 traductions dans l'entrée correspondante (6 ou plus : retourner un booléen) ? boolean(.//dico:entrée[count(.//dico:traduction) > 5])
+	- Quelle est la liste des traductions italiennes figurant dans le dictionnaire (retourner les éléments correspondant aux traductions répondant à la question) ? .//dico:traduction[./dico:langue = "italien"]
+	- Quelle est la liste des mots ne possédant pas dans leur entrée de traduction ni d’étymologie (retourner les éléments correspondant aux mots répondant à la question) ? .//dico:entrée[not(.//dico:traduction) and not(.//dico:étymologie)]
+	- Quelle est la liste des homonymes ("homonyme" se dit d’un mot qui se prononce (homophone) ou s’écrit (homographe) de la même manière qu’un autre mais n’a pas le même sens ; retourner les éléments correspondant aux mots répondant à la question) ?
+		(Recherche des homophones : .//dico:entrée[(./dico:prononciation = ./preceding-sibling::dico:entrée/dico:prononciation) or (./dico:prononciation = ./following-sibling::dico:entrée/dico:prononciation)])
+		(Recherche des homographes : .//dico:entrée[count(./dico:significationEntrée) > 1])
+		(Donc, pour le tout, on a : .//dico:entrée[(./dico:prononciation = ./preceding-sibling::dico:entrée/dico:prononciation) or (./dico:prononciation = ./following-sibling::dico:entrée/dico:prononciation)])|(.//dico:entrée[count(./dico:significationEntrée) > 1])
+	- Quelle est la liste des mots liés à un autre mot qui est lui-même lié à eux (existence de cycles à 2 nœuds dans le graphe des liens hypertextes du dictionnaire ; retourner la chaîne de caractères représentant l’orthographe usuelle des mots répondant à la question) ? IMPOSSIBLE AVEC XPATH 1.0
+ -->
