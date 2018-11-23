@@ -20,3 +20,4 @@ Many notions are derived from XML. This is called the _**XML galaxy**_.
 2. "Espace_De_Nommage/" Folder : Nommage Branch
 3. "XML_Schema/" Folder : Xshema Branch
 4. "XPath/" Folder : XPath Branch
+5. "XSLT/" Folder : XSLT Branch
