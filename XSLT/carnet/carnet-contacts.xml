@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="carnet.xsl" type="text/xsl"?>
+<cnt:carnet xsi:schemaLocation="http://www.univ-amu.fr/XML/carnet carnet.xsd"
+			xmlns:cnt="http://www.univ-amu.fr/XML/carnet"
+			xmlns:com="http://www.univ-amu.fr/XML/commun"
+			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<cnt:contacts>
+		<cnt:contact siteDeTravail="MIAGE Aix-Marseille (site de Marseille/Ilot Du Bois)">
+			<com:coordonnéesRéduites>
+				<com:identité>
+					<com:dénominationPersonne>
+						<com:civilité>M.</com:civilité>
+						<com:prénomUsuel>Philippe</com:prénomUsuel>
+						<com:nom>RAMADOUR</com:nom>
+					</com:dénominationPersonne>
+				</com:identité>
+				<com:numTéléphone>01.01.01.01.01</com:numTéléphone>
+				<com:adresseMél>philippe.ramadour@univ-amu.fr</com:adresseMél>
+			</com:coordonnéesRéduites>
+		</cnt:contact>
+		<cnt:contact siteDeTravail="MIAGE Aix-Marseille (site d'Aix/Forbin)">
+			<com:coordonnéesRéduites>
+				<com:identité>
+					<com:dénominationPersonne>
+						<com:civilité>M.</com:civilité>
+						<com:prénomUsuel>Jean</com:prénomUsuel>
+						<com:nom>CAUSSANEL</com:nom>
+					</com:dénominationPersonne>
+				</com:identité>
+				<com:numTéléphone>01.01.01.01.02</com:numTéléphone>
+				<com:adresseMél>jean.caussanel@univ-amu.fr</com:adresseMél>
+			</com:coordonnéesRéduites>
+		</cnt:contact>
+		<cnt:contact siteDeTravail="MIAGE Aix-Marseille (site de Marseille/Ilot Du Bois)">
+			<com:coordonnéesRéduites>
+				<com:identité>
+					<com:dénominationPersonne>
+						<com:civilité>Mme</com:civilité>
+						<com:prénomUsuel>Nina</com:prénomUsuel>
+						<com:nom>RALIJAONA</com:nom>
+					</com:dénominationPersonne>
+				</com:identité>
+				<com:numTéléphone>02.02.02.02.01</com:numTéléphone>
+				<com:numFax>02.02.02.02.02</com:numFax>
+				<com:adresseMél>feg-miage-marseille@univ-amu.fr</com:adresseMél>
+			</com:coordonnéesRéduites>
+		</cnt:contact>
+		<cnt:contact siteDeTravail="Antenne LSIS de Polytech'GII">
+			<com:coordonnéesRéduites>
+				<com:identité>
+					<com:dénominationPersonne>
+						<com:civilité>M.</com:civilité>
+						<com:prénomUsuel>Sébastien</com:prénomUsuel>
+						<com:nom>FOURNIER</com:nom>
+					</com:dénominationPersonne>
+				</com:identité>
+				<com:numTéléphone>03.03.03.03.03</com:numTéléphone>
+				<com:adresseMél>sebastien.fournier@univ-amu.fr</com:adresseMél>
+			</com:coordonnéesRéduites>
+		</cnt:contact>
+	</cnt:contacts>
+	<cnt:entreprises>
+		<cnt:entreprise>
+			<com:nom>MIAGE Aix-Marseille</com:nom>
+			<cnt:listeSites>
+				<cnt:site>
+					<com:nom>MIAGE Aix-Marseille (site d'Aix/Forbin)</com:nom>
+					<com:adressePostale>
+						<com:précision>2ème étage</com:précision>
+						<com:complément>Bâtiment Austerlitz</com:complément>
+						<com:voie>
+							<com:numéroVoie>16</com:numéroVoie>
+							<com:typeVoie>allée</com:typeVoie>
+							<com:nom>Claude Forbin</com:nom>
+						</com:voie>
+						<com:localité>
+							<com:codePostal>13100</com:codePostal>
+							<com:commune>AIX-EN-PROVENCE</com:commune>
+						</com:localité>
+						<com:pays>FRANCE</com:pays>
+					</com:adressePostale>
+				</cnt:site>
+				<cnt:site>
+					<com:nom>MIAGE Aix-Marseille (site de Marseille/Du Bois)</com:nom>
+					<com:adressePostale>
+						<com:complément>Ilôt Du Bois</com:complément>
+						<com:voie>
+							<com:numéroVoie>5</com:numéroVoie>
+							<com:typeVoie>boulevard</com:typeVoie>
+							<com:nom>Maurice Bourdet</com:nom>
+						</com:voie>
+						<com:localité>
+							<com:codePostal>13205</com:codePostal>
+							<com:commune>MARSEILLE</com:commune>
+							<com:CEDEX>CEDEX 1</com:CEDEX>
+						</com:localité>
+						<com:pays>FRANCE</com:pays>
+					</com:adressePostale>
+				</cnt:site>
+			</cnt:listeSites>
+		</cnt:entreprise>
+		<cnt:entreprise>
+			<com:nom>Laboratoire des Sciences de l'Information et des Systèmes</com:nom>
+			<cnt:listeSites>
+				<cnt:site>
+					<com:nom>Antenne LSIS de Polytech'GII</com:nom>
+					<com:adressePostale>
+						<com:précision>Domaine Universitaire de Saint-Jérôme</com:précision>
+						<com:complément>Batiment Polytech'GII</com:complément>
+						<com:voie>
+							<com:typeVoie>avenue</com:typeVoie>
+							<com:nom>Escadrille Normandie-Niemen</com:nom>
+						</com:voie>
+						<com:localité>
+							<com:codePostal>13397</com:codePostal>
+							<com:commune>MARSEILLE</com:commune>
+							<com:CEDEX>CEDEX 20</com:CEDEX>
+						</com:localité>
+						<com:pays>FRANCE</com:pays>
+					</com:adressePostale>
+				</cnt:site>
+				<cnt:site>
+					<com:nom>Antenne LSIS de Luminy</com:nom>
+					<com:adressePostale>
+						<com:précision>Bâtiment Polytech</com:précision>
+						<com:complément>Case 925</com:complément>
+						<com:voie>
+							<com:numéroVoie>163</com:numéroVoie>
+							<com:typeVoie>avenue</com:typeVoie>
+							<com:nom>de Luminy</com:nom>
+						</com:voie>
+						<com:localité>
+							<com:codePostal>13288</com:codePostal>
+							<com:commune>MARSEILLE</com:commune>
+							<com:CEDEX>CEDEX 9</com:CEDEX>
+						</com:localité>
+						<com:pays>FRANCE</com:pays>
+					</com:adressePostale>
+				</cnt:site>
+			</cnt:listeSites>
+		</cnt:entreprise>
+	</cnt:entreprises>
+	<cnt:rendez-vous>
+		<cnt:rdv>
+			<cnt:personne>
+				<com:civilité>M.</com:civilité>
+				<com:prénomUsuel>Philippe</com:prénomUsuel>
+				<com:nom>RAMADOUR</com:nom>
+			</cnt:personne>
+			<cnt:personne>
+				<com:civilité>M.</com:civilité>
+				<com:prénomUsuel>Jean</com:prénomUsuel>
+				<com:nom>CAUSSANEL</com:nom>
+			</cnt:personne>
+			<cnt:date>2017-10-19</cnt:date>
+			<cnt:heureDébut>10:00:00</cnt:heureDébut>
+			<cnt:durée>P0Y0M0DT2H0M0S</cnt:durée>
+			<com:adressePostale>
+				<com:complément>Ilôt Du Bois</com:complément>
+				<com:voie>
+					<com:numéroVoie>5</com:numéroVoie>
+					<com:typeVoie>boulevard</com:typeVoie>
+					<com:nom>Maurice Bourdet</com:nom>
+				</com:voie>
+				<com:localité>
+					<com:codePostal>13205</com:codePostal>
+					<com:commune>MARSEILLE</com:commune>
+					<com:CEDEX>CEDEX 1</com:CEDEX>
+				</com:localité>
+				<com:pays>FRANCE</com:pays>
+			</com:adressePostale>
+		</cnt:rdv>
+		<cnt:rdv>
+			<cnt:personne>
+				<com:civilité>Mme</com:civilité>
+				<com:prénomUsuel>Nina</com:prénomUsuel>
+				<com:nom>RALIJAONA</com:nom>
+			</cnt:personne>
+			<cnt:date>2017-10-20</cnt:date>
+			<cnt:heureDébut>13:30:00</cnt:heureDébut>
+			<cnt:durée>P0Y0M0DT0H5M0S</cnt:durée>
+			<com:adressePostale>
+				<com:complément>Ilôt Du Bois</com:complément>
+				<com:voie>
+					<com:numéroVoie>5</com:numéroVoie>
+					<com:typeVoie>boulevard</com:typeVoie>
+					<com:nom>Maurice Bourdet</com:nom>
+				</com:voie>
+				<com:localité>
+					<com:codePostal>13205</com:codePostal>
+					<com:commune>MARSEILLE</com:commune>
+					<com:CEDEX>CEDEX 1</com:CEDEX>
+				</com:localité>
+				<com:pays>FRANCE</com:pays>
+			</com:adressePostale>
+		</cnt:rdv>
+		<cnt:rdv>
+			<cnt:personne>
+				<com:civilité>M.</com:civilité>
+				<com:prénomUsuel>Sébastien</com:prénomUsuel>
+				<com:nom>FOURNIER</com:nom>
+			</cnt:personne>
+			<cnt:personne>
+				<com:civilité>M.</com:civilité>
+				<com:prénomUsuel>Philippe</com:prénomUsuel>
+				<com:nom>RAMADOUR</com:nom>
+			</cnt:personne>
+			<cnt:personne>
+				<com:civilité>M.</com:civilité>
+				<com:prénomUsuel>Jean</com:prénomUsuel>
+				<com:nom>CAUSSANEL</com:nom>
+			</cnt:personne>
+			<cnt:date>2017-10-20</cnt:date>
+			<cnt:heureDébut>18:00:00</cnt:heureDébut>
+			<cnt:durée>P0Y0M0DT1H0M0S</cnt:durée>
+			<com:adressePostale>
+				<com:précision>Domaine Universitaire de Saint-Jérôme</com:précision>
+				<com:complément>Batiment Polytech'GII</com:complément>
+				<com:voie>
+					<com:typeVoie>avenue</com:typeVoie>
+					<com:nom>Escadrille Normandie-Niemen</com:nom>
+				</com:voie>
+				<com:localité>
+					<com:codePostal>13397</com:codePostal>
+					<com:commune>MARSEILLE</com:commune>
+					<com:CEDEX>CEDEX 20</com:CEDEX>
+				</com:localité>
+				<com:pays>FRANCE</com:pays>
+			</com:adressePostale>
+		</cnt:rdv>
+	</cnt:rendez-vous>
+</cnt:carnet>

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- édité avec XMLSpy v2018 (x64) (http://www.altova.com) par Philippe RAMADOUR (MIAGE Marseille) -->
+<xs:schema xmlns="http://www.univ-amu.fr/XML/carnet"
+			xmlns:cnt="http://www.univ-amu.fr/XML/carnet"
+			xmlns:xs="http://www.w3.org/2001/XMLSchema"
+			xmlns:com="http://www.univ-amu.fr/XML/commun"
+			targetNamespace="http://www.univ-amu.fr/XML/carnet"
+			elementFormDefault="qualified"
+			attributeFormDefault="unqualified">
+			
+	<xs:import namespace="http://www.univ-amu.fr/XML/commun" schemaLocation="../commun/commun.xsd"/>
+	<xs:element name="carnet">
+		<xs:annotation>
+			<xs:documentation>Carnet d'adresse professionnel</xs:documentation>
+		</xs:annotation>
+		<xs:complexType mixed="false">
+			<xs:sequence>
+				<xs:element name="contacts">
+					<xs:complexType mixed="false">
+						<xs:sequence>
+							<xs:element name="contact" minOccurs="0" maxOccurs="unbounded">
+								<xs:complexType mixed="false">
+									<xs:sequence>
+										<xs:element ref="com:coordonnéesRéduites"/>
+									</xs:sequence>
+									<xs:attribute name="siteDeTravail" type="com:chaîne100Type" use="required"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="entreprises">
+					<xs:complexType mixed="false">
+						<xs:sequence>
+							<xs:element name="entreprise" minOccurs="0" maxOccurs="unbounded">
+								<xs:complexType mixed="false">
+									<xs:sequence>
+										<xs:element ref="com:nom"/>
+										<xs:element name="listeSites">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="site" maxOccurs="unbounded">
+														<xs:complexType mixed="false">
+															<xs:sequence>
+																<xs:element ref="com:nom"/>
+																<xs:element ref="com:adressePostale"/>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+								<xs:unique name="siteUnique">
+									<xs:selector xpath=".//cnt:site"/>
+									<xs:field xpath="./com:nom"/>
+								</xs:unique>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="rendez-vous">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="rdv" minOccurs="0" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="personne" maxOccurs="unbounded">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element ref="com:civilité"/>
+													<xs:element ref="com:prénomUsuel"/>
+													<xs:element ref="com:nom"/>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="date" type="xs:date"/>
+										<xs:element name="heureDébut" type="xs:time"/>
+										<xs:element name="durée" type="xs:duration"/>
+										<xs:element ref="com:adressePostale"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+		<xs:unique name="contactUnique">
+			<xs:selector xpath=".//cnt:contact"/>
+			<xs:field xpath=".//com:nom"/>
+			<xs:field xpath=".//com:prénomUsuel"/>
+		</xs:unique>
+		<xs:unique name="entrepriseUnique">
+			<xs:selector xpath=".//cnt:entreprise"/>
+			<xs:field xpath="./com:nom"/>
+		</xs:unique>
+		<xs:key name="siteKey">
+			<xs:selector xpath=".//cnt:site"/>
+			<xs:field xpath="./com:nom"/>
+		</xs:key>
+		<xs:keyref name="siteDeTravail" refer="cnt:siteKey">
+			<xs:selector xpath=".//cnt:contact"/>
+			<xs:field xpath="./@siteDeTravail"/>
+		</xs:keyref>
+		<xs:key name="contactKey">
+			<xs:selector xpath=".//cnt:contact"/>
+			<xs:field xpath=".//com:civilité"/>
+			<xs:field xpath=".//com:prénomUsuel"/>
+			<xs:field xpath=".//com:nom"/>
+		</xs:key>
+		<xs:keyref name="personneKeyref" refer="cnt:contactKey">
+			<xs:selector xpath=".//cnt:rdv/cnt:personne"/>
+			<xs:field xpath="./com:civilité"/>
+			<xs:field xpath="./com:prénomUsuel"/>
+			<xs:field xpath="./com:nom"/>
+		</xs:keyref>
+	</xs:element>
+</xs:schema>
