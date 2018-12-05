@@ -35,8 +35,30 @@ class Controller
         session_status() === PHP_SESSION_NONE ? session_start() : $_SESSION[session_id()];
     }
 
+    /**
+     * Récupère et met en forme tout les messages stockés en session
+     * @return array tableau des messages succes / errors
+     */
     public function getFlashBag() : array
     {
-        return array();
+        $flashSuccess = null;
+        $flashError = null;
+
+        if(isset($_SESSION['flashBagMsgSuccess']) || !empty($_SESSION['flashBagMsgSuccess']))
+        {
+            $flashSuccess = "<div class='col-md-5 alert alert-success'>".$_SESSION['flashBagMsgSuccess']."</div>";
+        }
+
+        if(isset($_SESSION['flashBagMsgErrors']) || !empty($_SESSION['flashBagMsgErrors']))
+        {
+            $flashError = "<div class='col-md-5 alert alert-danger'>".$_SESSION['flashBagMsgErrors']."</div>";
+        }
+
+        $sessionFlash = array(
+            'success' => $flashSuccess,
+            'errors' => $flashError
+        );
+
+        return $sessionFlash;
     }
 }

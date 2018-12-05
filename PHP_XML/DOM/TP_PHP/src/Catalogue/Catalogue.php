@@ -17,8 +17,6 @@ use TP_PHP\Utils\Collection;
  */
 class Catalogue extends Controller
 {
-    // TODO transformer en variable session
-    private $message = null;
     private $document = null;
 
     /**
@@ -43,25 +41,27 @@ class Catalogue extends Controller
      */
     public function view() : void
     {
+        $this->getSession();
+        $flashBag = $this->getFlashBag();
         $CAEuro = $this->getChiffreAffaire("EURO");
         $CADollar = $this->getChiffreAffaire("DOLLAR");
         $CALivre = $this->getChiffreAffaire("LIVRE");
 
         $this->render(
             'CatalogueView',
-            array(
+            [
                 "CAEuro" => $CAEuro,
                 "CADollar" => $CADollar,
                 "CALivre" => $CALivre,
-                "message" => $this->message
-            ),
+                "success" => !empty($flashBag['success']) ? $flashBag['success'] : null,
+                "errors" => !empty($flashBag['errors']) ? $flashBag['errors'] : null
+            ],
             'Catalogue'
         );
     }
 
     public function getChiffreAffaire(string $typeMonnaie) : float
     {
-        $message = null;
         $collection = null;
         if($this->document != null) {
             $listProduit = $this->document->getElementsByTagNameNS("http://www.univ-amu.fr/XML/catalogue", "produit");
@@ -70,7 +70,8 @@ class Catalogue extends Controller
                 echo "<pre>", var_dump($collection), "</pre>";
             }
             else {
-                $this->message = "Pas de montant dans le document XML ".$this->document->baseURI;
+                $nomFichier = substr($this->document->baseURI, strrpos($this->document->baseURI, '/')+1, strlen($this->document->baseURI));
+                $_SESSION['flashBagMsgErrors'] = "<div class='row justify-content-start'>Le fichier $nomFichier ne contient pas de montant...</div>";
             }
         }
         else {
@@ -156,7 +157,7 @@ class Catalogue extends Controller
                 echo "MONTANT : $montant->nodeValue avec quantité de $quantite <br />";
             }
             else {
-                $this->message = "Type de monnaie non-spécifié [EURO | DOLLAR US | LIVRE]";
+                $_SESSION['flashBagMsgErrors'] = "<div class='row justify-content-start'>Type de monnaie non-spécifié (EURO | DOLLAR US | LIVRE STERLING)</div>";
             }
         }
         return $collection;
