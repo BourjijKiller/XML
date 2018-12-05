@@ -44,8 +44,11 @@ class Catalogue extends Controller
         $this->getSession();
         $flashBag = $this->getFlashBag();
         $CAEuro = $this->getChiffreAffaire("EURO");
-        $CADollar = $this->getChiffreAffaire("DOLLAR");
-        $CALivre = $this->getChiffreAffaire("LIVRE");
+        // TODO Debug
+        $CADollar = null;
+        $CALivre = null;
+        //$CADollar = $this->getChiffreAffaire("DOLLAR");
+        //$CALivre = $this->getChiffreAffaire("LIVRE");
 
         $this->render(
             'CatalogueView',
@@ -63,11 +66,21 @@ class Catalogue extends Controller
     public function getChiffreAffaire(string $typeMonnaie) : float
     {
         $collection = null;
+        $CA = 0.0;
         if($this->document != null) {
             $listProduit = $this->document->getElementsByTagNameNS("http://www.univ-amu.fr/XML/catalogue", "produit");
             if($listProduit->count() > 0) {
                 $collection = $this->getCollectionMontants($listProduit);
-                echo "<pre>", var_dump($collection), "</pre>";
+                var_dump($collection->getItem("EURO"));
+                switch ($typeMonnaie)
+                {
+                    case "EURO":
+                        break;
+                    case "DOLLAR":
+                        break;
+                    case "LIVRE":
+                        break;
+                }
             }
             else {
                 $nomFichier = substr($this->document->baseURI, strrpos($this->document->baseURI, '/')+1, strlen($this->document->baseURI));
@@ -79,7 +92,7 @@ class Catalogue extends Controller
         }
 
         // TODO Calcul chiffre d'affaires
-        return 0.0;
+        return $CA;
     }
 
     /**
@@ -153,8 +166,7 @@ class Catalogue extends Controller
             if($montant->parentNode->HasAttributes()) {
                 $monnaie = null;
                 $montant->parentNode->getAttributeNode("devise")->value === "EURO" ? $monnaie = "EURO" : $monnaie = "DOLLAR";
-                $collection->addItem($montant->nodeValue, $monnaie);
-                echo "MONTANT : $montant->nodeValue avec quantité de $quantite <br />";
+                $collection->addItem($quantite, $montant->nodeValue, $monnaie);
             }
             else {
                 $_SESSION['flashBagMsgErrors'] = "<div class='row justify-content-start'>Type de monnaie non-spécifié (EURO | DOLLAR US | LIVRE STERLING)</div>";

@@ -27,12 +27,13 @@ class Collection
 
     /**
      * Ajoute un objet à la collection
-     * @param $obj valeur à ajouter
+     * @param $obj1 Quantité de produits
+     * @param $obj2 Prix unitaire
      * @param $key valeur de la clé
      */
-    public function addItem($obj, $key) : void
+    public function addItem($obj1, $obj2, $key) : void
     {
-        $this->collection[$key][] = $obj;
+        $this->collection[$key][] = $obj1.";".$obj2;
     }
 
     /**
@@ -53,10 +54,9 @@ class Collection
     /**
      * Récupère un item dans la collection en fonction de la clé spécifiée
      * @param $key clé de l'objet
-     * @return mixed objet
      * @throws \Exception
      */
-    public function getItem($key) : self
+    public function getItem($key)
     {
         if(isset($this->collection[$key])) {
             return $this->collection[$key];
