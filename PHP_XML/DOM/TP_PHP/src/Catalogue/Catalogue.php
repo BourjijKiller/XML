@@ -43,12 +43,10 @@ class Catalogue extends Controller
     {
         $this->getSession();
         $flashBag = $this->getFlashBag();
-        $CAEuro = $this->getChiffreAffaire("EURO");
-        // TODO Debug
+        $CAEuro = $this->getChiffreAffaires("EURO");
+        // TODO Remplacer
         $CADollar = null;
         $CALivre = null;
-        //$CADollar = $this->getChiffreAffaire("DOLLAR");
-        //$CALivre = $this->getChiffreAffaire("LIVRE");
 
         $this->render(
             'CatalogueView',
@@ -63,7 +61,14 @@ class Catalogue extends Controller
         );
     }
 
-    public function getChiffreAffaire(string $typeMonnaie) : float
+    /**
+     * Récupère le chiffre d'affaires en fonction des produits et des quantités de produits
+     * Utilise la méthode @see CAWithConvertion pour le calcul avec taux de change entre monnaie
+     * @param string $typeMonnaie Calcul du chiffre d'affaires en fonction du type de monnaie désiré
+     * @return string chiffre d'affaires
+     * @throws \Exception XML Document is NULL
+     */
+    public function getChiffreAffaires(string $typeMonnaie) : string
     {
         $collection = null;
         $CA = 0.0;
@@ -71,14 +76,16 @@ class Catalogue extends Controller
             $listProduit = $this->document->getElementsByTagNameNS("http://www.univ-amu.fr/XML/catalogue", "produit");
             if($listProduit->count() > 0) {
                 $collection = $this->getCollectionMontants($listProduit);
-                var_dump($collection->getItem("EURO"));
                 switch ($typeMonnaie)
                 {
                     case "EURO":
+                        $this->CAWithConvertion($collection, $CA, "EURO");
                         break;
                     case "DOLLAR":
+                        $this->CAWithConvertion($collection, $CA, "DOLLAR");
                         break;
                     case "LIVRE":
+                        $this->CAWithConvertion($collection, $CA, "LIVRE");
                         break;
                 }
             }
@@ -90,18 +97,27 @@ class Catalogue extends Controller
         else {
             throw new \Exception("XML Document is NULL");
         }
+        return number_format($CA, 2, ',', '.');
+    }
 
-        // TODO Calcul chiffre d'affaires
-        return $CA;
+    public function CAWithConvertion(Collection $collection, float &$CA, string $devise) : void
+    {
+        foreach ($collection->keys() as $key) {
+            echo "<pre>", var_dump($collection->getItem($key)), "</pre>";
+            // TODO Calcul du CA en fonction du taux de change en fonction des monnaies
+            //$quantite = substr($item, 0, strpos($item, ';'));
+            //$montant = substr($item, strrpos($item, ';')+1);
+            //$CA += $collection->getKeyFromValue($item) == $devise ? intval($quantite) * floatval($montant) : intval($quantite) * $this->convert($collection->getKeyFromValue($item), $devise, floatval($montant));
+        }
     }
 
     /**
-     * Converti un montant dollar | livre en euro
-     * @param string $convertTo Monnaie de base
-     * @param string $devise EURO | DOLLAR US
+     * Converti un montant en Dollar, Euro ou Livre Sterling
+     * @param string $convertFrom Monnaie de référence
+     * @param string $devise EURO | DOLLAR | LIVRE
      * @param float $montant montant à convertir
      * @return float montant après conversion
-     * @throws \Exception
+     * @throws \Exception Montant NULL
      */
     public function convert(string $convertFrom, string $devise, float $montant) : float
     {
@@ -148,14 +164,14 @@ class Catalogue extends Controller
             return $montantApresConversion;
         }
         else {
-            throw new \Exception("Montant null");
+            throw new \Exception("Montant NULL");
         }
     }
 
     /**
-     * Récupère et ajout les montans dans la collection, en fonction de la devise
+     * Récupère et ajout les montants dans une nouvelle collection, avec la devise comme clé de chaque index
      * @param \DOMNodeList $listProduit montants
-     * @return Collection [devise] => {montants}
+     * @return Collection [devise] => array{quantite;montant}
      */
     public function getCollectionMontants(\DOMNodeList $listProduit) : Collection
     {

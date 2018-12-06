@@ -49,15 +49,15 @@
                                             Chiffre d'affaires
                                         </th>
                                         <td>Euro (€)</td>
-                                        <td><?= $CAEuro ?></td>
+                                        <td><?= $CAEuro ?> €</td>
                                     </tr>
                                     <tr class="text-center">
                                         <td>Dollar US ($)</td>
-                                        <td><?= $CADollar ?></td>
+                                        <td><?= $CADollar ?> $</td>
                                     </tr>
                                     <tr class="text-center">
                                         <td>Livre Sterling (£)</td>
-                                        <td><?= $CALivre ?></td>
+                                        <td>£ <?= $CALivre ?></td>
                                     </tr>
                                 </tbody>
                             </table>

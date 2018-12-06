@@ -22,7 +22,7 @@ class Collection
      */
     public function __construct()
     {
-        $this->collection= array();
+        $this->collection = array();
     }
 
     /**
@@ -39,7 +39,7 @@ class Collection
     /**
      * Supprime un objet à la collection
      * @param $key valeur de la clé
-     * @throws \Exception
+     * @throws \Exception Si la clé est inexistante
      */
     public function removeItem($key) : void
     {
@@ -54,7 +54,8 @@ class Collection
     /**
      * Récupère un item dans la collection en fonction de la clé spécifiée
      * @param $key clé de l'objet
-     * @throws \Exception
+     * @return mixed l'objet correspondant à la clé si cette dernière existe
+     * @throws \Exception Si la clé n'existe pas
      */
     public function getItem($key)
     {
@@ -67,8 +68,8 @@ class Collection
     }
 
     /**
-     * Renvoie la taille de la collection
-     * @return int
+     * Calcul la taille de la collection
+     * @return int taille
      */
     public function length() : int
     {
@@ -76,8 +77,34 @@ class Collection
     }
 
     /**
-     * Retourne l'ensemble des clés de la collection
-     * @return array
+     * Récupère la clé de la collection associée à la valeur courante
+     * @param $value valeur
+     * @return int|null|string key
+     * @throws \Exception Si la valeur n'existe pas dans la collection
+     */
+    public function getKeyFromValue($value)
+    {
+        if(in_array($value, current($this->collection))) {
+            return key($this->collection);
+        }
+        else {
+            throw new \Exception("Value $value not exist in array");
+        }
+    }
+
+    /**
+     * Vérifie si la clé spécifiée existe dans la collection
+     * @param $key clé
+     * @return bool VRAI ou FAUX
+     */
+    public function keyExist($key) : bool
+    {
+        return array_key_exists($key, $this->collection);
+    }
+
+    /**
+     * Récupère tout les clés de la collection
+     * @return array clés
      */
     public function keys() : array
     {

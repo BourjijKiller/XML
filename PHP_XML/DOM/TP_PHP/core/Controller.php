@@ -37,7 +37,7 @@ class Controller
 
     /**
      * Récupère et met en forme tout les messages stockés en session
-     * @return array tableau des messages succes / errors
+     * @return array tableau des messages success / errors
      */
     public function getFlashBag() : array
     {
