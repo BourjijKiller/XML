@@ -46,13 +46,13 @@ class Controller
 
         if(isset($_SESSION['flashBagMsgSuccess']) || !empty($_SESSION['flashBagMsgSuccess']))
         {
-            $flashSuccess = "<div class='col-md-5 alert alert-success'>".$_SESSION['flashBagMsgSuccess']."</div>";
+            $flashSuccess = "<div class='col-md-6 alert alert-success'>".$_SESSION['flashBagMsgSuccess']."</div>";
             unset($_SESSION['flashBagMsgSuccess']);
         }
 
         if(isset($_SESSION['flashBagMsgErrors']) || !empty($_SESSION['flashBagMsgErrors']))
         {
-            $flashError = "<div class='col-md-5 alert alert-danger'>".$_SESSION['flashBagMsgErrors']."</div>";
+            $flashError = "<div class='col-md-6 alert alert-danger'>".$_SESSION['flashBagMsgErrors']."</div>";
             unset($_SESSION['flashBagMsgErrors']);
         }
 

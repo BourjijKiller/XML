@@ -18,6 +18,7 @@ use TP_PHP\Utils\Collection;
 class Catalogue extends Controller
 {
     private $document = null;
+    private $xPath = null;
 
     /**
      * Catalogue constructor.
@@ -29,6 +30,7 @@ class Catalogue extends Controller
         if(file_exists($catalogueXML)) {
             $this->document = new \DOMDocument();
             $this->document->load($catalogueXML);
+            $this->xPath = new \DOMXPath($this->document);
         }
         else {
             throw new \Exception("File Not Found");
@@ -44,9 +46,8 @@ class Catalogue extends Controller
         $this->getSession();
         $flashBag = $this->getFlashBag();
         $CAEuro = $this->getChiffreAffaires("EURO");
-        // TODO Remplacer
-        $CADollar = null;
-        $CALivre = null;
+        $CADollar = $this->getChiffreAffaires("DOLLAR");
+        $CALivre = $this->getChiffreAffaires("LIVRE");
 
         $this->render(
             'CatalogueView',
@@ -91,7 +92,7 @@ class Catalogue extends Controller
             }
             else {
                 $nomFichier = substr($this->document->baseURI, strrpos($this->document->baseURI, '/')+1, strlen($this->document->baseURI));
-                $_SESSION['flashBagMsgErrors'] = "<div class='row justify-content-start'>Le fichier $nomFichier ne contient pas de montant...</div>";
+                $_SESSION['flashBagMsgErrors'] = "<div class='text-center'>Le fichier $nomFichier ne contient pas de montant...</div>";
             }
         }
         else {
@@ -103,11 +104,11 @@ class Catalogue extends Controller
     public function CAWithConvertion(Collection $collection, float &$CA, string $devise) : void
     {
         foreach ($collection->keys() as $key) {
-            echo "<pre>", var_dump($collection->getItem($key)), "</pre>";
-            // TODO Calcul du CA en fonction du taux de change en fonction des monnaies
-            //$quantite = substr($item, 0, strpos($item, ';'));
-            //$montant = substr($item, strrpos($item, ';')+1);
-            //$CA += $collection->getKeyFromValue($item) == $devise ? intval($quantite) * floatval($montant) : intval($quantite) * $this->convert($collection->getKeyFromValue($item), $devise, floatval($montant));
+            foreach ($collection->getItem($key) as $item) {
+                $quantite = substr($item, 0, strpos($item, ';'));
+                $montant = substr($item, strrpos($item, ';')+1);
+                $CA += $key == $devise ? intval($quantite) * floatval($montant) : intval($quantite) * $this->convert($key, $devise, floatval($montant));
+            }
         }
     }
 
@@ -185,7 +186,10 @@ class Catalogue extends Controller
                 $collection->addItem($quantite, $montant->nodeValue, $monnaie);
             }
             else {
-                $_SESSION['flashBagMsgErrors'] = "<div class='row justify-content-start'>Type de monnaie non-spécifié (EURO | DOLLAR US | LIVRE STERLING)</div>";
+                $nodeName = $this->xPath->evaluate('name(.//cat:prix)', $produit);
+                $nodeValue = $this->xPath->evaluate('string(.//cat:prix)', $produit);
+                $_SESSION['flashBagMsgErrors'] = "<div class='text-center'>Type de monnaie non-spécifié (EURO | DOLLAR US | LIVRE STERLING). <br />
+                                                  Le noeud ".$nodeName."(".$nodeValue.") du fichier XML doit contenir une devise en attribut.</div>";
             }
         }
         return $collection;

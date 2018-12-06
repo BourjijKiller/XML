@@ -23,7 +23,6 @@
                 </h1>
                 <hr style="margin-top: 30px;">
             </div>
-            <?= $errors ?>
             <?php if ($errors == null): ?>
                 <div class="card">
                     <div class="card-header" style="background-color: rgba(116, 124, 255, 0.4);">
@@ -63,6 +62,10 @@
                             </table>
                         </div>
                     </div>
+                </div>
+            <?php else: ?>
+                <div class="row justify-content-center">
+                    <?= $errors ?>
                 </div>
             <?php endif; ?>
         </div>
