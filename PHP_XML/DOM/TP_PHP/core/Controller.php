@@ -41,18 +41,22 @@ class Controller
      */
     public function getFlashBag() : array
     {
-        $flashSuccess = null;
-        $flashError = null;
+        $flashSuccess = array();
+        $flashError = array();
 
-        if(isset($_SESSION['flashBagMsgSuccess']) || !empty($_SESSION['flashBagMsgSuccess']))
+        if(isset($_SESSION['flashBagMsgSuccess']) && !empty($_SESSION['flashBagMsgSuccess']))
         {
-            $flashSuccess = "<div class='col-md-6 alert alert-success'>".$_SESSION['flashBagMsgSuccess']."</div>";
+            foreach ($_SESSION['flashBagMsgSuccess'] as $message) {
+                array_push($flashSuccess, "<div class='col-md-6 alert alert-success'>".$message."</div>");
+            }
             unset($_SESSION['flashBagMsgSuccess']);
         }
 
-        if(isset($_SESSION['flashBagMsgErrors']) || !empty($_SESSION['flashBagMsgErrors']))
+        if(isset($_SESSION['flashBagMsgErrors']) && !empty($_SESSION['flashBagMsgErrors']))
         {
-            $flashError = "<div class='col-md-6 alert alert-danger'>".$_SESSION['flashBagMsgErrors']."</div>";
+            foreach ($_SESSION['flashBagMsgErrors'] as $message) {
+                array_push($flashError, "<div class='col-md-6 alert alert-danger'>".$message."</div>");
+            }
             unset($_SESSION['flashBagMsgErrors']);
         }
 
@@ -60,7 +64,6 @@ class Controller
             'success' => $flashSuccess,
             'errors' => $flashError
         );
-
         return $sessionFlash;
     }
 }

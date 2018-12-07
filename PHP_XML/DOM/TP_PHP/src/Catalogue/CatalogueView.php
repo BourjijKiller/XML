@@ -23,8 +23,13 @@
                 </h1>
                 <hr style="margin-top: 30px;">
             </div>
-            <?php if ($errors == null): ?>
-                <div class="card">
+            <?php if ($errors == null) :
+                foreach ($success as $value) : ?>
+                    <div class="row justify-content-center">
+                        <?= $value ?>
+                    </div>
+                <?php endforeach; ?>
+                <div class="card mt-3">
                     <div class="card-header" style="background-color: rgba(116, 124, 255, 0.4);">
                         Chiffre d'affaires
                     </div>
@@ -63,10 +68,12 @@
                         </div>
                     </div>
                 </div>
-            <?php else: ?>
-                <div class="row justify-content-center">
-                    <?= $errors ?>
-                </div>
+            <?php else:
+                foreach ($errors as $error) : ?>
+                    <div class="row justify-content-center">
+                        <?= $error ?>
+                    </div>
+                <?php endforeach; ?>
             <?php endif; ?>
         </div>
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"/>

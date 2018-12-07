@@ -19,6 +19,7 @@ class Catalogue extends Controller
 {
     private $document = null;
     private $xPath = null;
+    private $nomFichier = null;
 
     /**
      * Catalogue constructor.
@@ -26,11 +27,15 @@ class Catalogue extends Controller
      */
     public function __construct()
     {
+        // Initialisation de la session au début
+        $this->getSession();
         $catalogueXML = $_SERVER['DOCUMENT_ROOT']."/xml/CatalogueXML/catalogue.xml";
         if(file_exists($catalogueXML)) {
             $this->document = new \DOMDocument();
             $this->document->load($catalogueXML);
             $this->xPath = new \DOMXPath($this->document);
+            $this->nomFichier = substr($this->document->baseURI, strrpos($this->document->baseURI, '/')+1, strlen($this->document->baseURI));
+            $_SESSION['flashBagMsgSuccess']['fileLoad'] = "<div class='text-center'> Le fichier $this->nomFichier a été chargé avec succès ! </div>";
         }
         else {
             throw new \Exception("File Not Found");
@@ -43,7 +48,6 @@ class Catalogue extends Controller
      */
     public function view() : void
     {
-        $this->getSession();
         $flashBag = $this->getFlashBag();
         $CAEuro = $this->getChiffreAffaires("EURO");
         $CADollar = $this->getChiffreAffaires("DOLLAR");
@@ -55,8 +59,8 @@ class Catalogue extends Controller
                 "CAEuro" => $CAEuro,
                 "CADollar" => $CADollar,
                 "CALivre" => $CALivre,
-                "success" => !empty($flashBag['success']) ? $flashBag['success'] : null,
-                "errors" => !empty($flashBag['errors']) ? $flashBag['errors'] : null
+                "success" => count($flashBag['success']) > 0 ? $flashBag['success'] : null,
+                "errors" => count($flashBag['errors']) > 0 ? $flashBag['errors'] : null
             ],
             'Catalogue'
         );
@@ -91,8 +95,7 @@ class Catalogue extends Controller
                 }
             }
             else {
-                $nomFichier = substr($this->document->baseURI, strrpos($this->document->baseURI, '/')+1, strlen($this->document->baseURI));
-                $_SESSION['flashBagMsgErrors'] = "<div class='text-center'>Le fichier $nomFichier ne contient pas de montant...</div>";
+                $_SESSION['flashBagMsgErrors']['missingMontant'] = "<div class='text-center'>Le fichier $this->nomFichier ne contient pas de montant...</div>";
             }
         }
         else {
@@ -188,7 +191,7 @@ class Catalogue extends Controller
             else {
                 $nodeName = $this->xPath->evaluate('name(.//cat:prix)', $produit);
                 $nodeValue = $this->xPath->evaluate('string(.//cat:prix)', $produit);
-                $_SESSION['flashBagMsgErrors'] = "<div class='text-center'>Type de monnaie non-spécifié (EURO | DOLLAR US | LIVRE STERLING). <br />
+                $_SESSION['flashBagMsgErrors']['missingDevise'] = "<div class='text-center'>Type de monnaie non-spécifié (EURO | DOLLAR US | LIVRE STERLING). <br />
                                                   Le noeud ".$nodeName."(".$nodeValue.") du fichier XML doit contenir une devise en attribut.</div>";
             }
         }
