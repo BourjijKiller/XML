@@ -10,6 +10,7 @@ namespace TP_PHP\src\Catalogue;
 
 use TP_PHP\core\Controller;
 use TP_PHP\Utils\Collection;
+use TP_PHP\Utils\Produit;
 
 /**
  * Class Catalogue
@@ -52,6 +53,7 @@ class Catalogue extends Controller
         $CAEuro = $this->getChiffreAffaires("EURO");
         $CADollar = $this->getChiffreAffaires("DOLLAR");
         $CALivre = $this->getChiffreAffaires("LIVRE");
+        $catalogueWithProd = $this->getCatalogue();
 
         $this->render(
             'CatalogueView',
@@ -59,6 +61,7 @@ class Catalogue extends Controller
                 "CAEuro" => $CAEuro,
                 "CADollar" => $CADollar,
                 "CALivre" => $CALivre,
+                "catalogue" => $catalogueWithProd,
                 "success" => count($flashBag['success']) > 0 ? $flashBag['success'] : null,
                 "errors" => count($flashBag['errors']) > 0 ? $flashBag['errors'] : null
             ],
@@ -95,7 +98,7 @@ class Catalogue extends Controller
                 }
             }
             else {
-                $_SESSION['flashBagMsgErrors']['missingMontant'] = "<div class='text-center'>Le fichier $this->nomFichier ne contient pas de montant...</div>";
+                $_SESSION['flashBagMsgErrors']['missingMontant'] = "<div class='text-center'>Le fichier $this->nomFichier ne contient pas de produit...</div>";
             }
         }
         else {
@@ -104,6 +107,13 @@ class Catalogue extends Controller
         return number_format($CA, 2, ',', '.');
     }
 
+    /**
+     * Calcul le chiffre d'affaires en tenant compte du taux de change entre les devises
+     * @param Collection $collection tableau associatif contenant pour chaque devises, les montants et quantités
+     * @param float $CA Chiffre d'affaires (passage par référence)
+     * @param string $devise Type de monnaie pour la conversion
+     * @throws \Exception
+     */
     public function CAWithConvertion(Collection $collection, float &$CA, string $devise) : void
     {
         foreach ($collection->keys() as $key) {
@@ -186,7 +196,7 @@ class Catalogue extends Controller
             if($montant->parentNode->HasAttributes()) {
                 $monnaie = null;
                 $montant->parentNode->getAttributeNode("devise")->value === "EURO" ? $monnaie = "EURO" : $monnaie = "DOLLAR";
-                $collection->addItem($quantite, $montant->nodeValue, $monnaie);
+                $collection->addItem($quantite, $monnaie, $montant->nodeValue);
             }
             else {
                 $nodeName = $this->xPath->evaluate('name(.//cat:prix)', $produit);
@@ -196,5 +206,33 @@ class Catalogue extends Controller
             }
         }
         return $collection;
+    }
+
+    /**
+     * Parcours le catalogue avec des expressions XPath et stock chaque produits dans une collection d'objets
+     * La collection stock des objets de types @uses Produit
+     * @return Collection
+     */
+    public function getCatalogue() : Collection
+    {
+        $results = new Collection();
+        foreach ($this->xPath->evaluate('.//cat:produit') as $item) {
+            $results->addItem(new Produit(
+                $this->xPath->evaluate('string(.//cat:désignation/text())', $item),
+                $this->xPath->evaluate('string(.//@référence)', $item),
+                intval($this->xPath->evaluate('string(.//cat:quantitéStock/text())', $item)),
+                number_format(floatval($this->xPath->evaluate('string(.//cat:montant/text())', $item)), 2, ',', '.'),
+                $this->xPath->evaluate('string(.//cat:prix/@devise)', $item)
+            ), $this->xPath->evaluate('string(../cat:nom/text())', $item));
+        }
+
+        if($results->length() > 0) {
+            $_SESSION['flashBagMsgSuccess']['catalogueOk'] = "<div class='text-center'>Affichage du catalogue </div>";
+        }
+        else {
+            $_SESSION['flashBagMsgErrors']['catalogueVide'] = "<div class='text-center'>Le catalogue est vide</div>";
+            $results = null;
+        }
+        return $results;
     }
 }

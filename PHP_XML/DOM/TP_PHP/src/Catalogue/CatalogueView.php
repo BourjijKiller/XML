@@ -23,13 +23,11 @@
                 </h1>
                 <hr style="margin-top: 30px;">
             </div>
-            <?php if ($errors == null) :
-                foreach ($success as $value) : ?>
-                    <div class="row justify-content-center">
-                        <?= $value ?>
-                    </div>
-                <?php endforeach; ?>
-                <div class="card mt-3">
+            <?php if ($errors == null) : ?>
+                <div class="row justify-content-center">
+                    <?= $success[1] ?>
+                </div>
+                <div class="card my-4">
                     <div class="card-header" style="background-color: rgba(116, 124, 255, 0.4);">
                         Chiffre d'affaires
                     </div>
@@ -63,6 +61,69 @@
                                         <td>Livre Sterling (£)</td>
                                         <td>£ <?= $CALivre ?></td>
                                     </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <?= $success[0] ?>
+                </div>
+                <div class="card my-3">
+                    <div class="card-header" style="background-color: rgba(116, 124, 255, 0.4);">
+                        Contenu du catalogue
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered border-contacts">
+                                <thead>
+                                    <tr class="table-warning text-center">
+                                        <th scope="col">
+                                            Famille
+                                        </th>
+                                        <th scope="col">
+                                            Désignation
+                                        </th>
+                                        <th scope="col">
+                                            Référence
+                                        </th>
+                                        <th scope="col">
+                                            Quantité en stock
+                                        </th>
+                                        <th scope="col">
+                                            Prix unitaire
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach ($catalogue->keys() as $key) :
+                                            foreach ($catalogue->getItem($key) as $value) : ?>
+                                                <tr class="text-center">
+                                                    <th>
+                                                        <?= $key ?>
+                                                    </th>
+                                                    <td>
+                                                        <?= $value->getDesignation() ?>
+                                                    </td>
+                                                    <td>
+                                                        <?= $value->getReference() ?>
+                                                    </td>
+                                                    <td>
+                                                        <?= $value->getQuantite() ?>
+                                                    </td>
+                                                    <td>
+                                                        <?php $value->setDevise($value->getDevise());
+                                                         if ($value->getDevise() == '£') {
+                                                             echo $value->getDevise()." ".$value->getPrixUnitaire();
+                                                         }
+                                                         else {
+                                                             echo $value->getPrixUnitaire()." ".$value->getDevise();
+                                                         }
+                                                         ?>
+                                                    </td>
+                                                </tr>
+                                            <?php endforeach;
+                                    endforeach; ?>
                                 </tbody>
                             </table>
                         </div>

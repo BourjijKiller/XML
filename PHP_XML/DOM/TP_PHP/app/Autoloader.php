@@ -28,6 +28,7 @@ class Autoloader
                 require_once __DIR__.'/../core/'.$className.'.php';
                 break;
             case 'Collection':
+            case 'Produit':
                 require_once  __DIR__ . '/../utils/' .$className.'.php';
                 break;
             default:

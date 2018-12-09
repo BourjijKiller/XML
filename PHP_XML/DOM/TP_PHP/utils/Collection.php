@@ -27,13 +27,13 @@ class Collection
 
     /**
      * Ajoute un objet à la collection
-     * @param $obj1 Quantité de produits
-     * @param $obj2 Prix unitaire
-     * @param $key valeur de la clé
+     * @param $obj1
+     * @param $key
+     * @param null $obj2
      */
-    public function addItem($obj1, $obj2, $key) : void
+    public function addItem($obj1, $key, $obj2 = null) : void
     {
-        $this->collection[$key][] = $obj1.";".$obj2;
+        $obj2 == null ? $this->collection[$key][] = $obj1 : $this->collection[$key][] = $obj1.";".$obj2;
     }
 
     /**
