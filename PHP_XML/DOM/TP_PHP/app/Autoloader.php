@@ -29,6 +29,10 @@ class Autoloader
                 break;
             case 'Collection':
             case 'Produit':
+            case 'Formation':
+            case 'Semestre':
+            case 'UE':
+            case 'Module':
                 require_once  __DIR__ . '/../utils/' .$className.'.php';
                 break;
             default:

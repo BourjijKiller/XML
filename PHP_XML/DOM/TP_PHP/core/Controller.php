@@ -19,7 +19,7 @@ class Controller
      * @param $array paramètre(s) à passer à la vue
      * @param $folderView nom du dossier racine
      */
-    public function render($view, $array, $folderView) : void
+    public function render(string $view, array $array, string $folderView) : void
     {
         ob_start();
         extract($array);

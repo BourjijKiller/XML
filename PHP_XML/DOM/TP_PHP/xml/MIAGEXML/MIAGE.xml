@@ -1,0 +1,706 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<miage:MIAGE xmlns:miage="http://www.univ-amu.fr/XML/MIAGE" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.univ-amu.fr/XML/MIAGE ./MIAGE.xsd">
+	<miage:formation niveau="L3">
+		<miage:intitulé>Licence Mathématiques-Informatique parcours MIAGE</miage:intitulé>
+		<miage:semestre numéro="S1">
+			<miage:UE type="obligatoire">
+				<miage:intitulé>Théorie des organisations et Marketing</miage:intitulé>
+				<miage:ECTS>6</miage:ECTS>
+				<miage:module>
+					<miage:intitulé>Théorie des organisations et nouvelles technologies</miage:intitulé>
+					<miage:heures>
+						<miage:CM>15</miage:CM>
+						<miage:TDTP>15</miage:TDTP>
+					</miage:heures>
+				</miage:module>
+				<miage:module>
+					<miage:intitulé>Marketing commercial</miage:intitulé>
+					<miage:heures>
+						<miage:CM>20</miage:CM>
+						<miage:TDTP>10</miage:TDTP>
+					</miage:heures>
+				</miage:module>
+			</miage:UE>
+			<miage:UE type="obligatoire">
+				<miage:intitulé>Outils d'aide à la décision</miage:intitulé>
+				<miage:ECTS>6</miage:ECTS>
+				<miage:module>
+					<miage:intitulé>Recherche opérationnelle</miage:intitulé>
+					<miage:heures>
+						<miage:CM>15</miage:CM>
+						<miage:TDTP>15</miage:TDTP>
+					</miage:heures>
+				</miage:module>
+				<miage:module>
+					<miage:intitulé>Statistique et analyse de données</miage:intitulé>
+					<miage:heures>
+						<miage:CM>15</miage:CM>
+						<miage:TDTP>15</miage:TDTP>
+					</miage:heures>
+				</miage:module>
+			</miage:UE>
+			<miage:UE type="obligatoire">
+				<miage:intitulé>Informatique 1</miage:intitulé>
+				<miage:ECTS>6</miage:ECTS>
+				<miage:module>
+					<miage:intitulé>Programmation événementielle / VB</miage:intitulé>
+					<miage:heures>
+						<miage:CM>20</miage:CM>
+						<miage:TDTP>40</miage:TDTP>
+					</miage:heures>
+				</miage:module>
+			</miage:UE>
+			<miage:UE type="obligatoire">
+				<miage:intitulé>Informatique 2</miage:intitulé>
+				<miage:ECTS>6</miage:ECTS>
+				<miage:module>
+					<miage:intitulé>Algorithmique</miage:intitulé>
+					<miage:heures>
+						<miage:CM>20</miage:CM>
+						<miage:TDTP>40</miage:TDTP>
+					</miage:heures>
+				</miage:module>
+			</miage:UE>
+			<miage:UE type="obligatoire">
+				<miage:intitulé>Projet</miage:intitulé>
+				<miage:ECTS>6</miage:ECTS>
+				<miage:module>
+					<miage:intitulé>Gestion de projets</miage:intitulé>
+					<miage:heures>
+						<miage:CM>15</miage:CM>
+						<miage:TDTP>15</miage:TDTP>
+					</miage:heures>
+				</miage:module>
+				<miage:module>
+					<miage:intitulé>Projet</miage:intitulé>
+					<miage:heures>
+						<miage:CM>0</miage:CM>
+						<miage:TDTP>30</miage:TDTP>
+					</miage:heures>
+				</miage:module>
+			</miage:UE>
+		</miage:semestre>
+		<miage:semestre numéro="S2">
+			<miage:UE type="obligatoire">
+				<miage:intitulé>Systèmes d'information</miage:intitulé>
+				<miage:ECTS>6</miage:ECTS>
+				<miage:module>
+					<miage:intitulé>Conception de systèmes d'information</miage:intitulé>
+					<miage:heures>
+						<miage:CM>30</miage:CM>
+						<miage:TDTP>30</miage:TDTP>
+					</miage:heures>
+				</miage:module>
+			</miage:UE>
+			<miage:UE type="obligatoire">
+				<miage:intitulé>Informatique 3</miage:intitulé>
+				<miage:ECTS>6</miage:ECTS>
+				<miage:module>
+					<miage:intitulé>Bases de données</miage:intitulé>
+					<miage:heures>
+						<miage:CM>20</miage:CM>
+						<miage:TDTP>40</miage:TDTP>
+					</miage:heures>
+				</miage:module>
+			</miage:UE>
+			<miage:UE type="obligatoire">
+				<miage:intitulé>Informatique 4</miage:intitulé>
+				<miage:ECTS>6</miage:ECTS>
+				<miage:module>
+					<miage:intitulé>Programmation objet / Génie logiciel</miage:intitulé>
+					<miage:heures>
+						<miage:CM>20</miage:CM>
+						<miage:TDTP>40</miage:TDTP>
+					</miage:heures>
+				</miage:module>
+			</miage:UE>
+			<miage:UE type="obligatoire">
+				<miage:intitulé>Langue et Projet</miage:intitulé>
+				<miage:ECTS>6</miage:ECTS>
+				<miage:module>
+					<miage:intitulé>Anglais</miage:intitulé>
+					<miage:heures>
+						<miage:CM>0</miage:CM>
+						<miage:TDTP>30</miage:TDTP>
+					</miage:heures>
+				</miage:module>
+				<miage:module>
+					<miage:intitulé>Soutenance et mémoire de projet</miage:intitulé>
+					<miage:heures>
+						<miage:CM>0</miage:CM>
+						<miage:TDTP>30</miage:TDTP>
+					</miage:heures>
+				</miage:module>
+			</miage:UE>
+			<miage:UE type="obligatoire">
+				<miage:intitulé>Stage</miage:intitulé>
+				<miage:ECTS>6</miage:ECTS>
+				<miage:module>
+					<miage:intitulé>Stage</miage:intitulé>
+					<miage:heures>
+						<miage:CM>0</miage:CM>
+						<miage:TDTP>0</miage:TDTP>
+					</miage:heures>
+				</miage:module>
+			</miage:UE>
+		</miage:semestre>
+	</miage:formation>
+	<miage:formation niveau="L3">
+		<miage:intitulé>Licence de Gestion parcours MIAGE</miage:intitulé>
+		<miage:semestre numéro="S1">
+			<miage:UE type="obligatoire">
+				<miage:intitulé>Comptabilité et Droit</miage:intitulé>
+				<miage:ECTS>6</miage:ECTS>
+				<miage:module>
+					<miage:intitulé>Comptabilité des sociétés</miage:intitulé>
+					<miage:heures>
+						<miage:CM>30</miage:CM>
+						<miage:TDTP>16</miage:TDTP>
+					</miage:heures>
+				</miage:module>
+				<miage:module>
+					<miage:intitulé>Droit commercial</miage:intitulé>
+					<miage:heures>
+						<miage:CM>20</miage:CM>
+						<miage:TDTP>0</miage:TDTP>
+					</miage:heures>
+				</miage:module>
+			</miage:UE>
+			<miage:UE type="obligatoire">
+				<miage:intitulé>Marketing</miage:intitulé>
+				<miage:ECTS>9</miage:ECTS>
+				<miage:module>
+					<miage:intitulé>Marketing commercial</miage:intitulé>
+					<miage:heures>
+						<miage:CM>20</miage:CM>
+						<miage:TDTP>10</miage:TDTP>
+					</miage:heures>
+				</miage:module>
+				<miage:module>
+					<miage:intitulé>Etudes de marché</miage:intitulé>
+					<miage:heures>
+						<miage:CM>20</miage:CM>
+						<miage:TDTP>10</miage:TDTP>
+					</miage:heures>
+				</miage:module>
+			</miage:UE>
+			<miage:UE type="obligatoire">
+				<miage:intitulé>Informatique et Langue</miage:intitulé>
+				<miage:ECTS>6</miage:ECTS>
+				<miage:module>
+					<miage:intitulé>Informatique niveau 5 (BD)</miage:intitulé>
+					<miage:heures>
+						<miage:CM>0</miage:CM>
+						<miage:TDTP>30</miage:TDTP>
+					</miage:heures>
+				</miage:module>
+				<miage:module>
+					<miage:intitulé>Anglais</miage:intitulé>
+					<miage:heures>
+						<miage:CM>0</miage:CM>
+						<miage:TDTP>30</miage:TDTP>
+					</miage:heures>
+				</miage:module>
+			</miage:UE>
+			<miage:UE type="obligatoire">
+				<miage:intitulé>Options</miage:intitulé>
+				<miage:ECTS>3</miage:ECTS>
+				<miage:module>
+					<miage:intitulé>Gestion des ressources humaines ou Sport</miage:intitulé>
+					<miage:heures>
+						<miage:CM>20</miage:CM>
+						<miage:TDTP>10</miage:TDTP>
+					</miage:heures>
+				</miage:module>
+			</miage:UE>
+			<miage:UE type="obligatoire">
+				<miage:intitulé>MIAGE 1</miage:intitulé>
+				<miage:ECTS>3</miage:ECTS>
+				<miage:module>
+					<miage:intitulé>Algorithmique et programmation</miage:intitulé>
+					<miage:heures>
+						<miage:CM>30</miage:CM>
+						<miage:TDTP>20</miage:TDTP>
+					</miage:heures>
+				</miage:module>
+			</miage:UE>
+			<miage:UE type="obligatoire">
+				<miage:intitulé>MIAGE 2</miage:intitulé>
+				<miage:ECTS>3</miage:ECTS>
+				<miage:module>
+					<miage:intitulé>Gestion de projets</miage:intitulé>
+					<miage:heures>
+						<miage:CM>15</miage:CM>
+						<miage:TDTP>15</miage:TDTP>
+					</miage:heures>
+				</miage:module>
+				<miage:module>
+					<miage:intitulé>Programmation orientée objets</miage:intitulé>
+					<miage:heures>
+						<miage:CM>15</miage:CM>
+						<miage:TDTP>10</miage:TDTP>
+					</miage:heures>
+				</miage:module>
+			</miage:UE>
+		</miage:semestre>
+		<miage:semestre numéro="S2">
+			<miage:UE type="obligatoire">
+				<miage:intitulé>Finance</miage:intitulé>
+				<miage:ECTS>6</miage:ECTS>
+				<miage:module>
+					<miage:intitulé>Mathématiques financières et choix d'investissement</miage:intitulé>
+					<miage:heures>
+						<miage:CM>30</miage:CM>
+						<miage:TDTP>10</miage:TDTP>
+					</miage:heures>
+				</miage:module>
+				<miage:module>
+					<miage:intitulé>Choix financiers de la firme</miage:intitulé>
+					<miage:heures>
+						<miage:CM>30</miage:CM>
+						<miage:TDTP>10</miage:TDTP>
+					</miage:heures>
+				</miage:module>
+			</miage:UE>
+			<miage:UE type="obligatoire">
+				<miage:intitulé>Statistiques et Informatique</miage:intitulé>
+				<miage:ECTS>6</miage:ECTS>
+				<miage:module>
+					<miage:intitulé>Statistiques</miage:intitulé>
+					<miage:heures>
+						<miage:CM>20</miage:CM>
+						<miage:TDTP>24</miage:TDTP>
+					</miage:heures>
+				</miage:module>
+				<miage:module>
+					<miage:intitulé>Informatique niveau 6 (CSI)</miage:intitulé>
+					<miage:heures>
+						<miage:CM>20</miage:CM>
+						<miage:TDTP>24</miage:TDTP>
+					</miage:heures>
+				</miage:module>
+			</miage:UE>
+			<miage:UE type="obligatoire">
+				<miage:intitulé>MIAGE 3</miage:intitulé>
+				<miage:ECTS>6</miage:ECTS>
+				<miage:module>
+					<miage:intitulé>Systèmes d'exploitation et architectures des ordinateurs</miage:intitulé>
+					<miage:heures>
+						<miage:CM>20</miage:CM>
+						<miage:TDTP>20</miage:TDTP>
+					</miage:heures>
+				</miage:module>
+				<miage:module>
+					<miage:intitulé>Interfaces / VB</miage:intitulé>
+					<miage:heures>
+						<miage:CM>20</miage:CM>
+						<miage:TDTP>20</miage:TDTP>
+					</miage:heures>
+				</miage:module>
+			</miage:UE>
+			<miage:UE type="obligatoire">
+				<miage:intitulé>MIAGE 4</miage:intitulé>
+				<miage:ECTS>6</miage:ECTS>
+				<miage:module>
+					<miage:intitulé>Recherche opérationnelle</miage:intitulé>
+					<miage:heures>
+						<miage:CM>15</miage:CM>
+						<miage:TDTP>10</miage:TDTP>
+					</miage:heures>
+				</miage:module>
+				<miage:module>
+					<miage:intitulé>Stage</miage:intitulé>
+					<miage:heures>
+						<miage:CM>0</miage:CM>
+						<miage:TDTP>0</miage:TDTP>
+					</miage:heures>
+				</miage:module>
+			</miage:UE>
+		</miage:semestre>
+	</miage:formation>
+	<miage:formation niveau="M1">
+		<miage:intitulé>Master MIAGE première année</miage:intitulé>
+		<miage:semestre numéro="S1">
+			<miage:UE type="obligatoire">
+				<miage:intitulé>Informatique</miage:intitulé>
+				<miage:ECTS>6</miage:ECTS>
+				<miage:module>
+					<miage:intitulé>Administration des bases de données</miage:intitulé>
+					<miage:heures>
+						<miage:CM>15</miage:CM>
+						<miage:TDTP>15</miage:TDTP>
+					</miage:heures>
+				</miage:module>
+				<miage:module>
+					<miage:intitulé>Réseaux</miage:intitulé>
+					<miage:heures>
+						<miage:CM>15</miage:CM>
+						<miage:TDTP>15</miage:TDTP>
+					</miage:heures>
+				</miage:module>
+			</miage:UE>
+			<miage:UE type="obligatoire">
+				<miage:intitulé>Stratégie d'entreprise</miage:intitulé>
+				<miage:ECTS>6</miage:ECTS>
+				<miage:module>
+					<miage:intitulé>Enjeux internationaux et performance de l'entreprise</miage:intitulé>
+					<miage:heures>
+						<miage:CM>18</miage:CM>
+						<miage:TDTP>18</miage:TDTP>
+					</miage:heures>
+				</miage:module>
+				<miage:module>
+					<miage:intitulé>Gestion et stratégie d'entreprise</miage:intitulé>
+					<miage:heures>
+						<miage:CM>18</miage:CM>
+						<miage:TDTP>18</miage:TDTP>
+					</miage:heures>
+				</miage:module>
+			</miage:UE>
+			<miage:UE type="obligatoire">
+				<miage:intitulé>Outils d'aide à la décision</miage:intitulé>
+				<miage:ECTS>6</miage:ECTS>
+				<miage:module>
+					<miage:intitulé>Outils exploratoires d'aide à la décision</miage:intitulé>
+					<miage:heures>
+						<miage:CM>15</miage:CM>
+						<miage:TDTP>15</miage:TDTP>
+					</miage:heures>
+				</miage:module>
+				<miage:module>
+					<miage:intitulé>Aide à la décision et management des organisations</miage:intitulé>
+					<miage:heures>
+						<miage:CM>15</miage:CM>
+						<miage:TDTP>15</miage:TDTP>
+					</miage:heures>
+				</miage:module>
+			</miage:UE>
+			<miage:UE type="obligatoire">
+				<miage:intitulé>Langue et Droit</miage:intitulé>
+				<miage:ECTS>6</miage:ECTS>
+				<miage:module>
+					<miage:intitulé>Droit</miage:intitulé>
+					<miage:heures>
+						<miage:CM>30</miage:CM>
+						<miage:TDTP>0</miage:TDTP>
+					</miage:heures>
+				</miage:module>
+				<miage:module>
+					<miage:intitulé>Anglais</miage:intitulé>
+					<miage:heures>
+						<miage:CM>15</miage:CM>
+						<miage:TDTP>15</miage:TDTP>
+					</miage:heures>
+				</miage:module>
+			</miage:UE>
+			<miage:UE type="optionnelle">
+				<miage:intitulé>Option : Informatique</miage:intitulé>
+				<miage:ECTS>6</miage:ECTS>
+				<miage:module>
+					<miage:intitulé>Bases de données niveau 2</miage:intitulé>
+					<miage:heures>
+						<miage:CM>15</miage:CM>
+						<miage:TDTP>15</miage:TDTP>
+					</miage:heures>
+				</miage:module>
+				<miage:module>
+					<miage:intitulé>Programmation orientée objets (Java)</miage:intitulé>
+					<miage:heures>
+						<miage:CM>15</miage:CM>
+						<miage:TDTP>15</miage:TDTP>
+					</miage:heures>
+				</miage:module>
+			</miage:UE>
+			<miage:UE type="optionnelle">
+				<miage:intitulé>Option : Gestion</miage:intitulé>
+				<miage:ECTS>6</miage:ECTS>
+				<miage:module>
+					<miage:intitulé>Gestion des ressources humaines</miage:intitulé>
+					<miage:heures>
+						<miage:CM>15</miage:CM>
+						<miage:TDTP>15</miage:TDTP>
+					</miage:heures>
+				</miage:module>
+				<miage:module>
+					<miage:intitulé>Gestion financière</miage:intitulé>
+					<miage:heures>
+						<miage:CM>15</miage:CM>
+						<miage:TDTP>15</miage:TDTP>
+					</miage:heures>
+				</miage:module>
+			</miage:UE>
+		</miage:semestre>
+		<miage:semestre numéro="S2">
+			<miage:UE type="obligatoire">
+				<miage:intitulé>Informatique 2</miage:intitulé>
+				<miage:ECTS>6</miage:ECTS>
+				<miage:module>
+					<miage:intitulé>Systèmes distribués</miage:intitulé>
+					<miage:heures>
+						<miage:CM>15</miage:CM>
+						<miage:TDTP>15</miage:TDTP>
+					</miage:heures>
+				</miage:module>
+				<miage:module>
+					<miage:intitulé>Programmation orientée objets avancée</miage:intitulé>
+					<miage:heures>
+						<miage:CM>15</miage:CM>
+						<miage:TDTP>15</miage:TDTP>
+					</miage:heures>
+				</miage:module>
+			</miage:UE>
+			<miage:UE type="obligatoire">
+				<miage:intitulé>Conception et Génie logiciel</miage:intitulé>
+				<miage:ECTS>6</miage:ECTS>
+				<miage:module>
+					<miage:intitulé>Conception orientée objets</miage:intitulé>
+					<miage:heures>
+						<miage:CM>15</miage:CM>
+						<miage:TDTP>15</miage:TDTP>
+					</miage:heures>
+				</miage:module>
+				<miage:module>
+					<miage:intitulé>Génie logiciel et qualité</miage:intitulé>
+					<miage:heures>
+						<miage:CM>15</miage:CM>
+						<miage:TDTP>15</miage:TDTP>
+					</miage:heures>
+				</miage:module>
+			</miage:UE>
+			<miage:UE type="obligatoire">
+				<miage:intitulé>Communication et Projet</miage:intitulé>
+				<miage:ECTS>6</miage:ECTS>
+				<miage:module>
+					<miage:intitulé>Communication</miage:intitulé>
+					<miage:heures>
+						<miage:CM>15</miage:CM>
+						<miage:TDTP>15</miage:TDTP>
+					</miage:heures>
+				</miage:module>
+				<miage:module>
+					<miage:intitulé>Projet de conception de S.I.</miage:intitulé>
+					<miage:heures>
+						<miage:CM>0</miage:CM>
+						<miage:TDTP>30</miage:TDTP>
+					</miage:heures>
+				</miage:module>
+			</miage:UE>
+			<miage:UE type="obligatoire">
+				<miage:intitulé>Stage</miage:intitulé>
+				<miage:ECTS>6</miage:ECTS>
+				<miage:module>
+					<miage:intitulé>Stage</miage:intitulé>
+					<miage:heures>
+						<miage:CM>0</miage:CM>
+						<miage:TDTP>0</miage:TDTP>
+					</miage:heures>
+				</miage:module>
+			</miage:UE>
+			<miage:UE type="optionnelle">
+				<miage:intitulé>Option : Gestion des organisations</miage:intitulé>
+				<miage:ECTS>6</miage:ECTS>
+				<miage:module>
+					<miage:intitulé>Contrôle de gestion</miage:intitulé>
+					<miage:heures>
+						<miage:CM>18</miage:CM>
+						<miage:TDTP>18</miage:TDTP>
+					</miage:heures>
+				</miage:module>
+				<miage:module>
+					<miage:intitulé>Théorie des organisations et conduite du changement</miage:intitulé>
+					<miage:heures>
+						<miage:CM>18</miage:CM>
+						<miage:TDTP>18</miage:TDTP>
+					</miage:heures>
+				</miage:module>
+			</miage:UE>
+			<miage:UE type="optionnelle">
+				<miage:intitulé>Programmation avancée</miage:intitulé>
+				<miage:ECTS>6</miage:ECTS>
+				<miage:module>
+					<miage:intitulé>Programmation client/serveur</miage:intitulé>
+					<miage:heures>
+						<miage:CM>15</miage:CM>
+						<miage:TDTP>15</miage:TDTP>
+					</miage:heures>
+				</miage:module>
+				<miage:module>
+					<miage:intitulé>Programmation Web</miage:intitulé>
+					<miage:heures>
+						<miage:CM>15</miage:CM>
+						<miage:TDTP>15</miage:TDTP>
+					</miage:heures>
+				</miage:module>
+			</miage:UE>
+		</miage:semestre>
+	</miage:formation>
+	<miage:formation niveau="M2">
+		<miage:intitulé>Master MIAGE seconde année : Management et ingénierie des S.I.</miage:intitulé>
+		<miage:semestre numéro="S1">
+			<miage:UE type="obligatoire">
+				<miage:intitulé>Informatique</miage:intitulé>
+				<miage:ECTS>6</miage:ECTS>
+				<miage:module>
+					<miage:intitulé>Architecture et programmation distribuée</miage:intitulé>
+					<miage:heures>
+						<miage:CM>15</miage:CM>
+						<miage:TDTP>15</miage:TDTP>
+					</miage:heures>
+				</miage:module>
+				<miage:module>
+					<miage:intitulé>Intelligence artificielle</miage:intitulé>
+					<miage:heures>
+						<miage:CM>15</miage:CM>
+						<miage:TDTP>15</miage:TDTP>
+					</miage:heures>
+				</miage:module>
+			</miage:UE>
+			<miage:UE type="obligatoire">
+				<miage:intitulé>Gestion de données complexes</miage:intitulé>
+				<miage:ECTS>6</miage:ECTS>
+				<miage:module>
+					<miage:intitulé>Documents numériques</miage:intitulé>
+					<miage:heures>
+						<miage:CM>15</miage:CM>
+						<miage:TDTP>15</miage:TDTP>
+					</miage:heures>
+				</miage:module>
+				<miage:module>
+					<miage:intitulé>Technologies multimédias</miage:intitulé>
+					<miage:heures>
+						<miage:CM>15</miage:CM>
+						<miage:TDTP>15</miage:TDTP>
+					</miage:heures>
+				</miage:module>
+			</miage:UE>
+			<miage:UE type="obligatoire">
+				<miage:intitulé>Gestion des systèmes d'information</miage:intitulé>
+				<miage:ECTS>6</miage:ECTS>
+				<miage:module>
+					<miage:intitulé>Sécurité des systèmes d'information</miage:intitulé>
+					<miage:heures>
+						<miage:CM>12</miage:CM>
+						<miage:TDTP>12</miage:TDTP>
+					</miage:heures>
+				</miage:module>
+				<miage:module>
+					<miage:intitulé>Administration du système projet</miage:intitulé>
+					<miage:heures>
+						<miage:CM>18</miage:CM>
+						<miage:TDTP>18</miage:TDTP>
+					</miage:heures>
+				</miage:module>
+			</miage:UE>
+			<miage:UE type="obligatoire">
+				<miage:intitulé>Gestion d'entreprise</miage:intitulé>
+				<miage:ECTS>6</miage:ECTS>
+				<miage:module>
+					<miage:intitulé>e-Business</miage:intitulé>
+					<miage:heures>
+						<miage:CM>18</miage:CM>
+						<miage:TDTP>18</miage:TDTP>
+					</miage:heures>
+				</miage:module>
+				<miage:module>
+					<miage:intitulé>Jeu d'entreprise</miage:intitulé>
+					<miage:heures>
+						<miage:CM>0</miage:CM>
+						<miage:TDTP>15</miage:TDTP>
+					</miage:heures>
+				</miage:module>
+			</miage:UE>
+			<miage:UE type="obligatoire">
+				<miage:intitulé>Anglais et Projet</miage:intitulé>
+				<miage:ECTS>6</miage:ECTS>
+				<miage:module>
+					<miage:intitulé>Anglais</miage:intitulé>
+					<miage:heures>
+						<miage:CM>15</miage:CM>
+						<miage:TDTP>15</miage:TDTP>
+					</miage:heures>
+				</miage:module>
+				<miage:module>
+					<miage:intitulé>Projet bibliographique</miage:intitulé>
+					<miage:heures>
+						<miage:CM>0</miage:CM>
+						<miage:TDTP>30</miage:TDTP>
+					</miage:heures>
+				</miage:module>
+			</miage:UE>
+		</miage:semestre>
+		<miage:semestre numéro="S2">
+			<miage:UE type="obligatoire">
+				<miage:intitulé>Systèmes d'information et management des connaissances</miage:intitulé>
+				<miage:ECTS>6</miage:ECTS>
+				<miage:module>
+					<miage:intitulé>Ingénierie des S.I. de veille stratégique</miage:intitulé>
+					<miage:heures>
+						<miage:CM>18</miage:CM>
+						<miage:TDTP>18</miage:TDTP>
+					</miage:heures>
+				</miage:module>
+				<miage:module>
+					<miage:intitulé>Gestion et extraction de connaissances</miage:intitulé>
+					<miage:heures>
+						<miage:CM>15</miage:CM>
+						<miage:TDTP>15</miage:TDTP>
+					</miage:heures>
+				</miage:module>
+				<miage:module>
+					<miage:intitulé>Documents numériques avancés</miage:intitulé>
+					<miage:heures>
+						<miage:CM>15</miage:CM>
+						<miage:TDTP>15</miage:TDTP>
+					</miage:heures>
+				</miage:module>
+			</miage:UE>
+			<miage:UE type="obligatoire">
+				<miage:intitulé>Professionnalisation</miage:intitulé>
+				<miage:ECTS>18</miage:ECTS>
+				<miage:module>
+					<miage:intitulé>Stage</miage:intitulé>
+					<miage:heures>
+						<miage:CM>0</miage:CM>
+						<miage:TDTP>0</miage:TDTP>
+					</miage:heures>
+				</miage:module>
+			</miage:UE>
+			<miage:UE type="optionnelle">
+				<miage:intitulé>Evaluation des systèmes d'information</miage:intitulé>
+				<miage:ECTS>6</miage:ECTS>
+				<miage:module>
+					<miage:intitulé>Evaluation financière des S.I.</miage:intitulé>
+					<miage:heures>
+						<miage:CM>18</miage:CM>
+						<miage:TDTP>18</miage:TDTP>
+					</miage:heures>
+				</miage:module>
+				<miage:module>
+					<miage:intitulé>Audit, qualité des S.I.</miage:intitulé>
+					<miage:heures>
+						<miage:CM>15</miage:CM>
+						<miage:TDTP>15</miage:TDTP>
+					</miage:heures>
+				</miage:module>
+			</miage:UE>
+			<miage:UE type="optionnelle">
+				<miage:intitulé>Ingénierie des systèmes d'information</miage:intitulé>
+				<miage:ECTS>6</miage:ECTS>
+				<miage:module>
+					<miage:intitulé>Web-services</miage:intitulé>
+					<miage:heures>
+						<miage:CM>15</miage:CM>
+						<miage:TDTP>15</miage:TDTP>
+					</miage:heures>
+				</miage:module>
+				<miage:module>
+					<miage:intitulé>Nouvelles approches d'ingénierie des systèmes d'information (autour d'UML)</miage:intitulé>
+					<miage:heures>
+						<miage:CM>15</miage:CM>
+						<miage:TDTP>15</miage:TDTP>
+					</miage:heures>
+				</miage:module>
+			</miage:UE>
+		</miage:semestre>
+	</miage:formation>
+</miage:MIAGE>
