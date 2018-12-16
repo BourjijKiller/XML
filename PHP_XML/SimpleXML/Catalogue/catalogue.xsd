@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- édité avec XMLSpy v2018 (x64) (http://www.altova.com) par Philippe RAMADOUR (MIAGE Marseille) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:cat="http://www.univ-amu.fr/XML/catalogue" targetNamespace="http://www.univ-amu.fr/XML/catalogue" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="catalogue">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="famille" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="nom" type="xs:string"/>
+							<xs:element name="produit" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="désignation" type="xs:string"/>
+										<xs:element name="quantitéStock" type="xs:positiveInteger"/>
+										<xs:element name="prix">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="montant">
+														<xs:simpleType>
+															<xs:restriction base="xs:string">
+																<xs:pattern value="\d*\.\d{2}"/>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+												</xs:sequence>
+												<xs:attribute name="devise">
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:enumeration value="EURO"/>
+															<xs:enumeration value="DOLLAR US"/>
+															<xs:enumeration value="LIVRE"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:attribute>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+									<xs:attribute name="référence">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:pattern value="[A-Z]{2}-[A-Z]{3,4}-\d{4}"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

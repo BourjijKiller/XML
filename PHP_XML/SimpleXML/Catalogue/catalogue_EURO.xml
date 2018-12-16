@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cat:catalogue xmlns:cat="http://www.univ-amu.fr/XML/catalogue" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.univ-amu.fr/XML/catalogue catalogue.xsd">
+	<cat:famille>
+		<cat:nom>Produits techniques</cat:nom>
+		<cat:produit référence="PT-LCD-2587">
+			<cat:désignation>Ecran LCD 20" SYNO</cat:désignation>
+			<cat:quantitéStock>15</cat:quantitéStock>
+			<cat:prix devise="EURO"><cat:montant>899.00</cat:montant></cat:prix>
+		</cat:produit>
+		<cat:produit référence="PT-PORT-4896">
+			<cat:désignation>Téléphone Portable RZR-X300</cat:désignation>
+			<cat:quantitéStock>50</cat:quantitéStock>
+			<cat:prix devise="DOLLAR US"><cat:montant>438.54615</cat:montant></cat:prix>
+		</cat:produit>
+		<cat:produit référence="AL-TEL-7645">
+			<cat:désignation>Smartphone OnePlus 6T</cat:désignation>
+			<cat:quantitéStock>7</cat:quantitéStock>
+			<cat:prix devise="DOLLAR US">
+				<cat:montant>527.31</cat:montant>
+			</cat:prix>
+		</cat:produit>
+		<!-- ... Autres produits de la même famille ... -->
+	</cat:famille>
+	<cat:famille>
+		<cat:nom>Gros électro-ménager</cat:nom>
+		<cat:produit référence="SM-DEGI-7802">
+			<cat:désignation>Réfrigirateur F7802 SAMSUNG</cat:désignation>
+			<cat:quantitéStock>2</cat:quantitéStock>
+			<cat:prix devise="EURO">
+				<cat:montant>999.00</cat:montant>
+			</cat:prix>
+		</cat:produit>
+		<cat:produit référence="LG-AMER-5500">
+			<cat:désignation>Refrigirateur américain LG 5500</cat:désignation>
+			<cat:quantitéStock>3</cat:quantitéStock>
+			<cat:prix devise="EURO">
+				<cat:montant>1099.00</cat:montant>
+			</cat:prix>
+		</cat:produit>
+		<!-- ... Autres produits de la même famille ... -->
+	</cat:famille>
+	<!-- ... Autres familles de produits ... -->
+</cat:catalogue>
