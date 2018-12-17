@@ -1,0 +1,20 @@
+{
+    "name": "samuel/sax",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "entezamse",
+            "email": "samuel.entezam@soprasteria.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "App\\": "src"
+        }
+    },
+    "require": {
+        "ext-xml": "*",
+        "ext-mbstring": "*"
+    }
+}
