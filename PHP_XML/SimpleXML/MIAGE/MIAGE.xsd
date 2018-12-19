@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- édité avec XMLSpy v2017 rel. 3 (x64) (http://www.altova.com) par Philippe Ramadour (MIAGE Marseille) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:miage="http://www.univ-amu.fr/XML/MIAGE" targetNamespace="http://www.univ-amu.fr/XML/MIAGE" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="MIAGE">
+		<xs:annotation>
+			<xs:documentation>Descriptif des formations de l'IUP MIAGE d'Aix-Marseille en 2005/2006</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="formation" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="intitulé" type="xs:string"/>
+							<xs:element name="semestre" minOccurs="2" maxOccurs="2">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="UE" maxOccurs="unbounded">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="intitulé" type="xs:string"/>
+													<xs:element name="ECTS">
+														<xs:simpleType>
+															<xs:restriction base="xs:positiveInteger">
+																<xs:minInclusive value="1"/>
+																<xs:maxInclusive value="60"/>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="module" maxOccurs="unbounded">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="intitulé" type="xs:string"/>
+																<xs:element name="heures">
+																	<xs:complexType>
+																		<xs:sequence>
+																			<xs:element name="CM" type="xs:nonNegativeInteger"/>
+																			<xs:element name="TDTP" type="xs:nonNegativeInteger"/>
+																		</xs:sequence>
+																	</xs:complexType>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+												<xs:attribute name="type">
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:enumeration value="obligatoire"/>
+															<xs:enumeration value="optionnelle"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:attribute>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+									<xs:attribute name="numéro">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:enumeration value="S1"/>
+												<xs:enumeration value="S2"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="niveau">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="L3"/>
+									<xs:enumeration value="M1"/>
+									<xs:enumeration value="M2"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

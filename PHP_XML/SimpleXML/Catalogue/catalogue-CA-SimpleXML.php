@@ -30,6 +30,7 @@ $HTML .= <<<HTML
     </ul>
 </div>
 HTML;
+getCatalogue($xmlFile, $HTML);
 echo $HTML;
 }
 
@@ -63,6 +64,70 @@ function getChiffreAffaires($xmlFile, string $devise, &$HTML) : void
         }
     }
     $CA > 0.0 ? writeCAInHTML($devise, $HTML, $CA) : null;
+}
+
+/**
+ * Affiche le catalogue complet sous forme d'un tableau écrit dans le buffer HTML
+ * @param $xmlFile fichier XML source
+ * @param $HTML buffer HTML
+ */
+function getCatalogue($xmlFile, &$HTML) : void
+{
+    $HTML .= <<<HTML
+         <div style="margin-left: 20px;">
+            <h2 style="color: #FF6347; text-decoration: underline;"> Affichage du catalogue </h2>
+            <table border="3" cellpadding="15">
+                <thead style="text-align: center; font-weight: bold; background-color: #bab9b9;">
+                    <td>Catégorie</td>
+                    <td>Désignation</td>
+                    <td>Référence</td>
+                    <td>Quantité</td>
+                    <td>Prix unitaire</td>
+                    <td>Total</td>
+                </thead>
+                <tbody>
+HTML;
+
+    foreach ($xmlFile->children("http://www.univ-amu.fr/XML/catalogue", FALSE) as $familles) {
+        $categorie = $familles->xpath(".//cat:nom/text()")[0];
+        foreach ($familles->xpath(".//cat:produit") as $produits) {
+            $reference = $produits->xpath(".//@référence")[0];
+            $designation = $produits->xpath(".//cat:désignation")[0];
+            $quantite = $produits->xpath(".//cat:quantitéStock")[0];
+            $prixUnit = $produits->xpath(".//cat:montant")[0];
+            $devise = $produits->xpath(".//cat:prix/@devise")[0];
+            $HTML .= <<<HTML
+                <tr style="text-align: center;">
+                    <td>$categorie</td>
+                    <td>$designation</td>
+                    <td>$reference</td>
+                    <td>$quantite</td>
+HTML;
+            $total = $prixUnit * $quantite;
+            $prixUnit = number_format((string)$prixUnit, 2);
+            $total = number_format($total, 2);
+            switch ($devise) {
+                case "DOLLAR US":
+                    $HTML .= <<<HTML
+                        <td>$prixUnit $</td>
+                        <td>$total $</td>
+HTML;
+                    break;
+                case "LIVRE STERLING":
+                    $HTML .= <<<HTML
+                        <td>£ $prixUnit</td>
+                        <td>£ $total</td>
+HTML;
+                    break;
+                default:
+                    $HTML .= <<<HTML
+                        <td>$prixUnit €</td>
+                        <td>$total €</td>
+HTML;
+                    break;
+            }
+        }
+    }
 }
 
 /**
