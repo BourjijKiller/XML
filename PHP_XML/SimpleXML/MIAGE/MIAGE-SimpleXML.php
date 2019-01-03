@@ -1,4 +1,6 @@
 <?php
+error_reporting(E_ALL ^ E_WARNING);
+
 global $buffer;
 
 if(file_exists("MIAGE.xml")) {
@@ -15,6 +17,10 @@ else {
     die("XML File not found");
 }
 
+/**
+ * @param $xmlFile
+ * @param $buffer
+ */
 function getFormations($xmlFile, &$buffer) : void
 {
     registerNSForXPath($xmlFile);
@@ -24,13 +30,50 @@ function getFormations($xmlFile, &$buffer) : void
     constructView($buffer, "div class='container'", null, true, false, true);
     constructView($buffer, "div class='jumbotron' style='background-color: rgba(18, 169, 49, 0.4)'", "<h1 class='display-4 text-center'>Les formations en MIAGE</h1><hr style='margin-bottom: unset;'>", true, true);
     // Parcours des formations
-    foreach ($xmlFile->xpath(".//miage:formation") as $formations) {
-        $niveau = $formations->xpath("@niveau")[0]." ".$formations->xpath("./miage:intitulé")[0];
-    }
-
+    constructView($buffer, "div class='row justify-content-around' id='cardFormations'", null, true, false, true);
+    foreachFormations($xmlFile, $buffer);
+    // Fermeture de la div contenant les boutons
+    constructView($buffer, "div", null, false, true, true);
+    foreachFormations($xmlFile, $buffer, true);
+    // Fermeture du container
     constructView($buffer, "div", null, false, true, true);
     // Inclusion bootstrap 4.0 js
     constructView($buffer, "script src=\"https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js\" integrity=\"sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl\" crossorigin=\"anonymous\"", null, true, true, true);
+    constructView($buffer, "script src=\"https://code.jquery.com/jquery-3.3.1.min.js\"integrity=\"sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=\"crossorigin=\"anonymous\"", null, true, true, true);
+}
+
+function foreachFormations($xmlFile, &$buffer, bool $getContentFormations = false) : void
+{
+    foreach ($xmlFile->xpath(".//miage:formation") as $formations) {
+        $niveau = $formations->xpath("@niveau")[0]." ".$formations->xpath("./miage:intitulé")[0];
+        $linkFormation = str_replace(' ', '-', $niveau);
+        if(strpos($linkFormation, ':')) {
+            $linkFormation = substr_replace($linkFormation, '', strpos($linkFormation, ':')-1);
+        }
+        $getContentFormations ? getContentFormations($buffer, $linkFormation, $formations) : constructView($buffer, "button class='btn btn-success mt-3' data-toggle='collapse' data-target='#$linkFormation' aria-expanded='true' aria-controls='$linkFormation'", $niveau, true, true);
+    }
+}
+
+function getContentFormations(&$buffer, string $linkSection, SimpleXMLElement $currentElement) : void
+{
+    $i = 0;
+    // Ouverture de la balise div
+    constructView($buffer, "div id='$linkSection' class='collapse hide' aria-labelledby='cardFormations'", "<div class='card'><div class='card-header mb-3'><ul class='nav nav-pills' id='pills-tab' role='tablist'>", true, false);
+    foreach ($currentElement->xpath(".//miage:semestre") as $semestres) {
+        $semestre = $semestres->xpath("@numéro")[0];
+        $linkSemestre = $semestre."-".$linkSection;
+        $i == 0 ? constructView($buffer, "li class='nav-item'", "<a class=\"nav-link active ml-3\" id=\"$linkSemestre-content\" data-toggle=\"pill\" href=\"#$linkSemestre-link\" role=\"tab\" aria-controls=\"$linkSemestre\" aria-selected=\"true\">$semestre</a>", true, true)
+            : constructView($buffer, "li class='nav-item'", "<a class=\"nav-link ml-3\" id=\"$linkSemestre-content\" data-toggle=\"pill\" href=\"#$linkSemestre-link\" role=\"tab\" aria-controls=\"$linkSemestre\" aria-selected=\"false\">$semestre</a>", true, true);
+        $i++;
+    }
+    // Fermeture balise ul
+    constructView($buffer, "ul", null, false, true, true);
+    // Fermeture de la balise card-header
+    constructView($buffer, "div", null, false, true, true);
+    // Fermeture de la balise card
+    constructView($buffer, "div", null, false, true, true);
+    // Fermeture de la balise div
+    constructView($buffer, "div", null, false, true, true);
 }
 
 /**
